@@ -6,7 +6,7 @@ import { CONTRACT_NAME, TESTNET_RPC_ENDPOINT_URI } from '../constants/endpoints'
 
 const provider = new providers.JsonRpcProvider(TESTNET_RPC_ENDPOINT_URI);
 
-export const getState = async () => {
+export const getContractState = async () => {
   try {
     const request = {
       request: '{}',
@@ -22,6 +22,7 @@ export const getState = async () => {
 
     // format result
     const result = JSON.parse(Buffer.from(rawResult.result).toString());
+    console.log('State result: ', result);
     return result;
   } catch (err) {
     console.log(err);
