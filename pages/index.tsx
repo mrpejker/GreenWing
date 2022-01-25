@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Header from '../components/header';
-import StartEventButton from '../components/startEventButton';
+import NewEventForm from '../components/newEventForm';
 
 const Home: NextPage = () => {
   return (
@@ -14,7 +14,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <StartEventButton />
+      <NewEventForm />
     </div>
   );
 };

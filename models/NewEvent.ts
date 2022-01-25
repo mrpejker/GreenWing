@@ -1,4 +1,4 @@
-interface Quest {
+export interface Quest {
   qr_string: string;
   nft_description: string;
   nft_title: string;
