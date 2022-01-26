@@ -1,9 +1,9 @@
 import { ContractTypes } from './types';
-import { Contract } from '../../../models/Contract';
+// import { Contract } from '../../../models/Contract';
 
-export const getContractStateData = (data: Contract) => {
+export const getContractStateData = (is_active: boolean) => {
   return {
     type: ContractTypes.GetContractState,
-    payload: data,
+    payload: is_active,
   };
 };

@@ -9,7 +9,7 @@ import AddNewItemIcon from '../icons/AddNewItemIcon';
 import CalendarIcon from '../icons/CalendarIcon';
 import ForwardIcon from '../icons/ForwardIcon';
 
-const initialQuest = {
+const initialQuest: Quest = {
   qr_string: '',
   nft_description: '',
   nft_title: '',

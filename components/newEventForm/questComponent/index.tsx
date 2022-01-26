@@ -21,7 +21,7 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
     onQuestChange(index, event.target.name, event.target.value);
   };
 
-  const deleteQuest = () => removeQuest(index);
+  const deleteQuest = (): void => removeQuest(index);
 
   return (
     <>
@@ -59,7 +59,11 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
         placeholder="NFT Media"
       />
       {removable && (
-        <button onClick={deleteQuest} className="flex flex-row pb-2 justify-between my-1 items-center border-b-2">
+        <button
+          onClick={deleteQuest}
+          type="button"
+          className="flex flex-row pb-2 justify-between my-1 items-center border-b-2"
+        >
           Remove Quest
           <RemoveIcon />
         </button>

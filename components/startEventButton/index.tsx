@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
 const StartEventButton: React.FC = () => {
-  const [eventState, changeEventState] = useState(false);
-  const toggleEvent = () => changeEventState(!eventState);
+  const [eventState, changeEventState] = useState<boolean>(false);
+  const toggleEvent = (): void => changeEventState(!eventState);
   // const dispatch = useAppDispatch();
   const { is_active } = useAppSelector((state) => state.contractReducer);
   const stateString = !is_active ? 'Start event' : 'Stop event';
