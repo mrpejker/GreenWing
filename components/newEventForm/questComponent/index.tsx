@@ -1,5 +1,7 @@
 import React from 'react';
+// Models and types
 import { Quest } from '../../../models/NewEvent';
+// Icons
 import RemoveIcon from '../../icons/RemoveIcon';
 
 export type QuestChangeCallback = (index: number, field: string, value: string) => void;

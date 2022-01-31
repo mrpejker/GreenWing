@@ -1,19 +1,33 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useRouter } from 'next/router';
+// import Link from 'next/link';
 import UserAccountIcon from '../icons/UserAccountIcon';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-// import { getUserAccountData } from '../../store/reducers/userAccountReducer/actions';
+import { useAppSelector } from '../../hooks';
+import { connectingToNear } from '../../utils';
 
 const Header: React.FC = () => {
-  // const dispatch = useAppDispatch();
-  const { balance, accountId } = useAppSelector((state) => state.userAccountReducer);
+  const { balance, account_id } = useAppSelector((state) => state.userAccountReducer);
+  const router = useRouter();
+
+  const getAccountBalance = async () => {
+    const { account } = await connectingToNear();
+    console.log(await account.getAccountBalance());
+    console.log(await account.getAccountDetails());
+    // await contract.start();
+  };
+
+  const navigateToProfile = () => router.push(`/profile/${account_id}`);
 
   return (
     <div className="container text-center fixed top-0 w-full border-b-2 flex items-center justify-between">
       <img src="/robot.jpg" width={50} height={50} className="rounded-md float-left" alt="logo" />
       <span>{balance}</span>
-      <span>{accountId}</span>
-      <UserAccountIcon />
+      <span>{account_id}</span>
+      <button onClick={getAccountBalance}>Get Account Balance</button>
+      <button type="button" onClick={navigateToProfile}>
+        <UserAccountIcon />
+      </button>
     </div>
   );
 };

@@ -1,4 +1,6 @@
 export interface UserAccount {
-  accountId: string;
+  account_id: string;
   balance: number;
+  public_key: string;
+  private_key: string;
 }

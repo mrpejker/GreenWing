@@ -8,6 +8,7 @@ import { getContractState } from '../utils';
 import { getContractStateData } from '../store/reducers/contractReducer/actions';
 // import { setAppStateDevMode } from '../store/reducers/appStateReducer/actions';
 import { getUserAccountData } from '../store/reducers/userAccountReducer/actions';
+
 import { mockUserAccount } from '../mockData/mockUserAccount';
 
 function MyApp({ Component, pageProps }: AppProps) {

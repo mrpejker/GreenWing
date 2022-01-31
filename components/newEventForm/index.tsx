@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// Models
+// Models and types
 import { Quest, NewEvent } from '../../models/NewEvent';
 // Components
 import QuestComponent, { QuestChangeCallback } from './questComponent';
@@ -24,6 +24,7 @@ const NewEventForm: React.FC = () => {
 
   const onNewEventSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
+    // Setting New Event
     setSubmitedEvent({
       title: eventTitle,
       description: eventDescription,
@@ -31,13 +32,7 @@ const NewEventForm: React.FC = () => {
       start_date: new Date().getTime() * 1000,
       quests,
     });
-    console.log({
-      title: eventTitle,
-      description: eventDescription,
-      end_date: new Date().getTime() * 1000,
-      start_date: new Date().getTime() * 1000,
-      quests,
-    });
+    // Cleaning form
     setEventTitle('');
     setEventDescription('');
     editQuests([initialQuest]);

@@ -3,8 +3,10 @@ import { UserAccount } from '../../../models/UserAccount';
 import { UserAccountTypes } from './types';
 
 const initialState: UserAccount = {
-  accountId: '',
+  account_id: '',
   balance: 0,
+  public_key: '',
+  private_key: '',
 };
 
 const userAccountReducer: Reducer = (state = initialState, action) => {
