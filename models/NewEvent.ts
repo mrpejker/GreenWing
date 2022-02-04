@@ -12,3 +12,13 @@ export interface NewEvent {
   start_date: number;
   quests: Quest[];
 }
+
+export interface CheckIn {
+  username: string;
+  qr_string: string;
+  timestamp: number;
+  token_id: string;
+  token_url: string;
+}
+
+export type EventStats = CheckIn[];

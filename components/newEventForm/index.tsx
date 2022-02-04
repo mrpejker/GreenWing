@@ -133,7 +133,7 @@ const NewEventForm: React.FC = () => {
             <span>{quest.qr_string}</span>
           </div>
         ))}
-        {submitedEvent?.title && <StartEventButton />}
+        {/* {submitedEvent?.title && <StartEventButton />} */}
       </div>
     </div>
   );
