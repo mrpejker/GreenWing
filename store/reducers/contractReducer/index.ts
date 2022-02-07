@@ -6,7 +6,7 @@ const initialState: Contract = {
   is_active: false,
 };
 
-const contractReducer: Reducer = (state = initialState, action) => {
+const contractReducer: Reducer = (state = initialState, action): Contract => {
   switch (action.type) {
     case ContractTypes.GetContractState:
       return {

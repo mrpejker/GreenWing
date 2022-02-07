@@ -1,7 +1,7 @@
-import { AppStateTypes } from './types';
+import { AppStateTypes, AppAuthActionsType, AppSetDevModeAction } from './types';
 // import { AppState } from '../../../models/AppState';
 
-export const setAppStateDevMode = (is_dev: boolean) => {
+export const setAppStateDevMode = (is_dev: boolean): AppSetDevModeAction => {
   return {
     type: AppStateTypes.SetDevMode,
     payload: {
@@ -10,13 +10,13 @@ export const setAppStateDevMode = (is_dev: boolean) => {
   };
 };
 
-export const signInApp = () => {
+export const signInApp = (): AppAuthActionsType => {
   return {
     type: AppStateTypes.SignIn,
   };
 };
 
-export const signOutApp = () => {
+export const signOutApp = (): AppAuthActionsType => {
   return {
     type: AppStateTypes.SignOut,
   };

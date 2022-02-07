@@ -9,7 +9,7 @@ const initialState: UserAccount = {
   private_key: '',
 };
 
-const userAccountReducer: Reducer = (state = initialState, action) => {
+const userAccountReducer: Reducer = (state = initialState, action): UserAccount => {
   switch (action.type) {
     case UserAccountTypes.GetUserAccountData:
       return {

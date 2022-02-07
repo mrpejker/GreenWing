@@ -7,7 +7,7 @@ const initialState: AppState = {
   is_authed: false,
 };
 
-const appStateReducer: Reducer = (state = initialState, action) => {
+const appStateReducer: Reducer = (state = initialState, action): AppState => {
   switch (action.type) {
     case AppStateTypes.SetDevMode:
       return {
