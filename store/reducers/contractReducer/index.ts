@@ -8,7 +8,7 @@ const initialState: Contract = {
 
 const contractReducer: Reducer = (state = initialState, action): Contract => {
   switch (action.type) {
-    case ContractTypes.GetContractState:
+    case ContractTypes.GetEventStatus:
       return {
         ...state,
         ...action.payload,

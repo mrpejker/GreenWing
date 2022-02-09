@@ -1,10 +1,10 @@
 import { Contract } from '../../../models/Contract';
 
 export enum ContractTypes {
-  GetContractState = 'GET_CONTRACT_STATE',
+  GetEventStatus = 'GET_EVENT_STATUS',
 }
 
 export interface ContractAction {
-  type: ContractTypes.GetContractState;
+  type: ContractTypes.GetEventStatus;
   payload: Contract;
 }

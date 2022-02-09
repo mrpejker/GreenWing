@@ -14,7 +14,7 @@ const Header: React.FC = () => {
     const { account } = await connectingToNear();
     console.log(await account.getAccountBalance());
     console.log(await account.getAccountDetails());
-    // await contract.start();
+    // await contract.start_event();
   };
 
   const navigateToProfile = () => router.push(`/profile/${account_id}`);

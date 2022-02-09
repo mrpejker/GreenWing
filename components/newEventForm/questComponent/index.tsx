@@ -1,6 +1,6 @@
 import React from 'react';
 // Models and types
-import { Quest } from '../../../models/NewEvent';
+import { Quest } from '../../../models/Event';
 // Icons
 import RemoveIcon from '../../icons/RemoveIcon';
 
@@ -33,7 +33,7 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
         type="text"
         name="qr_string"
         onChange={onInputChange}
-        value={quest.qr_string}
+        value={quest.qr_prefix}
         className="my-1 placeholder:italic placeholder:text-slate-400 border border-slate-300 rounded-md py-2 pl-4 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
         placeholder="QR String"
       />
@@ -41,14 +41,14 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
         type="text"
         name="nft_title"
         onChange={onInputChange}
-        value={quest.nft_title}
+        value={quest.reward_title}
         className="my-1 placeholder:italic placeholder:text-slate-400 border border-slate-300 rounded-md py-2 pl-4 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
         placeholder="NFT Title"
       />
       <textarea
         name="nft_description"
         onChange={onTextAreaChange}
-        value={quest.nft_description}
+        value={quest.reward_description}
         className="my-1 resize-none placeholder:italic placeholder:text-slate-400 border border-slate-300 rounded-md py-2 pl-4 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
         placeholder="NFT Description"
       />
@@ -56,7 +56,7 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
         type="text"
         name="nft_media"
         onChange={onInputChange}
-        value={quest.nft_media}
+        value={quest.reward_url}
         className="my-1 placeholder:italic placeholder:text-slate-400 border border-slate-300 rounded-md py-2 pl-4 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
         placeholder="NFT Media"
       />

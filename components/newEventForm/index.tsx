@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // Models and types
-import { Quest, NewEvent } from '../../models/NewEvent';
+import { Quest, EventData } from '../../models/Event';
 // Components
 import QuestComponent, { QuestChangeCallback } from './questComponent';
 import StartEventButton from '../startEventButton';
@@ -10,26 +10,26 @@ import CalendarIcon from '../icons/CalendarIcon';
 import ForwardIcon from '../icons/ForwardIcon';
 
 const initialQuest: Quest = {
-  qr_string: '',
-  nft_description: '',
-  nft_title: '',
-  nft_media: '',
+  qr_prefix: '',
+  reward_description: '',
+  reward_title: '',
+  reward_url: '',
 };
 
 const NewEventForm: React.FC = () => {
   const [eventTitle, setEventTitle] = useState<string>('');
   const [eventDescription, setEventDescription] = useState<string>('');
   const [quests, editQuests] = useState<Quest[]>([initialQuest]);
-  const [submitedEvent, setSubmitedEvent] = useState<NewEvent>();
+  const [submitedEvent, setSubmitedEvent] = useState<EventData>();
 
   const onNewEventSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
     // Setting New Event
     setSubmitedEvent({
-      title: eventTitle,
-      description: eventDescription,
-      end_date: new Date().getTime() * 1000,
-      start_date: new Date().getTime() * 1000,
+      event_name: eventTitle,
+      event_description: eventDescription,
+      finish_time: new Date().getTime() * 1000,
+      start_time: new Date().getTime() * 1000,
       quests,
     });
     // Cleaning form
@@ -117,23 +117,23 @@ const NewEventForm: React.FC = () => {
         </button>
       </form>
       <div className="flex flex-col ml-5">
-        <span>{submitedEvent?.title}</span>
-        <span>{submitedEvent?.description}</span>
+        <h2>{submitedEvent?.event_name}</h2>
+        <p>{submitedEvent?.event_description}</p>
         <span>
-          {submitedEvent?.start_date && 'Start Date: ' + new Date(submitedEvent.start_date / 1000).toLocaleDateString()}
+          {submitedEvent?.start_time && 'Start Date: ' + new Date(submitedEvent.start_time / 1000).toLocaleDateString()}
         </span>
         <span>
-          {submitedEvent?.end_date && 'End Date: ' + new Date(submitedEvent.end_date / 1000).toLocaleDateString()}
+          {submitedEvent?.finish_time && 'End Date: ' + new Date(submitedEvent.finish_time / 1000).toLocaleDateString()}
         </span>
-        {submitedEvent?.quests.map((quest, index) => (
+        {submitedEvent?.quests.map((quest: Quest, index: number) => (
           <div key={index} className="flex flex-col">
-            <span>{quest.nft_title}</span>
-            <span>{quest.nft_description}</span>
-            <span>{quest.nft_media}</span>
-            <span>{quest.qr_string}</span>
+            <span>{quest.reward_title}</span>
+            <span>{quest.reward_description}</span>
+            <span>{quest.reward_url}</span>
+            <span>{quest.qr_prefix}</span>
           </div>
         ))}
-        {/* {submitedEvent?.title && <StartEventButton />} */}
+        <StartEventButton />
       </div>
     </div>
   );

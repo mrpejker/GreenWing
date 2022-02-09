@@ -3,14 +3,14 @@ const nacl = require('tweetnacl');
 const { providers } = require('near-api-js');
 const { encode } = require('js-base64');
 import { connect, ConnectConfig, keyStores, KeyPair, WalletConnection, Contract, Account } from 'near-api-js';
-import { Constants } from '../constants/endpoints';
+import { Endpoints } from '../constants/endpoints';
 
 // Mock data
 import { mockUserAccount } from '../mockData/mockUserAccount';
 
-const provider = new providers.JsonRpcProvider(Constants.TESTNET_RPC_ENDPOINT_URI);
+const provider = new providers.JsonRpcProvider(Endpoints.TESTNET_RPC_ENDPOINT_URI);
 
-export const getContractState = async (): Promise<boolean> => {
+export const getContractState = async (methodName: string): Promise<boolean> => {
   try {
     const request = {
       request: '{}',
@@ -18,8 +18,8 @@ export const getContractState = async (): Promise<boolean> => {
     const encodedText = encode(JSON.stringify(request));
     const rawResult = await provider.query({
       request_type: 'call_function',
-      account_id: Constants.TESTNET_CONTRACT_NAME,
-      method_name: 'is_active',
+      account_id: Endpoints.TESTNET_CONTRACT_URI,
+      method_name: methodName,
       args_base64: encodedText,
       finality: 'optimistic',
     });
@@ -39,7 +39,7 @@ export const getRandomHashString = (): string => {
   }).join('');
 };
 
-export const connectingToNear = async () => {
+export const connectingToNear = async (): Promise<any> => {
   const keyStore = new keyStores.InMemoryKeyStore();
   // creates a public / private key pair using the provided private key
   const keyPair = KeyPair.fromString(mockUserAccount.private_key);
@@ -56,15 +56,15 @@ export const connectingToNear = async () => {
 
   const near = await connect(config);
   // const wallet = new WalletConnection(near);
-
   const account = await near.account(mockUserAccount.account_id);
+
   const contract = new Contract(
     account, // the account object that is connecting
-    'beta_v1.ilerik.testnet',
+    Endpoints.TESTNET_CONTRACT_URI,
     {
       // name of contract you're connecting to
-      viewMethods: ['is_active'], // view methods do not change state but usually return a value
-      changeMethods: ['start', 'abort'], // change methods modify state
+      viewMethods: ['is_active', 'get_actions', 'get_event_data', 'get_event_stats'], // view methods do not change state but usually return a value
+      changeMethods: ['start_event', 'stop_event'], // change methods modify state
     }
   );
 

@@ -7,18 +7,20 @@ import Head from 'next/head';
 
 import { store } from '../store';
 import { getContractState } from '../utils';
-import { getContractStateData } from '../store/reducers/contractReducer/actions';
+import { setEventStatus } from '../store/reducers/contractReducer/actions';
 // import { setAppStateDevMode } from '../store/reducers/appStateReducer/actions';
 import { getUserAccountData } from '../store/reducers/userAccountReducer/actions';
 
 import { mockUserAccount } from '../mockData/mockUserAccount';
 
 import Header from '../components/header';
+import { ContractMethods } from '../constants/contractMethods';
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    getContractState().then((result: boolean) => {
-      store.dispatch(getContractStateData(result));
+    getContractState(ContractMethods.GET_EVENT_STATUS).then((result: boolean) => {
+      console.log('is_active on start: ', result);
+      store.dispatch(setEventStatus(result));
       // store.dispatch(setAppStateDevMode(true));
       store.dispatch(getUserAccountData(mockUserAccount));
     });
