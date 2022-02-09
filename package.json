@@ -1,18 +1,12 @@
 {
-  "name": "pwa-boilerplate",
-  "version": "0.1.0",
+  "name": "vself-beta-frontend",
+  "version": "0.2.0",
   "private": true,
-  "scripts": {
-    "build:contract": "node contract/compile.js",
-    "build:contract:debug": "node contract/compile.js --debug",
-    "dev:deploy:contract": "npm run build:contract && near dev-deploy && env-cmd -f ./neardev/dev-account.env node scripts/init.js",
-    "dev:server": "env-cmd -f ./neardev/dev-account.env node server.js",
-    "dev:web": "next dev",
-    "deploy:contract": "near deploy",
-    "deploy:server": "gcloud builds submit --tag gcr.io/vself-dev/wsserver",
-    "build:web": "next build",
-    "start:web": "next start",
-    "lint:web": "next lint"
+  "scripts": {        
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
