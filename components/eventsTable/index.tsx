@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { EventAction, EventData, EventStats } from '../../models/Event';
-import { connectingToNear } from '../../utils';
+import { getNearContract } from '../../utils';
 
 const EventsTable: React.FC = () => {
   const [eventStats, setEventStats] = useState<EventStats>();
@@ -9,11 +9,10 @@ const EventsTable: React.FC = () => {
   const [eventData, setEventData] = useState<EventData>();
 
   const getEventsStats = async () => {
-    const { contract } = await connectingToNear();
+    const { contract } = await getNearContract();
     const actions = await contract.get_actions({ from_index: 0, limit: 100 });
     const stats = await contract.get_event_stats();
     const data = await contract.get_event_data();
-    console.log(actions);
     setEventData(data);
     setEventStats(stats);
     setEventActions(actions);

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
 // Models and types
 import { Quest, EventData } from '../../models/Event';
 // Components
@@ -6,7 +7,7 @@ import QuestComponent, { QuestChangeCallback } from './questComponent';
 import StartEventButton from '../startEventButton';
 // Icons
 import AddNewItemIcon from '../icons/AddNewItemIcon';
-import CalendarIcon from '../icons/CalendarIcon';
+// import CalendarIcon from '../icons/CalendarIcon';
 import ForwardIcon from '../icons/ForwardIcon';
 
 const initialQuest: Quest = {
@@ -20,7 +21,13 @@ const NewEventForm: React.FC = () => {
   const [eventTitle, setEventTitle] = useState<string>('');
   const [eventDescription, setEventDescription] = useState<string>('');
   const [quests, editQuests] = useState<Quest[]>([initialQuest]);
+  const [startTime, setStartTime] = useState<Date>(new Date());
+  const [finishTime, setFinishTime] = useState<Date>(new Date());
   const [submitedEvent, setSubmitedEvent] = useState<EventData>();
+
+  const onStartTimeChange = (date: Date): void => setStartTime(date);
+
+  const onFinishTimeChange = (date: Date): void => setFinishTime(date);
 
   const onNewEventSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
@@ -28,14 +35,16 @@ const NewEventForm: React.FC = () => {
     setSubmitedEvent({
       event_name: eventTitle,
       event_description: eventDescription,
-      finish_time: new Date().getTime() * 1000,
-      start_time: new Date().getTime() * 1000,
+      finish_time: finishTime.getTime() * 1000,
+      start_time: startTime.getTime() * 1000,
       quests,
     });
     // Cleaning form
     setEventTitle('');
     setEventDescription('');
     editQuests([initialQuest]);
+    setStartTime(new Date());
+    setFinishTime(new Date());
   };
 
   const onEventTitleChange = (event: React.FormEvent<HTMLInputElement>): void => {
@@ -88,13 +97,23 @@ const NewEventForm: React.FC = () => {
           className="my-1 resize-none placeholder:italic placeholder:text-slate-400 border border-slate-300 rounded-md py-2 pl-4 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
           placeholder="Event description"
         />
-        <span className="flex-row flex justify-between my-1">
-          {new Date().toLocaleDateString()}
-          <CalendarIcon />
+        <span className="flex-row flex justify-between my-1 cursor-pointer">
+          <DatePicker
+            onChange={onStartTimeChange}
+            selected={startTime}
+            dateFormat="dd/MM/yyyy"
+            className="w-full cursor-pointer my-1 resize-none placeholder:italic placeholder:text-slate-400 border border-slate-300 rounded-md py-2 pl-4 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+          />
+          {/* <CalendarIcon /> */}
         </span>
-        <span className="flex-row flex justify-between my-1">
-          {new Date().toLocaleDateString()}
-          <CalendarIcon />
+        <span className="flex-row flex justify-between my-1 cursor-pointer align-middle">
+          <DatePicker
+            onChange={onFinishTimeChange}
+            selected={finishTime}
+            dateFormat="dd/MM/yyyy"
+            className="w-full cursor-pointer my-1 resize-none placeholder:italic placeholder:text-slate-400 border border-slate-300 rounded-md py-2 pl-4 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+          />
+          {/* <CalendarIcon /> */}
         </span>
         <h3 className="my-1 border-b-2 pb-2">Quests</h3>
         {quests.map((quest, index) => (
@@ -133,7 +152,7 @@ const NewEventForm: React.FC = () => {
             <span>{quest.qr_prefix}</span>
           </div>
         ))}
-        <StartEventButton />
+        {submitedEvent && <StartEventButton />}
       </div>
     </div>
   );

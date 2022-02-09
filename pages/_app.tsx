@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import 'react-datepicker/dist/react-datepicker.css';
 import styles from '../styles/Home.module.css';
 import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
@@ -6,7 +7,7 @@ import { Provider } from 'react-redux';
 import Head from 'next/head';
 
 import { store } from '../store';
-import { getContractState } from '../utils';
+import { getNearContract } from '../utils';
 import { setEventStatus } from '../store/reducers/contractReducer/actions';
 // import { setAppStateDevMode } from '../store/reducers/appStateReducer/actions';
 import { getUserAccountData } from '../store/reducers/userAccountReducer/actions';
@@ -14,16 +15,17 @@ import { getUserAccountData } from '../store/reducers/userAccountReducer/actions
 import { mockUserAccount } from '../mockData/mockUserAccount';
 
 import Header from '../components/header';
-import { ContractMethods } from '../constants/contractMethods';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const initVselfWebApp = async () => {
+    const { contract } = await getNearContract();
+    const eventStatus = await contract.is_active();
+    store.dispatch(setEventStatus(eventStatus));
+    store.dispatch(getUserAccountData(mockUserAccount));
+  };
+
   useEffect(() => {
-    getContractState(ContractMethods.GET_EVENT_STATUS).then((result: boolean) => {
-      console.log('is_active on start: ', result);
-      store.dispatch(setEventStatus(result));
-      // store.dispatch(setAppStateDevMode(true));
-      store.dispatch(getUserAccountData(mockUserAccount));
-    });
+    initVselfWebApp();
   }, []);
 
   return (

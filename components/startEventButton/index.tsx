@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ContractMethods } from '../../constants/contractMethods';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setEventStatus } from '../../store/reducers/contractReducer/actions';
-import { connectingToNear, getContractState } from '../../utils';
+import { getNearContract, getContractState } from '../../utils';
 
 const StartEventButton: React.FC = () => {
   const { is_active } = useAppSelector((state) => state.contractReducer);
-  const [btnDisabled, toggleBtnDisabled] = useState<boolean>(false);
+  // const [btnDisabled, toggleBtnDisabled] = useState<boolean>(false);
   const dispatch = useAppDispatch();
-  console.log(is_active);
 
   const toggleEvent = async (): Promise<void> => {
-    toggleBtnDisabled(true);
+    // toggleBtnDisabled(true);
     try {
-      const { contract } = await connectingToNear();
+      const { contract } = await getNearContract();
       if (!is_active) {
         await contract.start_event();
       } else {
@@ -25,13 +24,14 @@ const StartEventButton: React.FC = () => {
       console.log('Connection to contract ended with errors: ', err);
     }
 
-    toggleBtnDisabled(false);
+    // toggleBtnDisabled(false);
   };
   const stateString = !is_active ? 'Start event' : 'Stop event';
 
   return (
     <button
-      disabled={btnDisabled}
+      disabled={true}
+      // disabled={btnDisabled}
       onClick={toggleEvent}
       className="bg-sky-600"
       style={{ backgroundColor: '#f3fd69', padding: 10, borderRadius: 5 }}

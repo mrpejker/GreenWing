@@ -4,17 +4,16 @@ import { useRouter } from 'next/router';
 // import Link from 'next/link';
 import UserAccountIcon from '../icons/UserAccountIcon';
 import { useAppSelector } from '../../hooks';
-import { connectingToNear } from '../../utils';
+// import { getNearContract } from '../../utils';
 
 const Header: React.FC = () => {
   const { balance, account_id } = useAppSelector((state) => state.userAccountReducer);
   const router = useRouter();
-
-  const getAccountBalance = async () => {
-    const { account } = await connectingToNear();
-    console.log(await account.getAccountBalance());
-    console.log(await account.getAccountDetails());
-    // await contract.start_event();
+  const { pathname } = router;
+  const route = pathname !== '/stats' ? '/stats' : '/';
+  const btnString = pathname !== '/stats' ? 'stats' : 'home';
+  const togglePage = () => {
+    router.push(route);
   };
 
   const navigateToProfile = () => router.push(`/profile/${account_id}`);
@@ -24,7 +23,7 @@ const Header: React.FC = () => {
       <img src="/robot.jpg" width={50} height={50} className="rounded-md float-left" alt="logo" />
       <span>{balance}</span>
       <span>{account_id}</span>
-      <button onClick={getAccountBalance}>Get Account Balance</button>
+      <button onClick={togglePage}>{btnString}</button>
       <button type="button" onClick={navigateToProfile}>
         <UserAccountIcon />
       </button>

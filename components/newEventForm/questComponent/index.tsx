@@ -31,34 +31,34 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
 
       <input
         type="text"
-        name="qr_string"
+        name="qr_prefix"
         onChange={onInputChange}
         value={quest.qr_prefix}
         className="my-1 placeholder:italic placeholder:text-slate-400 border border-slate-300 rounded-md py-2 pl-4 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-        placeholder="QR String"
+        placeholder="qr_prefix"
       />
       <input
         type="text"
-        name="nft_title"
+        name="reward_title"
         onChange={onInputChange}
         value={quest.reward_title}
         className="my-1 placeholder:italic placeholder:text-slate-400 border border-slate-300 rounded-md py-2 pl-4 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-        placeholder="NFT Title"
+        placeholder="reward_title"
       />
       <textarea
-        name="nft_description"
+        name="reward_description"
         onChange={onTextAreaChange}
         value={quest.reward_description}
         className="my-1 resize-none placeholder:italic placeholder:text-slate-400 border border-slate-300 rounded-md py-2 pl-4 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-        placeholder="NFT Description"
+        placeholder="reward_description"
       />
       <input
         type="text"
-        name="nft_media"
+        name="reward_url"
         onChange={onInputChange}
         value={quest.reward_url}
         className="my-1 placeholder:italic placeholder:text-slate-400 border border-slate-300 rounded-md py-2 pl-4 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-        placeholder="NFT Media"
+        placeholder="reward_url"
       />
       {removable && (
         <button

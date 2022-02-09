@@ -2,7 +2,7 @@
 const nacl = require('tweetnacl');
 const { providers } = require('near-api-js');
 const { encode } = require('js-base64');
-import { connect, ConnectConfig, keyStores, KeyPair, WalletConnection, Contract, Account } from 'near-api-js';
+import { connect, ConnectConfig, keyStores, KeyPair, Contract } from 'near-api-js';
 import { Endpoints } from '../constants/endpoints';
 
 // Mock data
@@ -39,7 +39,7 @@ export const getRandomHashString = (): string => {
   }).join('');
 };
 
-export const connectingToNear = async (): Promise<any> => {
+export const getNearContract = async (): Promise<any> => {
   const keyStore = new keyStores.InMemoryKeyStore();
   // creates a public / private key pair using the provided private key
   const keyPair = KeyPair.fromString(mockUserAccount.private_key);
