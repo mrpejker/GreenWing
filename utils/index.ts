@@ -92,3 +92,11 @@ export const getNftTokens = async (account_id: string): Promise<any[]> => {
     return [];
   }
 };
+
+export const formatTimeStampToLocaleDateString = (timestamp: number) => {
+  return new Date(timestamp / 1000000).toLocaleDateString();
+};
+
+export const formatTimeStampToLocaleTimeString = (timestamp: number) => {
+  return new Date(timestamp / 1000000).toLocaleTimeString();
+};

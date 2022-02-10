@@ -26,7 +26,7 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
   const deleteQuest = (): void => removeQuest(index);
 
   return (
-    <>
+    <div className="flex flex-col mr-4">
       <h5 className="my-1">Quest #{index + 1}</h5>
 
       <input
@@ -70,7 +70,7 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
           <RemoveIcon />
         </button>
       )}
-    </>
+    </div>
   );
 };
 

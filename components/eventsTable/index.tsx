@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 import { EventAction, EventData, EventStats } from '../../models/Event';
-import { getNearContract } from '../../utils';
+import { formatTimeStampToLocaleDateString, formatTimeStampToLocaleTimeString, getNearContract } from '../../utils';
+import StartEventButton from '../startEventButton';
 
 const EventsTable: React.FC = () => {
   const [eventStats, setEventStats] = useState<EventStats>();
@@ -23,64 +24,91 @@ const EventsTable: React.FC = () => {
   }, []);
 
   return (
-    <>
-      <h1>{eventData?.event_name}</h1>
-      <p>{eventData?.event_description}</p>
-      {eventData?.quests.map((quest, index) => (
-        <div key={index} className="flex flex-col">
-          <span>{quest.reward_title}</span>
-          <span>{quest.reward_description}</span>
-          <span>{quest.reward_url}</span>
-          <span>{quest.qr_prefix}</span>
+    <div className="flex-row flex flex-wrap justify-center">
+      <div className="border-2 p-10 rounded-md">
+        <h2 className="m-0 font-bold">{eventData?.event_name}</h2>
+        <p>{eventData?.event_description}</p>
+
+        {eventData?.quests.map((quest, index) => (
+          <div key={index} className="flex flex-col w-full mt-2">
+            <h3>Quest #{index}</h3>
+            <span className="justify-between w-full flex">
+              <b>reward_title:</b> {quest.reward_title}
+            </span>
+            <span className="justify-between w-full flex">
+              <b>reward_description:</b> {quest.reward_description}
+            </span>
+            <span className="justify-between w-full flex">
+              <b>reward_url:</b> {quest.reward_url}
+            </span>
+            <span className="justify-between w-full flex">
+              <b>qr_prefix:</b> {quest.qr_prefix}
+            </span>
+          </div>
+        ))}
+        <p className="mt-2">
+          Start Time: {eventData?.start_time && formatTimeStampToLocaleDateString(eventData.start_time)}
+        </p>
+        <p className="mb-2">
+          Finish Time: {eventData?.finish_time && formatTimeStampToLocaleDateString(eventData.finish_time)}
+        </p>
+        <div>
+          <StartEventButton />
         </div>
-      ))}
-      <p>Start Time: {eventData?.start_time}</p>
-      <p>Finish Time: {eventData?.finish_time}</p>
-      <table className="table-auto w-full">
-        <thead>
-          <th>finish_time</th>
-          <th>participants</th>
-          <th>start_time</th>
-          <th>total_actions</th>
-          <th>total_rewards</th>
-          <th>total_users</th>
-        </thead>
-        <tbody>
+      </div>
+      <div>
+        <table className="table-auto border-2 w-full rounded-md ml-2 text-center">
+          <thead>
+            <th className="py-4 border-b-2 px-2">finish_time</th>
+            <th className="py-4 border-b-2 px-2">start_time</th>
+            <th className="py-4 border-b-2 px-2">total_actions</th>
+            <th className="py-4 border-b-2 px-2">total_rewards</th>
+            <th className="py-4 border-b-2 px-2">total_users</th>
+          </thead>
           {eventStats && (
-            <tr className="text-center">
-              <td>{eventStats.finish_time}</td>
-              <td>{eventStats.participants.join(' ')}</td>
-              <td>{eventStats.start_time}</td>
-              <td>{eventStats.total_actions}</td>
-              <td>{eventStats.total_rewards}</td>
-              <td>{eventStats.total_users}</td>
-            </tr>
+            <tbody>
+              <tr className="text-center">
+                <td className="py-4 ">
+                  {eventStats.finish_time !== null && formatTimeStampToLocaleDateString(eventStats.finish_time)}
+                </td>
+                <td className="py-4 ">
+                  {eventStats.start_time !== null && formatTimeStampToLocaleDateString(eventStats.start_time)}
+                </td>
+                <td className="py-4 ">{eventStats.total_actions}</td>
+                <td className="py-4 ">{eventStats.total_rewards}</td>
+                <td className="py-4 ">{eventStats.total_users}</td>
+              </tr>
+              <tr className="border-t-2">
+                <td className="py-4 ">
+                  <b>participants:</b>
+                </td>
+                <td className="break-words py-4 pl-2 border-l-2">{eventStats.participants.join(' ')}</td>
+              </tr>
+            </tbody>
           )}
-        </tbody>
-      </table>
-      <table className="table-auto w-full">
-        <thead>
-          <th>username</th>
-          <th>qr_string</th>
-          <th>timestamp</th>
-          <th>reward_index</th>
-        </thead>
-        <tbody>
-          {eventActions.map(({ username, qr_string, timestamp, reward_index }, index) => (
-            <tr key={index} className="text-center">
-              <td>{username}</td>
-              <td>{qr_string}</td>
-              <td>
-                {new Date(timestamp / 1000).toLocaleDateString() +
-                  ' ' +
-                  new Date(timestamp / 1000).toLocaleTimeString()}
-              </td>
-              <td>{reward_index}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
+        </table>
+        <table className="table-auto border-2 text-center rounded-md w-full mt-2 ml-2">
+          <thead>
+            <th className="py-4 border-2">username</th>
+            <th className="py-4 border-2">qr_string</th>
+            <th className="py-4 border-2">timestamp</th>
+            <th className="py-4 border-2">reward_index</th>
+          </thead>
+          <tbody>
+            {eventActions.map(({ username, qr_string, timestamp, reward_index }, index) => (
+              <tr key={index} className="text-center hover:bg-gray-100 cursor-pointer">
+                <td className="py-4">{username}</td>
+                <td className="py-4">{qr_string}</td>
+                <td className="py-4">
+                  {formatTimeStampToLocaleDateString(timestamp) + ' ' + formatTimeStampToLocaleTimeString(timestamp)}
+                </td>
+                <td>{reward_index}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 };
 
