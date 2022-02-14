@@ -1,3 +1,31 @@
 {
-  "extends": "next/core-web-vitals"
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["prettier", "@typescript-eslint"],
+  "extends": [
+    "next/core-web-vitals","eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "indent": "off",
+    "no-multi-spaces": ["error"]
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "jest": true
+  },
+  "ignorePatterns": [
+    "node_modules",
+    "build",
+    "dist",
+    "public"
+  ]
 }
