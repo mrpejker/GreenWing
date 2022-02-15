@@ -5,6 +5,7 @@ import { AppStateTypes } from './types';
 const initialState: AppState = {
   is_dev: false,
   is_authed: false,
+  is_loading: true,
 };
 
 const appStateReducer: Reducer = (state = initialState, action): AppState => {
@@ -24,6 +25,11 @@ const appStateReducer: Reducer = (state = initialState, action): AppState => {
         ...state,
         is_authed: false,
       };
+    case AppStateTypes.SetAppLoadingState:
+      return {
+        ...state,
+        ...action.payload,
+      }
     default:
       return state;
   }

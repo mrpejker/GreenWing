@@ -26,7 +26,7 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
   const deleteQuest = (): void => removeQuest(index);
 
   return (
-    <div className="flex flex-col mr-4">
+    <div className="flex flex-col mr-4 flex-shrink-0">
       <h5 className="my-1">Quest #{index + 1}</h5>
 
       <input
@@ -34,7 +34,20 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
         name="qr_prefix"
         onChange={onInputChange}
         value={quest.qr_prefix}
-        className="my-1 placeholder:italic placeholder:text-slate-400 border border-slate-300 rounded-md py-2 pl-4 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+        className="form-control block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
         placeholder="qr_prefix"
       />
       <input
@@ -42,14 +55,41 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
         name="reward_title"
         onChange={onInputChange}
         value={quest.reward_title}
-        className="my-1 placeholder:italic placeholder:text-slate-400 border border-slate-300 rounded-md py-2 pl-4 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+        className="form-control block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
         placeholder="reward_title"
       />
       <textarea
         name="reward_description"
         onChange={onTextAreaChange}
         value={quest.reward_description}
-        className="my-1 resize-none placeholder:italic placeholder:text-slate-400 border border-slate-300 rounded-md py-2 pl-4 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+        className="form-control
+        block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
         placeholder="reward_description"
       />
       <input
@@ -57,7 +97,20 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
         name="reward_url"
         onChange={onInputChange}
         value={quest.reward_url}
-        className="my-1 placeholder:italic placeholder:text-slate-400 border border-slate-300 rounded-md py-2 pl-4 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+        className="form-control block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
         placeholder="reward_url"
       />
       {removable && (

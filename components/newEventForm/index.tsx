@@ -4,12 +4,12 @@ import DatePicker from 'react-datepicker';
 import { Quest, EventData } from '../../models/Event';
 // Components
 import QuestComponent, { QuestChangeCallback } from './questComponent';
-import StartEventButton from '../startEventButton';
 // Icons
 import AddNewItemIcon from '../icons/AddNewItemIcon';
 // import CalendarIcon from '../icons/CalendarIcon';
 import ForwardIcon from '../icons/ForwardIcon';
-import { formatTimeStampToLocaleDateString } from '../../utils';
+import EventCard from '../eventsTable/eventCard';
+import Modal from '../modal';
 
 const initialQuest: Quest = {
   qr_prefix: '',
@@ -24,7 +24,7 @@ const NewEventForm: React.FC = () => {
   const [quests, editQuests] = useState<Quest[]>([initialQuest]);
   const [startTime, setStartTime] = useState<Date>(new Date());
   const [finishTime, setFinishTime] = useState<Date>(new Date());
-  const [submitedEvent, setSubmitedEvent] = useState<EventData>();
+  const [submitedEvent, setSubmitedEvent] = useState<EventData | undefined>();
 
   const onStartTimeChange = (date: Date): void => setStartTime(date);
 
@@ -79,56 +79,59 @@ const NewEventForm: React.FC = () => {
     editQuests(newState);
   };
 
+  const closeModal = (): void => setSubmitedEvent(undefined);
+
   return (
-    <div className="flex flex-col">
-      <div className="flex flex-col ml-5 mb-4 border-2 pb-4 rounded-md p-4">
-        <h2 className="m-0 font-bold">{submitedEvent?.event_name}</h2>
-        <p>{submitedEvent?.event_description}</p>
+    <>
+      {submitedEvent && (
+        <Modal closeCallBack={closeModal} modalTitle="Confirm New Event">
+          <EventCard eventData={submitedEvent} />
+        </Modal>
+      )}
 
-        {submitedEvent?.quests.map((quest: Quest, index: number) => (
-          <div key={index} className="flex flex-col w-full mt-2">
-            <h3>Quest #{index}</h3>
-            <span className="justify-between w-full flex">
-              <b>reward_title:</b> {quest.reward_title}
-            </span>
-            <span className="justify-between w-full flex">
-              <b>reward_description:</b> {quest.reward_description}
-            </span>
-            <span className="justify-between w-full flex">
-              <b>reward_url:</b> {quest.reward_url}
-            </span>
-            <span className="justify-between w-full flex">
-              <b>qr_prefix:</b> {quest.qr_prefix}
-            </span>
-          </div>
-        ))}
-        <span className="mt-2">
-          {submitedEvent?.start_time && 'Start Date: ' + formatTimeStampToLocaleDateString(submitedEvent.start_time)}
-        </span>
-        <span className="mt-2">
-          {submitedEvent?.finish_time && 'End Date: ' + formatTimeStampToLocaleDateString(submitedEvent.finish_time)}
-        </span>
-        <div className="mt-2" mb-2>
-          {submitedEvent && <StartEventButton />}
-        </div>
-      </div>
-
-      <form onSubmit={onNewEventSubmit} className="flex justify-center">
-        <div className="flex flex-col">
-          <h3 className="my-1">New Event</h3>
+      <form onSubmit={onNewEventSubmit} className="flex-row flex flex-wrap">
+        <div className="flex-1 form-group mb-6 p-6 rounded-lg shadow-lg bg-white max-w-md w-1/2 flex-shrink-0">
+          <h5 className="text-gray-900 text-xl font-medium mb-2">New Event</h5>
           <input
             type="text"
             name="title"
             onChange={onEventTitleChange}
             value={eventTitle}
-            className="my-1 placeholder:italic placeholder:text-slate-400 border border-slate-300 rounded-md py-2 pl-4 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+            className="form-control block
+            w-full
+            px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-300
+            rounded
+            transition
+            ease-in-out
+            m-0
+            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             placeholder="Event title"
           />
           <textarea
             name="description"
             value={eventDescription}
             onChange={onEventDescriptionChange}
-            className="my-1 resize-none placeholder:italic placeholder:text-slate-400 border border-slate-300 rounded-md py-2 pl-4 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+            className="form-control
+            block
+            w-full
+            px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-300
+            rounded
+            transition
+            ease-in-out
+            m-0
+            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             placeholder="Event description"
           />
           <span className="flex-row flex justify-between my-1 cursor-pointer">
@@ -136,7 +139,7 @@ const NewEventForm: React.FC = () => {
               onChange={onStartTimeChange}
               selected={startTime}
               dateFormat="dd/MM/yyyy"
-              className="w-full cursor-pointer my-1 resize-none placeholder:italic placeholder:text-slate-400 border border-slate-300 rounded-md py-2 pl-4 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             />
             {/* <CalendarIcon /> */}
           </span>
@@ -145,7 +148,7 @@ const NewEventForm: React.FC = () => {
               onChange={onFinishTimeChange}
               selected={finishTime}
               dateFormat="dd/MM/yyyy"
-              className="w-full cursor-pointer my-1 resize-none placeholder:italic placeholder:text-slate-400 border border-slate-300 rounded-md py-2 pl-4 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+              className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             />
             {/* <CalendarIcon /> */}
           </span>
@@ -157,8 +160,8 @@ const NewEventForm: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex ml-4 w-full border-l-2 pl-4 flex-col">
-          <div className="w-full flex flex-row flex-wrap">
+        <div className="flex-1 flex-row ml-4">
+          <div className="flex flex-row overflow-y-hidden flex-nowrap overflow-x-auto min-w-[50%] ">
             {quests.map((quest, index) => (
               <QuestComponent
                 key={index}
@@ -178,7 +181,7 @@ const NewEventForm: React.FC = () => {
           </div>
         </div>
       </form>
-    </div>
+    </>
   );
 };
 
