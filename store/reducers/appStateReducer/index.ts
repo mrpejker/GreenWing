@@ -29,7 +29,7 @@ const appStateReducer: Reducer = (state = initialState, action): AppState => {
       return {
         ...state,
         ...action.payload,
-      }
+      };
     default:
       return state;
   }

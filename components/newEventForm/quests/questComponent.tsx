@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
 // Models and types
 import { Quest } from '../../../models/Event';
@@ -26,8 +27,8 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
   const deleteQuest = (): void => removeQuest(index);
 
   return (
-    <div className="flex flex-col mr-4 flex-shrink-0">
-      <h5 className="my-1">Quest #{index + 1}</h5>
+    <div className="flex flex-col p-5 mb-2 rounded-lg shadow-lg bg-white max-w-md">
+      <img className="rounded mb-4" src={`/${index + 1}.png`} alt="" />
 
       <input
         type="text"
@@ -47,6 +48,7 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
         transition
         ease-in-out
         m-0
+        mb-2
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
         placeholder="qr_prefix"
       />
@@ -67,6 +69,7 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
         rounded
         transition
         ease-in-out
+        mb-2
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
         placeholder="reward_title"
@@ -88,6 +91,7 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
         rounded
         transition
         ease-in-out
+        mb-2
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
         placeholder="reward_description"
@@ -109,6 +113,7 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
         rounded
         transition
         ease-in-out
+        mb-2
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
         placeholder="reward_url"

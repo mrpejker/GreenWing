@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+/* eslint-disable @next/next/no-img-element */
+import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 // Models and types
 import { Quest, EventData } from '../../models/Event';
+import { QuestChangeCallback } from './quests/questComponent';
 // Components
-import QuestComponent, { QuestChangeCallback } from './questComponent';
+import Quests from './quests';
 // Icons
-import AddNewItemIcon from '../icons/AddNewItemIcon';
-// import CalendarIcon from '../icons/CalendarIcon';
-import ForwardIcon from '../icons/ForwardIcon';
 import EventCard from '../eventsTable/eventCard';
 import Modal from '../modal';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { setAppStateDevMode } from '../../store/reducers/appStateReducer/actions';
+// Mock data
+import { mockEvent } from '../../mockData/mockEvents';
 
 const initialQuest: Quest = {
   qr_prefix: '',
@@ -25,6 +28,22 @@ const NewEventForm: React.FC = () => {
   const [startTime, setStartTime] = useState<Date>(new Date());
   const [finishTime, setFinishTime] = useState<Date>(new Date());
   const [submitedEvent, setSubmitedEvent] = useState<EventData | undefined>();
+  const { is_dev } = useAppSelector((state) => state.appStateReducer);
+  const dispatch = useAppDispatch();
+
+  const enableDevMode = (): void => {
+    dispatch(setAppStateDevMode(true));
+  };
+
+  useEffect(() => {
+    if (is_dev) {
+      setEventTitle(mockEvent.event_name);
+      setEventDescription(mockEvent.event_description);
+      editQuests([...mockEvent.quests]);
+      setStartTime(new Date(mockEvent.start_time / 1000000));
+      setFinishTime(new Date(mockEvent.finish_time / 1000000));
+    }
+  }, [is_dev]);
 
   const onStartTimeChange = (date: Date): void => setStartTime(date);
 
@@ -41,11 +60,11 @@ const NewEventForm: React.FC = () => {
       quests,
     });
     // Cleaning form
-    setEventTitle('');
-    setEventDescription('');
-    editQuests([initialQuest]);
-    setStartTime(new Date());
-    setFinishTime(new Date());
+    // setEventTitle('');
+    // setEventDescription('');
+    // editQuests([initialQuest]);
+    // setStartTime(new Date());
+    // setFinishTime(new Date());
   };
 
   const onEventTitleChange = (event: React.FormEvent<HTMLInputElement>): void => {
@@ -84,14 +103,18 @@ const NewEventForm: React.FC = () => {
   return (
     <>
       {submitedEvent && (
-        <Modal closeCallBack={closeModal} modalTitle="Confirm New Event">
-          <EventCard eventData={submitedEvent} />
-        </Modal>
+        <>
+          <div className="bg-black fixed top-0 left-0 w-full h-full flex bg-opacity-60 z-50"></div>
+          <Modal closeCallBack={closeModal} modalTitle="Confirm New Event">
+            <EventCard eventData={submitedEvent} detailed />
+          </Modal>
+        </>
       )}
 
-      <form onSubmit={onNewEventSubmit} className="flex-row flex flex-wrap">
-        <div className="flex-1 form-group mb-6 p-6 rounded-lg shadow-lg bg-white max-w-md w-1/2 flex-shrink-0">
+      <form onSubmit={onNewEventSubmit} className="flex-row flex flex-wrap container">
+        <div className="flex-0 form-group mb-6 p-6 pb-0 rounded-lg shadow-lg bg-white max-w-md w-1/2 ">
           <h5 className="text-gray-900 text-xl font-medium mb-2">New Event</h5>
+          <img className="rounded mb-4" src="https://mdbootstrap.com/img/new/standard/nature/182.jpg" alt="" />
           <input
             type="text"
             name="title"
@@ -110,6 +133,7 @@ const NewEventForm: React.FC = () => {
             transition
             ease-in-out
             m-0
+            mb-2
             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             placeholder="Event title"
           />
@@ -120,6 +144,7 @@ const NewEventForm: React.FC = () => {
             className="form-control
             block
             w-full
+            mb-2
             px-3
             py-1.5
             text-base
@@ -134,7 +159,7 @@ const NewEventForm: React.FC = () => {
             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             placeholder="Event description"
           />
-          <span className="flex-row flex justify-between my-1 cursor-pointer">
+          <span className="flex-row flex justify-between mb-2 cursor-pointer">
             <DatePicker
               onChange={onStartTimeChange}
               selected={startTime}
@@ -143,7 +168,7 @@ const NewEventForm: React.FC = () => {
             />
             {/* <CalendarIcon /> */}
           </span>
-          <span className="flex-row flex justify-between my-1 cursor-pointer align-middle">
+          <span className="flex-row flex justify-between mb-2 cursor-pointer align-middle">
             <DatePicker
               onChange={onFinishTimeChange}
               selected={finishTime}
@@ -152,31 +177,35 @@ const NewEventForm: React.FC = () => {
             />
             {/* <CalendarIcon /> */}
           </span>
-          <div>
-            <button type="submit" className="flex flex-row justify-between my-1 items-center">
+          <div className="mt-5">
+            <button
+              type="submit"
+              className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded-full hover:bg-blue-200 hover:bg-opacity-6 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+            >
               Create New Event
-              <ForwardIcon />
             </button>
           </div>
         </div>
 
-        <div className="flex-1 flex-row ml-4">
-          <div className="flex flex-row overflow-y-hidden flex-nowrap overflow-x-auto min-w-[50%] ">
-            {quests.map((quest, index) => (
-              <QuestComponent
-                key={index}
-                quest={quest}
-                onQuestChange={onQuestChange}
-                index={index}
-                removable={quests.length >= 2}
-                removeQuest={removeQuest}
-              />
-            ))}
+        <div className="flex-1 flex-row ml-4 form-group mb-6 p-6">
+          <h5 className="text-gray-900 text-xl font-medium mb-2">Quests</h5>
+          <div className="flex flex-col overflow-y-scroll h-screen " style={{ maxHeight: 500 }}>
+            <Quests quests={quests} onQuestChange={onQuestChange} removeQuest={removeQuest} />
           </div>
-          <div>
-            <button type="button" onClick={addNewQuest} className="flex flex-row justify-between my-1 items-center">
+          <div className="mt-5 border-t-2 pt-5">
+            <button
+              type="button"
+              onClick={addNewQuest}
+              className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded-full hover:bg-blue-200 hover:bg-opacity-6 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+            >
               Add New Quest
-              <AddNewItemIcon />
+            </button>
+            <button
+              type="button"
+              onClick={enableDevMode}
+              className="inline-block ml-4 px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded-full hover:bg-blue-200 hover:bg-opacity-6 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+            >
+              Fill In Quests
             </button>
           </div>
         </div>

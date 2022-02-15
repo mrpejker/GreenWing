@@ -17,6 +17,24 @@ export const mockEvent: EventData = {
       reward_title: 'HTTPS',
       reward_url: 'https://vself-dev.web.app/1.png',
     },
+    {
+      qr_prefix: 'https://',
+      reward_description: 'HTTPS',
+      reward_title: 'HTTPS',
+      reward_url: 'https://vself-dev.web.app/1.png',
+    },
+    {
+      qr_prefix: 'https://',
+      reward_description: 'HTTPS',
+      reward_title: 'HTTPS',
+      reward_url: 'https://vself-dev.web.app/1.png',
+    },
+    {
+      qr_prefix: 'https://',
+      reward_description: 'HTTPS',
+      reward_title: 'HTTPS',
+      reward_url: 'https://vself-dev.web.app/1.png',
+    },
   ],
   start_time: 0,
 };

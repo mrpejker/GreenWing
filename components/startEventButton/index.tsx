@@ -7,11 +7,9 @@ import { getNearContract, getContractState } from '../../utils';
 
 const StartEventButton: React.FC = () => {
   const { is_active } = useAppSelector((state) => state.contractReducer);
-  const [btnDisabled, toggleBtnDisabled] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
   const toggleEvent = async (): Promise<void> => {
-    toggleBtnDisabled(true);
     dispatch(setAppLoadingState(true));
     try {
       const { contract } = await getNearContract();
@@ -26,7 +24,6 @@ const StartEventButton: React.FC = () => {
       console.log('Connection to contract ended with errors: ', err);
     }
 
-    toggleBtnDisabled(false);
     dispatch(setAppLoadingState(false));
   };
   const stateString = !is_active ? 'Start event' : 'Stop event';
@@ -35,7 +32,6 @@ const StartEventButton: React.FC = () => {
     <button
       type="button"
       className=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-      disabled={btnDisabled}
       onClick={toggleEvent}
     >
       {stateString}
