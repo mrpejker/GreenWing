@@ -13,7 +13,7 @@
     "@reduxjs/toolkit": "^1.7.1",
     "firebase": "^9.6.6",
     "firebase-admin": "^10.0.2",
-    "firebase-functions": "^3.17.2",
+    "firebase-functions": "^3.18.0",
     "js-base64": "^3.7.2",
     "near-api-js": "^0.44.2",
     "next": "12.0.7",
