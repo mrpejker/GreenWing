@@ -115,9 +115,9 @@ const NewEventForm: React.FC = () => {
       )}
 
       <form onSubmit={onNewEventSubmit} className="flex-row flex flex-wrap container">
-        <div className="flex-0 form-group mb-6 p-6 pb-0 rounded-lg shadow-lg bg-white max-w-md w-1/2 ">
+        <div className="flex-0 form-group mb-6 p-6 pb-0 rounded-lg shadow-lg bg-white max-w-md w-1/2 relative">
           <h5 className="text-gray-900 text-xl font-medium mb-2">New Event</h5>
-          <img className="rounded mb-4" src="https://mdbootstrap.com/img/new/standard/nature/182.jpg" alt="" />
+          <img className="rounded mb-4" src="/meta.jpg" alt="" />
           <input
             type="text"
             name="title"
@@ -162,6 +162,7 @@ const NewEventForm: React.FC = () => {
             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             placeholder="Event description"
           />
+          <span className="mb-2 ">Start Date:</span>
           <span className="flex-row flex justify-between mb-2 cursor-pointer">
             <DatePicker
               onChange={onStartTimeChange}
@@ -171,6 +172,7 @@ const NewEventForm: React.FC = () => {
             />
             {/* <CalendarIcon /> */}
           </span>
+          <span className="mb-4 ">End Date:</span>
           <span className="flex-row flex justify-between mb-2 cursor-pointer align-middle">
             <DatePicker
               onChange={onFinishTimeChange}
@@ -180,7 +182,7 @@ const NewEventForm: React.FC = () => {
             />
             {/* <CalendarIcon /> */}
           </span>
-          <div className="mt-5">
+          <div className="mt-5 absolute bottom-6 left-6">
             <button
               type="submit"
               className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded-full hover:bg-blue-200 hover:bg-opacity-6 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
@@ -208,7 +210,7 @@ const NewEventForm: React.FC = () => {
               onClick={enableDevMode}
               className="inline-block ml-4 px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded-full hover:bg-blue-200 hover:bg-opacity-6 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
             >
-              Fill In Quests
+              Fill in
             </button>
           </div>
         </div>
