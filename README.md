@@ -1,19 +1,9 @@
-# pwa-boilerplate
-Progressive web application boilerplate with a particular choices for tech stack
+### vSelf Metabuild Event Management Frontend
 
-# Setup 
+Current repository contains frontend source code and tooling which was developed during NEAR Metabuild Hackathon.
 
-## Frontent
-Next.js + Tailwind CSS + NEAR.js.SDK
+### Web App
+Next.js + Tailwind CSS + NEAR.js.SDK hosted on Firebase
 
-## Backend
-NEAR smart-contracts + Node.js + Firebase
-
-## Cloud
-NEAR network + Firebase
-
-# API Specs
-
-1. GET /status
-1. 
-
+### Mobile app
+Built with Unity availible for download [here](https://vself-dev.web.app/vself.apk), please use it to go through the quest at [vSelf website](https://vself.app/quest) and obtain some rewards for your NEAR testnet account.
