@@ -19,6 +19,7 @@ const initialQuest: Quest = {
   reward_description: '',
   reward_title: '',
   reward_url: '',
+  file: undefined,
 };
 
 const NewEventForm: React.FC = () => {
@@ -51,6 +52,7 @@ const NewEventForm: React.FC = () => {
 
   const onNewEventSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
+    console.log(quests);
     // Setting New Event
     setSubmitedEvent({
       event_name: eventTitle,
@@ -75,10 +77,11 @@ const NewEventForm: React.FC = () => {
     setEventDescription(event.target.value);
   };
 
-  const onQuestChange: QuestChangeCallback = (index, field, value): void => {
+  const onQuestChange: QuestChangeCallback = (index, field, value, file?): void => {
     const editedQuest = {
       ...quests[index],
       [field]: value,
+      file,
     };
     const newState = [...quests];
     newState[index] = editedQuest;

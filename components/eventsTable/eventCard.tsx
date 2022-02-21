@@ -22,15 +22,12 @@ const EventCard: React.FC<EventCardProps> = ({ children, eventData, detailed }) 
             eventData?.quests.map((quest, index) => (
               <div key={index} className="flex flex-col rounded-lg shadow-lg bg-white mb-2 p-10">
                 <h3 className="font-bold">Quest #{index + 1}</h3>
-                <img className="rounded mb-4" src={`/${index + 1}.png`} alt="" />
+                <img className="rounded mb-4" src={quest.reward_url} alt="" />
                 <span className="justify-between w-full flex">
                   <b>reward_title:</b> {quest.reward_title}
                 </span>
                 <span className="justify-between w-full flex">
                   <b>reward_description:</b> {quest.reward_description}
-                </span>
-                <span className="justify-between w-full flex">
-                  <b>reward_url:</b> {quest.reward_url}
                 </span>
                 <span className="justify-between w-full flex">
                   <b>qr_prefix:</b> {quest.qr_prefix}

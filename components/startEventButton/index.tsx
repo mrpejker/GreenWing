@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ContractMethods } from '../../constants/contractMethods';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setAppLoadingState } from '../../store/reducers/appStateReducer/actions';

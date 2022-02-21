@@ -4,8 +4,9 @@ import React from 'react';
 import { Quest } from '../../../models/Event';
 // Icons
 import RemoveIcon from '../../icons/RemoveIcon';
+import UploadImage from '../../uploadImage';
 
-export type QuestChangeCallback = (index: number, field: string, value: string) => void;
+export type QuestChangeCallback = (index: number, field: string, value: string, file?: File) => void;
 
 interface QuestProps {
   quest: Quest;
@@ -26,10 +27,13 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
 
   const deleteQuest = (): void => removeQuest(index);
 
+  const onImageChange = (fileString: string, file: File): void => {
+    onQuestChange(index, 'reward_url', fileString, file);
+  };
+
   return (
     <div className="flex flex-col p-5 mb-2 rounded-lg shadow-lg bg-white max-w-md">
-      <img className="rounded mb-4" src={`/${index + 1}.png`} alt="" />
-
+      <UploadImage onImageChange={onImageChange} imgInProcess={quest.reward_url} />
       <input
         type="text"
         name="qr_prefix"
@@ -95,28 +99,6 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
         placeholder="reward_description"
-      />
-      <input
-        type="text"
-        name="reward_url"
-        onChange={onInputChange}
-        value={quest.reward_url}
-        className="form-control block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        mb-2
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-        placeholder="reward_url"
       />
       {removable && (
         <button

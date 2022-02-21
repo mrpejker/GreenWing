@@ -3,6 +3,7 @@ export interface Quest {
   reward_description: string;
   reward_title: string;
   reward_url: string;
+  file?: File;
 }
 
 export interface EventData {
