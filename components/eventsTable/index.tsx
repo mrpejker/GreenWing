@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { useAppSelector } from '../../hooks';
 // import { mockEventActions } from '../../mockData/mockEventActions';
 
 import { EventAction, EventData, EventStats } from '../../models/Event';
-import { getNearContract } from '../../utils';
+import { getNearAccountAndContract } from '../../utils';
 import EventActionsTable from './eventAcionsTable';
 import EventCard from './eventCard';
 import EventStatsTable from './eventStatsTable';
 
 const EventsTable: React.FC = () => {
+  const { account_id } = useAppSelector((state) => state.userAccountReducer);
   const [eventStats, setEventStats] = useState<EventStats | undefined>();
   const [eventActions, setEventActions] = useState<EventAction[]>([]);
   const [eventData, setEventData] = useState<EventData | undefined>();
 
   const getEventsStats = async (): Promise<void> => {
-    const { contract } = await getNearContract();
+    const { contract } = await getNearAccountAndContract(account_id);
     const actions = await contract.get_actions({ from_index: 0, limit: 100 });
     const stats = await contract.get_event_stats();
     const data = await contract.get_event_data();

@@ -3,16 +3,17 @@ import { ContractMethods } from '../../constants/contractMethods';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setAppLoadingState } from '../../store/reducers/appStateReducer/actions';
 import { setEventStatus } from '../../store/reducers/contractReducer/actions';
-import { getNearContract, getContractState } from '../../utils';
+import { getNearAccountAndContract, getContractState } from '../../utils';
 
 const StartEventButton: React.FC = () => {
   const { is_active } = useAppSelector((state) => state.contractReducer);
+  const { account_id } = useAppSelector((state) => state.userAccountReducer);
   const dispatch = useAppDispatch();
 
   const toggleEvent = async (): Promise<void> => {
     dispatch(setAppLoadingState(true));
     try {
-      const { contract } = await getNearContract();
+      const { contract } = await getNearAccountAndContract(account_id);
       if (!is_active) {
         await contract.start_event();
       } else {

@@ -1,21 +1,25 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
-// import { useRouter } from 'next/router';
+// import Router from 'next/router';
+
+import { useRouter } from 'next/router';
 // import Link from 'next/link';
-import { useAppSelector } from '../../hooks';
-// import { getNearContract } from '../../utils';
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { setAppLoadingState, signOutApp } from '../../store/reducers/appStateReducer/actions';
+import { getNearWallet } from '../../utils';
 
 const Header: React.FC = () => {
   const { account_id } = useAppSelector((state) => state.userAccountReducer);
-  // const router = useRouter();
-  // const { pathname } = router;
-  // const route = pathname !== '/stats' ? '/stats' : '/';
-  // const btnString = pathname !== '/stats' ? 'stats' : 'home';
-  // const togglePage = () => {
-  //   router.push(route);
-  // };
+  const router = useRouter();
+  const dispatch = useAppDispatch();
 
-  // const navigateToProfile = () => router.push(`/profile/${account_id}`);
+  const signOut = async () => {
+    const { signOut } = await getNearWallet();
+    signOut();
+    dispatch(setAppLoadingState(true));
+    dispatch(signOutApp());
+    router.replace('/');
+  };
 
   return (
     <nav
@@ -45,6 +49,7 @@ const Header: React.FC = () => {
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
+            onClick={signOut}
           >
             <span className="mr-2">{account_id}</span>
             <img
