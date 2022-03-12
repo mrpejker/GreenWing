@@ -19,7 +19,6 @@ interface AppLayoutProps {
 
 const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const { is_authed } = useAppSelector((state) => state.appStateReducer);
-  //   const { account_id } = useAppSelector((state) => state.userAccountReducer);
   const dispatch = useAppDispatch();
 
   const signInToNear = async () => {
@@ -30,7 +29,6 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const initVselfWebApp = async () => {
     try {
       const { accountId, isSignedIn } = await getNearWallet();
-      console.log(accountId, isSignedIn);
       if (isSignedIn) {
         const { contract } = await getNearAccountAndContract(accountId);
         const eventStatus = await contract.is_active();

@@ -2,7 +2,7 @@ export interface Quest {
   qr_prefix: string;
   reward_description: string;
   reward_title: string;
-  reward_url: string;
+  reward_uri: string;
   file?: File;
 }
 

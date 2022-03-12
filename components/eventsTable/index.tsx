@@ -19,7 +19,6 @@ const EventsTable: React.FC = () => {
     const actions = await contract.get_actions({ from_index: 0, limit: 100 });
     const stats = await contract.get_event_stats();
     const data = await contract.get_event_data();
-    console.log('data: ', data);
     setEventData(data);
     setEventStats(stats);
     setEventActions(actions);

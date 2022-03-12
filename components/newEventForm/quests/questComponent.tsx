@@ -28,13 +28,14 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
   const deleteQuest = (): void => removeQuest(index);
 
   const onImageChange = (fileString: string, file: File): void => {
-    onQuestChange(index, 'reward_url', fileString, file);
+    onQuestChange(index, 'reward_uri', fileString, file);
   };
 
   return (
     <div className="flex flex-col p-5 mb-2 rounded-lg shadow-lg bg-white max-w-md">
-      <UploadImage onImageChange={onImageChange} imgInProcess={quest.reward_url} />
+      <UploadImage onImageChange={onImageChange} imgInProcess={quest.reward_uri} />
       <input
+        autoComplete="off"
         type="text"
         name="qr_prefix"
         onChange={onInputChange}
@@ -57,6 +58,7 @@ const QuestComponent: React.FC<QuestProps> = ({ quest, index, onQuestChange, rem
         placeholder="qr_prefix"
       />
       <input
+        autoComplete="off"
         type="text"
         name="reward_title"
         onChange={onInputChange}

@@ -1,24 +1,26 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { setAppLoadingState } from '../../store/reducers/appStateReducer/actions';
+import { setEventStatus, stopCreateEvent } from '../../store/reducers/contractReducer/actions';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { storage } from '../../utils/firebase';
+import { getNearAccountAndContract } from '../../utils';
 // Models and types
 import { Quest, EventData } from '../../models/Event';
 import { QuestChangeCallback } from './quests/questComponent';
 // Components
 import Quests from './quests';
-// Icons
+import Spinner from '../spinner';
 import EventCard from '../eventsTable/eventCard';
 import Modal from '../modal';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { setAppStateDevMode } from '../../store/reducers/appStateReducer/actions';
-// Mock data
-import { mockEvent } from '../../mockData/mockEvents';
 
 const initialQuest: Quest = {
   qr_prefix: '',
   reward_description: '',
   reward_title: '',
-  reward_url: '',
+  reward_uri: '',
   file: undefined,
 };
 
@@ -29,22 +31,77 @@ const NewEventForm: React.FC = () => {
   const [startTime, setStartTime] = useState<Date>(new Date());
   const [finishTime, setFinishTime] = useState<Date>(new Date());
   const [submitedEvent, setSubmitedEvent] = useState<EventData | undefined>();
-  const { is_dev } = useAppSelector((state) => state.appStateReducer);
+  const [isUploadingImgs, setIsUploadingImgs] = useState<boolean>(false);
+  const { is_starting } = useAppSelector((state) => state.contractReducer);
+  const { account_id } = useAppSelector((state) => state.userAccountReducer);
+
   const dispatch = useAppDispatch();
 
-  const enableDevMode = (): void => {
-    dispatch(setAppStateDevMode(true));
+  const uploadImages = async () => {
+    const promises = quests.map((quest: Quest) => {
+      const { file } = quest;
+      if (file === undefined) return;
+      const randomcrctrs = (Math.random() + 1).toString(36).substring(7);
+      const storageRef = ref(storage, `images/${randomcrctrs + file.name.replace(/ /g, '_')}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+      return uploadTask.then(() => {
+        return getDownloadURL(uploadTask.snapshot.ref);
+      });
+    });
+
+    Promise.all(promises)
+      .then((urls) => {
+        dispatch(setAppLoadingState(true));
+        startNewEvent(urls);
+      })
+      .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
-    if (is_dev) {
-      setEventTitle(mockEvent.event_name);
-      setEventDescription(mockEvent.event_description);
-      editQuests([...mockEvent.quests]);
-      setStartTime(new Date(mockEvent.start_time / 1000000));
-      setFinishTime(new Date(mockEvent.finish_time / 1000000));
+  const startNewEvent = async (urls: any[]) => {
+    const questsWithUrls = quests.map((quest: Quest, index: number) => {
+      if (urls[index] === undefined) return;
+      delete quest.file;
+      return {
+        ...quest,
+        reward_uri: urls[index],
+      };
+    });
+    if (questsWithUrls === undefined) return;
+    try {
+      const { contract } = await getNearAccountAndContract(account_id);
+      await contract.start_event({
+        event: {
+          event_description: eventDescription,
+          event_name: eventTitle,
+          finish_time: finishTime.getTime() * 1000000,
+          start_time: startTime.getTime() * 1000000,
+          quests: questsWithUrls,
+        },
+      });
+      dispatch(setEventStatus(true));
+      dispatch(stopCreateEvent());
+      dispatch(setAppLoadingState(false));
+
+      // Cleaning form
+      // setEventTitle('');
+      // setEventDescription('');
+      // editQuests([initialQuest]);
+      // setStartTime(new Date());
+      // setFinishTime(new Date());
+    } catch (err) {
+      console.log('Connection to contract ended with errors: ', err);
     }
-  }, [is_dev]);
+  };
+
+  // Uploading Images to Firebase and Start New Event after success
+  useEffect(() => {
+    if (is_starting) {
+      setIsUploadingImgs(true);
+      uploadImages();
+    }
+  }, [is_starting]);
+
+  // New Event Form Handlers
 
   const onStartTimeChange = (date: Date): void => setStartTime(date);
 
@@ -52,7 +109,6 @@ const NewEventForm: React.FC = () => {
 
   const onNewEventSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
-    console.log(quests);
     // Setting New Event
     setSubmitedEvent({
       event_name: eventTitle,
@@ -61,12 +117,6 @@ const NewEventForm: React.FC = () => {
       start_time: startTime.getTime() * 1000000,
       quests,
     });
-    // Cleaning form
-    // setEventTitle('');
-    // setEventDescription('');
-    // editQuests([initialQuest]);
-    // setStartTime(new Date());
-    // setFinishTime(new Date());
   };
 
   const onEventTitleChange = (event: React.FormEvent<HTMLInputElement>): void => {
@@ -78,11 +128,18 @@ const NewEventForm: React.FC = () => {
   };
 
   const onQuestChange: QuestChangeCallback = (index, field, value, file?): void => {
-    const editedQuest = {
+    let editedQuest = {
       ...quests[index],
       [field]: value,
-      file,
     };
+
+    if (file !== undefined) {
+      editedQuest = {
+        ...quests[index],
+        [field]: value,
+        file,
+      };
+    }
     const newState = [...quests];
     newState[index] = editedQuest;
 
@@ -108,8 +165,8 @@ const NewEventForm: React.FC = () => {
       {submitedEvent && (
         <>
           <div className="bg-black fixed top-0 left-0 w-full h-full flex bg-opacity-60 z-50"></div>
-          <Modal closeCallBack={closeModal} modalTitle="Confirm New Event">
-            <EventCard eventData={submitedEvent} detailed />
+          <Modal closeCallBack={closeModal} modalTitle={isUploadingImgs ? 'Creating New Event' : 'Confirm New Event'}>
+            {isUploadingImgs ? <Spinner /> : <EventCard eventData={submitedEvent} detailed />}
           </Modal>
         </>
       )}
@@ -119,6 +176,7 @@ const NewEventForm: React.FC = () => {
           <h5 className="text-gray-900 text-xl font-medium mb-2">New Event</h5>
           <img className="rounded mb-4" src="/meta.jpg" alt="" />
           <input
+            autoComplete="off"
             type="text"
             name="title"
             onChange={onEventTitleChange}
@@ -204,13 +262,6 @@ const NewEventForm: React.FC = () => {
               className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded-full hover:bg-blue-200 hover:bg-opacity-6 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
             >
               Add New Quest
-            </button>
-            <button
-              type="button"
-              onClick={enableDevMode}
-              className="inline-block ml-4 px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded-full hover:bg-blue-200 hover:bg-opacity-6 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-            >
-              Fill in
             </button>
           </div>
         </div>

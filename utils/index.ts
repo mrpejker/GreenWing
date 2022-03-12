@@ -2,11 +2,12 @@
 const nacl = require('tweetnacl');
 const { providers } = require('near-api-js');
 const { encode } = require('js-base64');
-import { connect, ConnectConfig, keyStores, KeyPair, Contract, WalletConnection } from 'near-api-js';
+import { connect, ConnectConfig, keyStores, Contract, WalletConnection } from 'near-api-js';
+
 import { Endpoints } from '../constants/endpoints';
 
 // Mock data
-import { mockUserAccount } from '../mockData/mockUserAccount';
+// import { mockUserAccount } from '../mockData/mockUserAccount';
 
 const provider = new providers.JsonRpcProvider(Endpoints.TESTNET_RPC_ENDPOINT_URI);
 // const keyStore = typeof window !== 'undefined' ? new keyStores.BrowserLocalStorageKeyStore() : undefined;

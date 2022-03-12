@@ -1,9 +1,9 @@
 import React from 'react';
-import { ContractMethods } from '../../constants/contractMethods';
+// import { ContractMethods } from '../../constants/contractMethods';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setAppLoadingState } from '../../store/reducers/appStateReducer/actions';
-import { setEventStatus } from '../../store/reducers/contractReducer/actions';
-import { getNearAccountAndContract, getContractState } from '../../utils';
+import { createEvent, setEventStatus } from '../../store/reducers/contractReducer/actions';
+import { getNearAccountAndContract } from '../../utils';
 
 const StartEventButton: React.FC = () => {
   const { is_active } = useAppSelector((state) => state.contractReducer);
@@ -11,22 +11,21 @@ const StartEventButton: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const toggleEvent = async (): Promise<void> => {
-    dispatch(setAppLoadingState(true));
     try {
       const { contract } = await getNearAccountAndContract(account_id);
       if (!is_active) {
-        await contract.start_event();
+        dispatch(createEvent());
       } else {
+        dispatch(setAppLoadingState(true));
         await contract.stop_event();
+        dispatch(setEventStatus(false));
+        dispatch(setAppLoadingState(false));
       }
-      const eventStatus = await getContractState(ContractMethods.GET_EVENT_STATUS);
-      dispatch(setEventStatus(eventStatus));
     } catch (err) {
       console.log('Connection to contract ended with errors: ', err);
     }
-
-    dispatch(setAppLoadingState(false));
   };
+
   const stateString = !is_active ? 'Start event' : 'Stop event';
 
   return (

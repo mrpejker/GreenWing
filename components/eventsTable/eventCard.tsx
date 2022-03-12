@@ -25,7 +25,7 @@ const EventCard: React.FC<EventCardProps> = ({ eventData, detailed }) => {
                 className="flex flex-col rounded-lg shadow-lg bg-white mb-2 p-10 hover:bg-gray-200 cursor-pointer"
               >
                 <h3 className="font-bold">Quest #{index + 1}</h3>
-                <img className="rounded mb-4" src={quest.reward_url} alt="" />
+                <img className="rounded mb-4" src={quest.reward_uri} alt="" />
                 <span className="mb-2">
                   <b>reward_title:</b> {quest.reward_title}
                 </span>

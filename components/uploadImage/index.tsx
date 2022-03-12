@@ -20,11 +20,13 @@ const UploadImage: React.FC<UploadImageProps> = ({ onImageChange, imgInProcess }
       inputFileRef.current.click();
     }
   };
+
   const handleImage = (event: React.ChangeEvent<HTMLInputElement>): void => {
     if (event.target.files && event.target.files.length) {
       onImageChange(URL.createObjectURL(event.target.files[0]), event.target.files[0]);
     }
   };
+
   return (
     <button
       type="button"

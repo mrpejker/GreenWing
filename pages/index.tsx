@@ -6,7 +6,6 @@ import { useAppSelector } from '../hooks';
 
 const Home: NextPage = () => {
   const { is_active } = useAppSelector((state) => state.contractReducer);
-  // return <NewEventForm />;
   return !is_active ? <NewEventForm /> : <EventsTable />;
 };
 
