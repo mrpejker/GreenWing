@@ -1,13 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
-import { EventAction } from '../../models/Event';
+import { EventAction, EventData } from '../../models/Event';
 import { formatTimeStampToLocaleDateString, formatTimeStampToLocaleTimeString } from '../../utils';
 
 interface EventActionsTableProps {
   eventActions: EventAction[];
+  eventData: EventData | undefined;
 }
 
-const EventActionsTable: React.FC<EventActionsTableProps> = ({ eventActions }) => {
+const EventActionsTable: React.FC<EventActionsTableProps> = ({ eventActions, eventData }) => {
   return (
     <table className="min-w-full text-center">
       <thead className="border-b bg-gray-800">
@@ -27,8 +28,8 @@ const EventActionsTable: React.FC<EventActionsTableProps> = ({ eventActions }) =
               {formatTimeStampToLocaleDateString(timestamp) + ' ' + formatTimeStampToLocaleTimeString(timestamp)}
             </td>
             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
-              {reward_index !== 4 ? (
-                <img src={`/nft${reward_index + 1}.png`} alt="reward" width={50} height={50} />
+              {eventData?.quests[reward_index] ? (
+                <img src={`${eventData?.quests[reward_index].reward_uri}`} alt="reward" width={50} height={50} />
               ) : (
                 <div style={{ width: 50, height: 50 }} />
               )}

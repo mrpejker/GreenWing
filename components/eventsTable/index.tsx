@@ -55,7 +55,7 @@ const EventsTable: React.FC = () => {
           className="block p-6 rounded-lg shadow-lg bg-white  mb-4 w-full overflow-y-auto"
           style={{ maxHeight: 350, minHeight: 350 }}
         >
-          <EventActionsTable eventActions={eventActions} />
+          <EventActionsTable eventActions={eventActions} eventData={eventData} />
         </div>
       </div>
     </div>
