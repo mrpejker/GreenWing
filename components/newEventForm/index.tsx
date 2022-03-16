@@ -37,72 +37,62 @@ const NewEventForm: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const uploadImages = async () => {
-    const promises = quests.map((quest: Quest) => {
-      const { file } = quest;
-      if (file === undefined) return;
-      const randomcrctrs = (Math.random() + 1).toString(36).substring(7);
-      const storageRef = ref(storage, `images/${randomcrctrs + file.name.replace(/ /g, '_')}`);
-      const uploadTask = uploadBytesResumable(storageRef, file);
-      return uploadTask.then(() => {
-        return getDownloadURL(uploadTask.snapshot.ref);
-      });
-    });
-
-    Promise.all(promises)
-      .then((urls) => {
-        dispatch(setAppLoadingState(true));
-        startNewEvent(urls);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const startNewEvent = async (urls: any[]) => {
-    const questsWithUrls = quests.map((quest: Quest, index: number) => {
-      if (urls[index] === undefined) return;
-      delete quest.file;
-      return {
-        ...quest,
-        reward_uri: urls[index],
-      };
-    });
-    if (questsWithUrls === undefined) return;
-    try {
-      const { contract } = await getNearAccountAndContract(account_id);
-      await contract.start_event({
-        event: {
-          event_description: eventDescription,
-          event_name: eventTitle,
-          finish_time: finishTime.getTime() * 1000000,
-          start_time: startTime.getTime() * 1000000,
-          quests: questsWithUrls,
-        },
-      });
-      dispatch(setEventStatus(true));
-      dispatch(stopCreateEvent());
-      dispatch(setAppLoadingState(false));
-
-      // Cleaning form
-      // setEventTitle('');
-      // setEventDescription('');
-      // editQuests([initialQuest]);
-      // setStartTime(new Date());
-      // setFinishTime(new Date());
-    } catch (err) {
-      console.log('Connection to contract ended with errors: ', err);
-    }
-  };
-
   // Uploading Images to Firebase and Start New Event after success
   useEffect(() => {
+    const uploadImages = async () => {
+      const promises = quests.map((quest: Quest) => {
+        const { file } = quest;
+        if (file === undefined) return;
+        const randomcrctrs = (Math.random() + 1).toString(36).substring(7);
+        const storageRef = ref(storage, `images/${randomcrctrs + file.name.replace(/ /g, '_')}`);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+        return uploadTask.then(() => {
+          return getDownloadURL(uploadTask.snapshot.ref);
+        });
+      });
+
+      Promise.all(promises)
+        .then((urls) => {
+          dispatch(setAppLoadingState(true));
+          startNewEvent(urls);
+        })
+        .catch((err) => console.log(err));
+    };
+    const startNewEvent = async (urls: any[]) => {
+      const questsWithUrls = quests.map((quest: Quest, index: number) => {
+        if (urls[index] === undefined) return;
+        delete quest.file;
+        return {
+          ...quest,
+          reward_uri: urls[index],
+        };
+      });
+      if (questsWithUrls === undefined) return;
+      try {
+        const { contract } = await getNearAccountAndContract(account_id);
+        await contract.start_event({
+          event: {
+            event_description: eventDescription,
+            event_name: eventTitle,
+            finish_time: finishTime.getTime() * 1000000,
+            start_time: startTime.getTime() * 1000000,
+            quests: questsWithUrls,
+          },
+        });
+        dispatch(setEventStatus(true));
+        dispatch(stopCreateEvent());
+        dispatch(setAppLoadingState(false));
+      } catch (err) {
+        console.log('Connection to contract ended with errors: ', err);
+      }
+    };
     if (is_starting) {
       setIsUploadingImgs(true);
       uploadImages();
     }
-  }, [is_starting]);
+  }, [account_id, dispatch, eventDescription, eventTitle, finishTime, is_starting, quests, startTime]);
 
   // New Event Form Handlers
-
   const onStartTimeChange = (date: Date): void => setStartTime(date);
 
   const onFinishTimeChange = (date: Date): void => setFinishTime(date);
