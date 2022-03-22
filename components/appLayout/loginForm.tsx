@@ -6,8 +6,6 @@ interface LoginFormProps {
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ loginCallBack }) => {
-  console.log('Proccess: ', process.env.NODE_ENV);
-
   return (
     <div className="container px-6 py-12 h-full">
       <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">

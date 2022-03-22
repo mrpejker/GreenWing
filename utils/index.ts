@@ -6,11 +6,7 @@ import { connect, ConnectConfig, keyStores, Contract, WalletConnection } from 'n
 
 import { Endpoints } from '../constants/endpoints';
 
-// Mock data
-// import { mockUserAccount } from '../mockData/mockUserAccount';
-
 const provider = new providers.JsonRpcProvider(Endpoints.TESTNET_RPC_ENDPOINT_URI);
-// const keyStore = typeof window !== 'undefined' ? new keyStores.BrowserLocalStorageKeyStore() : undefined;
 
 export const getContractState = async (methodName: string): Promise<boolean> => {
   try {

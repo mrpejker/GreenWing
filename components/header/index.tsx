@@ -10,8 +10,13 @@ import { getNearWallet } from '../../utils';
 
 const Header: React.FC = () => {
   const { account_id } = useAppSelector((state) => state.userAccountReducer);
+  // const { is_dev } = useAppSelector((state) => state.appStateReducer);
   const router = useRouter();
   const dispatch = useAppDispatch();
+
+  // const setDevMode = () => {
+  //   dispatch(setAppStateDevMode(!is_dev));
+  // };
 
   const signOut = async () => {
     const { signOut } = await getNearWallet();
@@ -40,7 +45,6 @@ const Header: React.FC = () => {
     >
       <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">
         <img src="/robot.jpg" width={50} height={50} className="rounded-md float-left" alt="logo" />
-
         <div className="flex items-center relative">
           <a
             className="dropdown-toggle flex items-center hidden-arrow"

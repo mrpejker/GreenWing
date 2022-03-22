@@ -1,6 +1,7 @@
-import { Contract } from '../../../models/Contract';
+// import { Event } from '../../../models/Event';
 
-export enum ContractTypes {
+export enum EventTypes {
+  SetEvent = 'SET_EVENT',
   GetEventStatus = 'GET_EVENT_STATUS',
   CreateEvent = 'CREATE_EVENT',
   StopCreateEvent = 'STOP_CREATE_EVENT',

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useAppSelector } from '../../hooks';
-import { EventAction, EventData, EventStats } from '../../models/Event';
+import React, { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { setEvent } from '../../store/reducers/eventReducer/actions';
 import { getNearAccountAndContract } from '../../utils';
 // Components
 import EventActionsTable from './eventAcionsTable';
@@ -9,9 +9,8 @@ import EventStatsTable from './eventStatsTable';
 
 const EventsTable: React.FC = () => {
   const { account_id } = useAppSelector((state) => state.userAccountReducer);
-  const [eventStats, setEventStats] = useState<EventStats | undefined>();
-  const [eventActions, setEventActions] = useState<EventAction[]>([]);
-  const [eventData, setEventData] = useState<EventData | undefined>();
+  const { event_stats, event_data, event_actions } = useAppSelector((state) => state.eventReducer);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const getEventsStats = async (): Promise<void> => {
@@ -19,26 +18,30 @@ const EventsTable: React.FC = () => {
       const actions = await contract.get_actions({ from_index: 0, limit: 100 });
       const stats = await contract.get_event_stats();
       const data = await contract.get_event_data();
-      setEventData(data);
-      setEventStats(stats);
-      setEventActions(actions);
+      dispatch(
+        setEvent({
+          event_data: data,
+          event_stats: stats,
+          event_actions: actions,
+        })
+      );
     };
     getEventsStats();
-  }, [account_id]);
+  }, [account_id, dispatch]);
 
   return (
     <div className="flex-row flex flex-wrap ">
-      <div className="flex-1 w-1/5 relative">{eventData !== undefined && <EventCard eventData={eventData} />}</div>
+      <div className="flex-1 w-1/5 relative">{event_data !== undefined && <EventCard eventData={event_data} />}</div>
 
       <div className="flex-1 ml-4 w-4/5">
         <div className="block p-6 rounded-lg shadow-lg bg-white  mb-4">
-          <EventStatsTable eventStats={eventStats} />
+          <EventStatsTable eventStats={event_stats} />
         </div>
         <div
           className="block p-6 rounded-lg shadow-lg bg-white  mb-4 w-full overflow-y-auto"
           style={{ maxHeight: 350, minHeight: 350 }}
         >
-          <EventActionsTable eventActions={eventActions} eventData={eventData} />
+          <EventActionsTable eventActions={event_actions} eventData={event_data} />
         </div>
       </div>
     </div>

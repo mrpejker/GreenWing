@@ -1,47 +1,154 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
+import Resizer from 'react-image-file-resizer';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setAppLoadingState } from '../../store/reducers/appStateReducer/actions';
-import { setEventStatus, stopCreateEvent } from '../../store/reducers/contractReducer/actions';
+import { setEventStatus, stopCreateEvent } from '../../store/reducers/eventReducer/actions';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../utils/firebase';
 import { getNearAccountAndContract } from '../../utils';
 // Models and types
 import { Quest, EventData } from '../../models/Event';
-import { QuestChangeCallback } from './quests/questComponent';
+import QuestComponent, { QuestChangeCallback } from './quests';
 // Components
-import Quests from './quests';
 import Spinner from '../spinner';
 import EventCard from '../eventsTable/eventCard';
 import Modal from '../modal';
+import Accordion from '../accordion';
+
+interface EventFormState {
+  eventTitle: string;
+  eventDescription: string;
+  quests: Quest[];
+  startTime: Date;
+  finishTime: Date;
+}
 
 const initialQuest: Quest = {
   qr_prefix: '',
   reward_description: '',
   reward_title: '',
   reward_uri: '',
-  file: undefined,
+};
+
+const initialEventFormState: EventFormState = {
+  eventTitle: '',
+  eventDescription: '',
+  quests: [initialQuest],
+  startTime: new Date(),
+  finishTime: new Date(),
 };
 
 const NewEventForm: React.FC = () => {
-  const [eventTitle, setEventTitle] = useState<string>('');
-  const [eventDescription, setEventDescription] = useState<string>('');
-  const [quests, editQuests] = useState<Quest[]>([initialQuest]);
-  const [startTime, setStartTime] = useState<Date>(new Date());
-  const [finishTime, setFinishTime] = useState<Date>(new Date());
+  const [eventFormState, setEventFormState] = useState<EventFormState>(initialEventFormState);
+  const { eventTitle, eventDescription, quests, startTime, finishTime } = eventFormState;
+  const [files, setFiles] = useState<File[]>([]);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
   const [submitedEvent, setSubmitedEvent] = useState<EventData | undefined>();
-  const [isUploadingImgs, setIsUploadingImgs] = useState<boolean>(false);
-  const { is_starting } = useAppSelector((state) => state.contractReducer);
+  const { is_starting } = useAppSelector((state) => state.eventReducer);
   const { account_id } = useAppSelector((state) => state.userAccountReducer);
 
   const dispatch = useAppDispatch();
 
+  // New Event Form Handlers
+  const onEventTitleChange = (event: React.FormEvent<HTMLInputElement>): void => {
+    const newEventTitle = event.currentTarget.value;
+    setEventFormState((prevState) => ({ ...prevState, eventTitle: newEventTitle }));
+  };
+
+  const onEventDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
+    const newEventDescription = event.currentTarget.value;
+    setEventFormState((prevState) => ({ ...prevState, eventDescription: newEventDescription }));
+  };
+
+  const onStartTimeChange = (date: Date): void => {
+    setEventFormState((prevState) => ({ ...prevState, startTime: date }));
+  };
+
+  const onFinishTimeChange = (date: Date): void => {
+    setEventFormState((prevState) => ({ ...prevState, finishTime: date }));
+  };
+
+  // Quest/Actions Form Handlers
+  const onQuestChange: QuestChangeCallback = (index, field, value): void => {
+    const editedQuest = {
+      ...quests[index],
+      [field]: value,
+    };
+    const newQuests = [...quests];
+    newQuests[index] = editedQuest;
+
+    setEventFormState((prevState) => ({ ...prevState, quests: newQuests }));
+  };
+
+  const addNewQuest = (): void => {
+    const newQuests = [...quests];
+    newQuests.push(initialQuest);
+    setEventFormState((prevState) => ({ ...prevState, quests: newQuests }));
+  };
+
+  const removeQuest = (index: number): void => {
+    const newQuests = [...quests];
+    newQuests.splice(index, 1);
+    files.splice(index, 1);
+    setEventFormState((prevState) => ({ ...prevState, quests: newQuests }));
+  };
+
+  const setFilesArray = (file: File, index: number) => {
+    const newFilesArray = [...files];
+    newFilesArray[index] = file;
+    setFiles(newFilesArray);
+  };
+
+  // Submitting Form
+  const onNewEventSubmit = (event: React.FormEvent): void => {
+    event.preventDefault();
+    // Setting New Event
+    setSubmitedEvent({
+      event_name: eventTitle,
+      event_description: eventDescription,
+      finish_time: finishTime.getTime() * 1000000,
+      start_time: startTime.getTime() * 1000000,
+      quests,
+    });
+  };
+
+  const closeModal = (): void => setSubmitedEvent(undefined);
+
   // Uploading Images to Firebase and Start New Event after success
   useEffect(() => {
-    const uploadImages = async () => {
-      const promises = quests.map((quest: Quest) => {
-        const { file } = quest;
+    // Resize Images Before Upload
+    const resizeImages = async () => {
+      const resizeFile = (file: File) =>
+        new Promise((resolve) => {
+          Resizer.imageFileResizer(
+            file,
+            450,
+            450,
+            'JPEG',
+            100,
+            0,
+            (uri) => {
+              resolve(uri);
+            },
+            'file',
+            450,
+            450
+          );
+        });
+      const promises = files.map(async (file: File) => {
+        const image = await resizeFile(file);
+        return image;
+      });
+      Promise.all(promises).then((resizedFiles: any[]) => {
+        // Upload Images After Resize
+        uploadImages(resizedFiles);
+      });
+    };
+    // Upload Images To Firebase And Getiing Download URLS
+    const uploadImages = async (files: any) => {
+      const promises = files.map((file: File) => {
         if (file === undefined) return;
         const randomcrctrs = (Math.random() + 1).toString(36).substring(7);
         const storageRef = ref(storage, `images/${randomcrctrs + file.name.replace(/ /g, '_')}`);
@@ -54,14 +161,16 @@ const NewEventForm: React.FC = () => {
       Promise.all(promises)
         .then((urls) => {
           dispatch(setAppLoadingState(true));
+          // Getting URLS of Uploaded Images
           startNewEvent(urls);
         })
         .catch((err) => console.log(err));
     };
+    // Starting New Event In NEAR
     const startNewEvent = async (urls: any[]) => {
       const questsWithUrls = quests.map((quest: Quest, index: number) => {
         if (urls[index] === undefined) return;
-        delete quest.file;
+        // Setting URLS of Uploaded Images To Quests
         return {
           ...quest,
           reward_uri: urls[index],
@@ -87,76 +196,17 @@ const NewEventForm: React.FC = () => {
       }
     };
     if (is_starting) {
-      setIsUploadingImgs(true);
-      uploadImages();
+      resizeImages();
     }
-  }, [account_id, dispatch, eventDescription, eventTitle, finishTime, is_starting, quests, startTime]);
-
-  // New Event Form Handlers
-  const onStartTimeChange = (date: Date): void => setStartTime(date);
-
-  const onFinishTimeChange = (date: Date): void => setFinishTime(date);
-
-  const onNewEventSubmit = (event: React.FormEvent): void => {
-    event.preventDefault();
-    // Setting New Event
-    setSubmitedEvent({
-      event_name: eventTitle,
-      event_description: eventDescription,
-      finish_time: finishTime.getTime() * 1000000,
-      start_time: startTime.getTime() * 1000000,
-      quests,
-    });
-  };
-
-  const onEventTitleChange = (event: React.FormEvent<HTMLInputElement>): void => {
-    setEventTitle(event.currentTarget.value);
-  };
-
-  const onEventDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
-    setEventDescription(event.target.value);
-  };
-
-  const onQuestChange: QuestChangeCallback = (index, field, value, file?): void => {
-    let editedQuest = {
-      ...quests[index],
-      [field]: value,
-    };
-
-    if (file !== undefined) {
-      editedQuest = {
-        ...quests[index],
-        [field]: value,
-        file,
-      };
-    }
-    const newState = [...quests];
-    newState[index] = editedQuest;
-
-    editQuests(newState);
-  };
-
-  const addNewQuest = (): void => {
-    const newState = [...quests];
-    newState.push(initialQuest);
-    editQuests(newState);
-  };
-
-  const removeQuest = (index: number): void => {
-    const newState = [...quests];
-    newState.splice(index, 1);
-    editQuests(newState);
-  };
-
-  const closeModal = (): void => setSubmitedEvent(undefined);
+  }, [account_id, dispatch, eventDescription, eventTitle, files, finishTime, is_starting, quests, startTime]);
 
   return (
     <>
       {submitedEvent && (
         <>
           <div className="bg-black fixed top-0 left-0 w-full h-full flex bg-opacity-60 z-50"></div>
-          <Modal closeCallBack={closeModal} modalTitle={isUploadingImgs ? 'Creating New Event' : 'Confirm New Event'}>
-            {isUploadingImgs ? <Spinner /> : <EventCard eventData={submitedEvent} detailed />}
+          <Modal closeCallBack={closeModal} modalTitle={is_starting ? 'Creating New Event' : 'Confirm New Event'}>
+            {is_starting ? <Spinner /> : <EventCard eventData={submitedEvent} detailed files={files} />}
           </Modal>
         </>
       )}
@@ -242,8 +292,25 @@ const NewEventForm: React.FC = () => {
 
         <div className="flex-1 flex-row ml-4 form-group mb-6 p-6">
           <h5 className="text-gray-900 text-xl font-medium mb-2">Quests</h5>
-          <div className="flex flex-col overflow-y-scroll h-screen " style={{ maxHeight: 500 }}>
-            <Quests quests={quests} onQuestChange={onQuestChange} removeQuest={removeQuest} />
+          <div className="flex flex-col overflow-y-scroll h-screen relative" style={{ maxHeight: 520 }}>
+            {quests.map((quest, index) => (
+              <Accordion
+                key={index}
+                accordionTitle={`Quest #${index + 1}`}
+                activeIndex={activeIndex}
+                currentIndex={index}
+                activeIndexCallback={setActiveIndex}
+              >
+                <QuestComponent
+                  quest={quest}
+                  onQuestChange={onQuestChange}
+                  index={index}
+                  removable={quests.length >= 2}
+                  removeQuest={removeQuest}
+                  setFilesArray={setFilesArray}
+                />
+              </Accordion>
+            ))}
           </div>
           <div className="mt-5 border-t-2 pt-5">
             <button

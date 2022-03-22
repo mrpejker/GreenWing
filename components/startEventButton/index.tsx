@@ -2,11 +2,11 @@ import React from 'react';
 // import { ContractMethods } from '../../constants/contractMethods';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setAppLoadingState } from '../../store/reducers/appStateReducer/actions';
-import { createEvent, setEventStatus } from '../../store/reducers/contractReducer/actions';
+import { createEvent, setEventStatus } from '../../store/reducers/eventReducer/actions';
 import { getNearAccountAndContract } from '../../utils';
 
 const StartEventButton: React.FC = () => {
-  const { is_active } = useAppSelector((state) => state.contractReducer);
+  const { is_active } = useAppSelector((state) => state.eventReducer);
   const { account_id } = useAppSelector((state) => state.userAccountReducer);
   const dispatch = useAppDispatch();
 

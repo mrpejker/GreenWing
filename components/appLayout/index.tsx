@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getNearAccountAndContract, getNearWallet } from '../../utils';
-import { setEventStatus } from '../../store/reducers/contractReducer/actions';
+import { setEventStatus } from '../../store/reducers/eventReducer/actions';
 // import { setAppStateDevMode } from '../../store/reducers/appStateReducer/actions';
 import { getUserAccountData } from '../../store/reducers/userAccountReducer/actions';
 import { setAppLoadingState, signInApp } from '../../store/reducers/appStateReducer/actions';
@@ -26,30 +26,26 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     signIn();
   };
 
-  const initVselfWebApp = async () => {
-    try {
-      const { accountId, isSignedIn } = await getNearWallet();
-      if (isSignedIn) {
-        const { contract } = await getNearAccountAndContract(accountId);
-        const eventStatus = await contract.is_active();
-        dispatch(signInApp());
-        dispatch(setEventStatus(eventStatus));
-        dispatch(getUserAccountData({ account_id: accountId }));
+  useEffect(() => {
+    const initVselfWebApp = async () => {
+      try {
+        const { accountId, isSignedIn } = await getNearWallet();
+        if (isSignedIn) {
+          const { contract } = await getNearAccountAndContract(accountId);
+          const eventStatus = await contract.is_active();
+          dispatch(signInApp());
+          dispatch(setEventStatus(eventStatus));
+          dispatch(getUserAccountData({ account_id: accountId }));
+          setTimeout(() => {
+            dispatch(setAppLoadingState(false));
+          }, 1000);
+        }
+      } catch (err) {
+        console.log('Cannot connect to contract: ', err);
       }
-    } catch (err) {
-      console.log('Cannot connect to contract: ', err);
-    }
-  };
-
-  useEffect(() => {
-    setTimeout(() => {
-      dispatch(setAppLoadingState(false));
-    }, 1000);
-  }, [is_authed]);
-
-  useEffect(() => {
+    };
     initVselfWebApp();
-  }, []);
+  }, [dispatch]);
 
   return <Loader>{is_authed ? children : <LoginForm loginCallBack={signInToNear} />}</Loader>;
 };
