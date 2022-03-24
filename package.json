@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test:watch": "jest --watch",
+    "test": "jest",
     "deploy": "next build && firebase deploy --only hosting,functions:nextServer"
   },
   "dependencies": {
@@ -30,6 +32,8 @@
     "tweetnacl-util": "^0.15.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.4",
     "@types/react": "17.0.37",
     "@types/react-datepicker": "^4.3.4",
     "@types/react-redux": "^7.1.22",
@@ -41,6 +45,7 @@
     "eslint-config-next": "12.0.7",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.5.1",
     "postcss": "^8.4.4",
     "prettier": "^2.5.1",
     "tailwindcss": "^2.2.19",
