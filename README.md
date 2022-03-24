@@ -8,13 +8,19 @@ Next.js + Tailwind CSS + NEAR.js.SDK hosted on Firebase
 
 ### Git Flow
 
-The basic Git Flow consists of Main branch, Dev branch and Staging branch.
+The basic Git Flow consists of main, dev and staging branches.
 
-For developing new feature for the web application one should create a feature branch out of Dev and after completing development merge it back into Dev. After all the sprint requirements are done all the features into Dev one creates a pull-request to the Staging branch.
+For developing new feature for the web application one should create a feature branch out of dev and after completing development one should merge it back into dev.
 
-This will start running tests, after they are passed Dev can be merged into Staging and deployment wll start. Deployment stage will build web app and distribute it to Firebase hosting locatetd [here](https://vself-dev.firebaseapp.com/).
+After all the sprint requirements are done and all the features are into dev, one creates a pull-request to the staging branch.
 
-After product testing is over Staging branch can be merged into Main branch. Next step is to test and deploy from Main branch to production environment.
+This will start running tests, after they are passed Dev branch can be merged into Staging and deployment will start.
+
+Deployment stage will build web app and distribute it to Firebase hosting located [here](https://vself-dev.firebaseapp.com/).
+
+After product testing on staging environment is over staging branch can be merged into main.
+
+Next step is to test and deploy Main branch to production environment.
 
 ### Mobile app
 
