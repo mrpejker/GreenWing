@@ -1,7 +1,6 @@
 import '../styles/globals.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from '../styles/Home.module.css';
-import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import Head from 'next/head';

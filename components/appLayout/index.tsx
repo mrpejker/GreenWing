@@ -3,14 +3,10 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getNearAccountAndContract, getNearWallet } from '../../utils';
 import { setEventStatus } from '../../store/reducers/eventReducer/actions';
-// import { setAppStateDevMode } from '../../store/reducers/appStateReducer/actions';
 import { getUserAccountData } from '../../store/reducers/userAccountReducer/actions';
 import { setAppLoadingState, signInApp } from '../../store/reducers/appStateReducer/actions';
 
 import Loader from '../../components/loader';
-
-// import { mockUserAccount } from '../../mockData/mockUserAccount';
-// import { Endpoints } from '../../constants/endpoints';
 import LoginForm from './loginForm';
 
 interface AppLayoutProps {
