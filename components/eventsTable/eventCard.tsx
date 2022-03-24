@@ -7,9 +7,10 @@ import StartEventButton from '../startEventButton';
 interface EventCardProps {
   eventData: EventData | undefined;
   detailed?: boolean;
+  files?: File[];
 }
 
-const EventCard: React.FC<EventCardProps> = ({ eventData, detailed }) => {
+const EventCard: React.FC<EventCardProps> = ({ eventData, detailed, files }) => {
   return (
     <div className="flex justify-center">
       <div className="rounded-lg shadow-lg bg-white max-w-sm relative" style={{ minHeight: 600 }}>
@@ -25,7 +26,7 @@ const EventCard: React.FC<EventCardProps> = ({ eventData, detailed }) => {
                 className="flex flex-col rounded-lg shadow-lg bg-white mb-2 p-10 hover:bg-gray-200 cursor-pointer"
               >
                 <h3 className="font-bold">Quest #{index + 1}</h3>
-                <img className="rounded mb-4" src={quest.reward_url} alt="" />
+                <img className="rounded mb-4" src={files && URL.createObjectURL(files[index])} alt="" />
                 <span className="mb-2">
                   <b>reward_title:</b> {quest.reward_title}
                 </span>

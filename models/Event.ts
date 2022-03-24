@@ -1,9 +1,16 @@
+export interface Event {
+  is_active: boolean;
+  is_starting: boolean;
+  event_data: EventData;
+  event_stats: EventStats | Record<string, unknown>;
+  event_actions: EventAction[];
+}
+
 export interface Quest {
   qr_prefix: string;
   reward_description: string;
   reward_title: string;
-  reward_url: string;
-  file?: File;
+  reward_uri: string;
 }
 
 export interface EventData {

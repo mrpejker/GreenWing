@@ -30,8 +30,9 @@ const Accordion: React.FC<AccordionProps> = ({
       setIsCollapsed(true);
     }
   }, [activeIndex, currentIndex]);
+
   return (
-    <div className="flex py-2 border-b border-gray-200 w-full rounded-t-lg flex-col">
+    <div className="flex w-full rounded-t-lg accordion-item flex-col py-2 border-b border-gray-200">
       <button
         type="button"
         onClick={toggleCollapsed}
@@ -40,7 +41,14 @@ const Accordion: React.FC<AccordionProps> = ({
       >
         {accordionTitle}
       </button>
-      <div className="justify-center content-center items-center flex">{!isCollapsed && children}</div>
+      <div
+        className="justify-center origin-top accordion-collapse content-center items-center flex transition-height duration-500 ease-in-out overflow-y-hidden"
+        style={{
+          height: isCollapsed ? 0 : 500,
+        }}
+      >
+        {children}
+      </div>
     </div>
   );
 };

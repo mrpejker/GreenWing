@@ -22,10 +22,10 @@ const EventStatsTable: React.FC<EventStatsTableProps> = ({ eventStats }) => {
         <tbody>
           <tr className="bg-gray-100 border-b">
             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-              {eventStats.start_time !== null && formatTimeStampToLocaleDateString(eventStats.start_time)}
+              {eventStats.start_time && formatTimeStampToLocaleDateString(eventStats.start_time)}
             </td>
             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-              {eventStats.finish_time !== null && formatTimeStampToLocaleDateString(eventStats.finish_time)}
+              {eventStats.finish_time && formatTimeStampToLocaleDateString(eventStats.finish_time)}
             </td>
 
             <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{eventStats.total_actions}</td>
@@ -37,7 +37,7 @@ const EventStatsTable: React.FC<EventStatsTableProps> = ({ eventStats }) => {
               <b>Participants:</b>
             </td>
             <td className="break-words text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-              {eventStats.participants.join(', ')}
+              {eventStats.participants && eventStats.participants.join(', ')}
             </td>
           </tr>
         </tbody>

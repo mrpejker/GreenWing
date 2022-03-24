@@ -7,6 +7,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      transitionProperty: {
+        height: 'height',
+      },
       minWidth: {
         '1/2': '50%',
       },

@@ -2,11 +2,9 @@
 const nacl = require('tweetnacl');
 const { providers } = require('near-api-js');
 const { encode } = require('js-base64');
-import { connect, ConnectConfig, keyStores, KeyPair, Contract } from 'near-api-js';
-import { Endpoints } from '../constants/endpoints';
+import { connect, ConnectConfig, keyStores, Contract, WalletConnection } from 'near-api-js';
 
-// Mock data
-import { mockUserAccount } from '../mockData/mockUserAccount';
+import { Endpoints } from '../constants/endpoints';
 
 const provider = new providers.JsonRpcProvider(Endpoints.TESTNET_RPC_ENDPOINT_URI);
 
@@ -39,24 +37,43 @@ export const getRandomHashString = (): string => {
   }).join('');
 };
 
-export const getNearContract = async (): Promise<any> => {
-  const keyStore = new keyStores.InMemoryKeyStore();
-  // creates a public / private key pair using the provided private key
-  const keyPair = KeyPair.fromString(mockUserAccount.private_key);
-  // adds the keyPair you created to keyStore
-  await keyStore.setKey('testnet', mockUserAccount.account_id, keyPair);
+export const getNearWallet = async () => {
   const config: ConnectConfig = {
     networkId: 'testnet',
-    keyStore,
+    keyStore: new keyStores.BrowserLocalStorageKeyStore(),
     nodeUrl: 'https://rpc.testnet.near.org',
     walletUrl: 'https://wallet.testnet.near.org',
     helperUrl: 'https://helper.testnet.near.org',
     headers: {},
   };
-
   const near = await connect(config);
-  // const wallet = new WalletConnection(near);
-  const account = await near.account(mockUserAccount.account_id);
+  const wallet = new WalletConnection(near, '');
+  const accountId = wallet.getAccountId();
+  const isSignedIn = wallet.isSignedIn();
+
+  const signOut = () => {
+    wallet.signOut();
+  };
+
+  const signIn = () => {
+    wallet.requestSignIn({ contractId: Endpoints.TESTNET_CONTRACT_URI });
+  };
+
+  return { wallet, accountId, isSignedIn, signOut, signIn };
+};
+
+export const getNearAccountAndContract = async (account_id: string): Promise<any> => {
+  const config: ConnectConfig = {
+    networkId: 'testnet',
+    keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+    nodeUrl: 'https://rpc.testnet.near.org',
+    walletUrl: 'https://wallet.testnet.near.org',
+    helperUrl: 'https://helper.testnet.near.org',
+    headers: {},
+  };
+  const near = await connect(config);
+
+  const account = await near.account(account_id);
 
   const contract = new Contract(
     account, // the account object that is connecting
