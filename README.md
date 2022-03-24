@@ -1,10 +1,14 @@
+[![Deployment](https://github.com/vself-project/vself-beta/actions/workflows/firebase-hosting-merge.yml/badge.svg)](https://github.com/vself-project/vself-beta/actions)
+
+[![Tests](https://github.com/vself-project/vself-beta/actions/workflows/predeploy-testing.yml/badge.svg)](https://github.com/vself-project/vself-beta/actions)
+
 ### vSelf Metabuild Event Management Frontend
 
 Current repository contains frontend source code and tooling which was developed during NEAR Metabuild Hackathon.
 
 ### Web App
 
-Next.js + Tailwind CSS + NEAR.js.SDK hosted on Firebase
+Next.js + Tailwind CSS + Redux + NEAR.js.SDK hosted on Firebase
 
 ### Git Flow
 
@@ -14,9 +18,9 @@ For developing new feature for the web application one should create a feature b
 
 After all the sprint requirements are done and all the features are into dev, one creates a pull-request to the staging branch.
 
-This will start running tests, after they are passed Dev branch can be merged into Staging and deployment will start.
+This action will start running tests, after they are passed dev branch can be merged into staging. After merge deployment will start.
 
-Deployment stage will build web app and distribute it to Firebase hosting located [here](https://vself-dev.firebaseapp.com/).
+Deployment stage will build web app and distribute it to the Firebase hosting located [here](https://vself-dev.firebaseapp.com/).
 
 After product testing on staging environment is over staging branch can be merged into main.
 
