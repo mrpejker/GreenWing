@@ -126,7 +126,7 @@ const NewEventForm: React.FC = () => {
             file,
             450,
             450,
-            'JPEG',
+            'PNG',
             100,
             0,
             (uri) => {

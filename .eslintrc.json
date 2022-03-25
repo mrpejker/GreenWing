@@ -1,6 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["prettier", "@typescript-eslint"],
+  "plugins": ["prettier", "@typescript-eslint", "jest"],
   "extends": [
     "next/core-web-vitals","eslint:recommended",
     "plugin:prettier/recommended",

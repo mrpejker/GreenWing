@@ -1,0 +1,221 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home renders a heading 1`] = `
+<form
+  className="flex-row flex flex-wrap container"
+  onSubmit={[Function]}
+>
+  <div
+    className="flex-0 form-group mb-6 p-6 pb-0 rounded-lg shadow-lg bg-white max-w-md w-1/2 relative"
+  >
+    <h5
+      className="text-gray-900 text-xl font-medium mb-2"
+    >
+      New Event
+    </h5>
+    <img
+      alt=""
+      className="rounded mb-4"
+      src="/meta.jpg"
+    />
+    <input
+      autoComplete="off"
+      className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 mb-2 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+      name="title"
+      onChange={[Function]}
+      placeholder="Event title"
+      type="text"
+      value=""
+    />
+    <textarea
+      className="form-control block w-full mb-2 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+      name="description"
+      onChange={[Function]}
+      placeholder="Event description"
+      value=""
+    />
+    <span
+      className="mb-2 "
+    >
+      Start Date:
+    </span>
+    <span
+      className="flex-row flex justify-between mb-2 cursor-pointer"
+    >
+      <div
+        className="react-datepicker-wrapper"
+      >
+        <div
+          className="react-datepicker__input-container"
+        >
+          <input
+            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            disabled={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            readOnly={false}
+            type="text"
+            value="25/03/2022"
+          />
+        </div>
+      </div>
+    </span>
+    <span
+      className="mb-4 "
+    >
+      End Date:
+    </span>
+    <span
+      className="flex-row flex justify-between mb-2 cursor-pointer align-middle"
+    >
+      <div
+        className="react-datepicker-wrapper"
+      >
+        <div
+          className="react-datepicker__input-container"
+        >
+          <input
+            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            disabled={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            readOnly={false}
+            type="text"
+            value="25/03/2022"
+          />
+        </div>
+      </div>
+    </span>
+    <div
+      className="mt-5 absolute bottom-6 left-6"
+    >
+      <button
+        className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded-full hover:bg-blue-200 hover:bg-opacity-6 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+        type="submit"
+      >
+        Create New Event
+      </button>
+    </div>
+  </div>
+  <div
+    className="flex-1 flex-row ml-4 form-group mb-6 p-6"
+  >
+    <h5
+      className="text-gray-900 text-xl font-medium mb-2"
+    >
+      Quests
+    </h5>
+    <div
+      className="flex flex-col overflow-y-scroll h-screen relative"
+      style={
+        Object {
+          "maxHeight": 520,
+        }
+      }
+    >
+      <div
+        className="flex w-full rounded-t-lg accordion-item flex-col py-2 border-b border-gray-200"
+      >
+        <button
+          className="false flex"
+          id="accordion_0"
+          onClick={[Function]}
+          type="button"
+        >
+          Quest #1
+        </button>
+        <div
+          className="justify-center origin-top accordion-collapse content-center items-center flex transition-height duration-500 ease-in-out overflow-y-hidden"
+          style={
+            Object {
+              "height": 0,
+            }
+          }
+        >
+          <div
+            className="flex flex-col p-5 mb-2 rounded-lg shadow-lg bg-white max-w-md"
+          >
+            <button
+              className="flex justify-center rounded-lg w-full shadow-lg bg-white max-w-sm mb-2 hover:bg-gray-200 text-gray-200 hover:text-white transition ease-in-out delay-150"
+              onClick={[Function]}
+              style={
+                Object {
+                  "minWidth": 400,
+                }
+              }
+              type="button"
+            >
+              <input
+                accept="image/png, image/gif, image/jpeg"
+                className="hidden"
+                onChange={[Function]}
+                type="file"
+              />
+              <div
+                className="p-20"
+              >
+                <svg
+                  className="h-20 w-20 p-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                  />
+                </svg>
+              </div>
+            </button>
+            <input
+              autoComplete="off"
+              className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 mb-2 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              name="qr_prefix"
+              onChange={[Function]}
+              placeholder="qr_prefix"
+              type="text"
+              value=""
+            />
+            <input
+              autoComplete="off"
+              className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out mb-2 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              name="reward_title"
+              onChange={[Function]}
+              placeholder="reward_title"
+              type="text"
+              value=""
+            />
+            <textarea
+              className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out mb-2 m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              name="reward_description"
+              onChange={[Function]}
+              placeholder="reward_description"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="mt-5 border-t-2 pt-5"
+    >
+      <button
+        className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded-full hover:bg-blue-200 hover:bg-opacity-6 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+        onClick={[Function]}
+        type="button"
+      >
+        Add New Quest
+      </button>
+    </div>
+  </div>
+</form>
+`;

@@ -11,5 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: npm i && npm ci && npm run build
-      - run: npm test
+      - name: Installing Node Modules And Build App
+        run: npm i && npm ci && npm run build
+      - name: Run Tests
+        run: npm test
