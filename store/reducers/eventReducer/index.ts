@@ -27,6 +27,11 @@ const eventReducer: Reducer = (state = initialState, action): Event => {
         event_data: mockEvent,
         event_actions: mockEventActions,
       };
+    case EventTypes.SetEvent:
+      return {
+        ...state,
+        ...action.payload,
+      };
     case EventTypes.GetEventStatus:
       return {
         ...state,

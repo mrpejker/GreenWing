@@ -45,9 +45,9 @@ const QuestComponent: React.FC<QuestProps> = ({
       <input
         autoComplete="off"
         type="text"
-        name="qr_prefix"
+        name="qr_prefix_enc"
         onChange={onInputChange}
-        value={quest.qr_prefix}
+        value={quest.qr_prefix_enc}
         className="form-control block
         w-full
         px-3
@@ -63,7 +63,7 @@ const QuestComponent: React.FC<QuestProps> = ({
         m-0
         mb-2
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-        placeholder="qr_prefix"
+        placeholder="qr_prefix_enc"
       />
       <input
         autoComplete="off"

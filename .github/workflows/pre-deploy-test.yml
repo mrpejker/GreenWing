@@ -1,0 +1,17 @@
+name: Simple Test Before Merge And Deploy
+
+on:
+  pull_request:
+    branches:
+      - main
+      - staging
+
+jobs:
+  build_and_preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Installing Node Modules
+        run: npm i && npm ci
+      - name: Run Tests
+        run: npm test -- -u

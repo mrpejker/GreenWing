@@ -2,7 +2,7 @@ import { EventTypes } from './types';
 
 export const setEvent = (data: any) => {
   return {
-    type: EventTypes.StopCreateEvent,
+    type: EventTypes.SetEvent,
     payload: { ...data },
   };
 };

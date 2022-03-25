@@ -1,0 +1,27 @@
+name: Deploy Web App to Firebase Hosting
+'on':
+  push:
+    branches:
+      - staging
+      - main
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Node Modules And Build App
+        run: npm i && npm ci && npm run build:prod
+      - name: Deploy Web App to Firebase Hosting
+        if: github.ref == 'refs/heads/staging'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VSELF_DEV }}'
+          channelId: live
+          projectId: vself-dev
+        if: github.ref == 'refs/heads/main'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VSELF_PROD }}'
+          projectId: vself-prod

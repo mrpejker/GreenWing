@@ -2,6 +2,7 @@
 
 [![Tests](https://github.com/vself-project/vself-beta/actions/workflows/predeploy-testing.yml/badge.svg)](https://github.com/vself-project/vself-beta/actions)
 
+
 ### vSelf Metabuild Event Management Frontend
 
 Current repository contains frontend source code and tooling which was developed during NEAR Metabuild Hackathon.
