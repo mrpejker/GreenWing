@@ -10,8 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Node Modules And Build App
-        run: npm i && npm ci && npm run build:prod
-      - name: Deploy Web App to Firebase Hosting
+        run: npm i && npm ci && npm run build:prod && npm i firebase-tools
+      - name: Deploy Web App to Staging
         if: github.ref == 'refs/heads/staging'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
@@ -19,9 +19,11 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VSELF_DEV }}'
           channelId: live
           projectId: vself-dev
+      - name: Deploy Web App to Production
         if: github.ref == 'refs/heads/main'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VSELF_PROD }}'
           projectId: vself-prod
+          channelId: live
