@@ -1,12 +1,20 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const nacl = require('tweetnacl');
+const { createHash } = require('crypto');
 const { providers } = require('near-api-js');
 const { encode } = require('js-base64');
 import { connect, ConnectConfig, keyStores, Contract, WalletConnection } from 'near-api-js';
 
 import { Endpoints } from '../constants/endpoints';
 
+// SHA-256 hash
+export const hash = (msg: string) => {
+  return createHash('sha256').update(msg).digest('hex');
+};
+
 const provider = new providers.JsonRpcProvider(Endpoints.TESTNET_RPC_ENDPOINT_URI);
+
+const contractEndPoint =  process.env.NODE_ENV !== 'production' ? Endpoints.TESTNET_CONTRACT_URI : Endpoints.MAINNET_CONTRACT_URI;
 
 export const getContractState = async (methodName: string): Promise<boolean> => {
   try {
@@ -56,7 +64,7 @@ export const getNearWallet = async () => {
   };
 
   const signIn = () => {
-    wallet.requestSignIn({ contractId: Endpoints.TESTNET_CONTRACT_URI });
+    wallet.requestSignIn({ contractId: contractEndPoint });
   };
 
   return { wallet, accountId, isSignedIn, signOut, signIn };
@@ -77,7 +85,7 @@ export const getNearAccountAndContract = async (account_id: string): Promise<any
 
   const contract = new Contract(
     account, // the account object that is connecting
-    Endpoints.TESTNET_CONTRACT_URI,
+   contractEndPoint,
     {
       // name of contract you're connecting to
       viewMethods: ['is_active', 'get_actions', 'get_event_data', 'get_event_stats'], // view methods do not change state but usually return a value

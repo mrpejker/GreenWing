@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Node Modules And Build App
-        run: npm i && npm ci && npm run build
+        run: npm i && npm ci && npm run build:prod
       - name: Deploy Web App to Firebase Hosting
         if: github.ref == 'refs/heads/staging'
         uses: FirebaseExtended/action-hosting-deploy@v0

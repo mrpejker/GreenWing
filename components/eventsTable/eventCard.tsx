@@ -34,7 +34,7 @@ const EventCard: React.FC<EventCardProps> = ({ eventData, detailed, files }) => 
                   <b>reward_description:</b> {quest.reward_description}
                 </span>
                 <span className="mb-2">
-                  <b>qr_prefix:</b> {quest.qr_prefix}
+                  <b>qr_prefix:</b> {quest.qr_prefix_enc}
                 </span>
               </div>
             ))}

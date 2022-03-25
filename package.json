@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "NODE_ENV=development next dev",
-    "dev:prod": "NODE_ENV=production next dev",
     "build": "next build",
+    "build:prod": "NODE_ENV=production next build",
     "start": "NODE_ENV=production next start",
     "lint": "next lint",
     "test:watch": "jest --watch",
-    "test": "jest",
+    "test": "jest -u",
     "deploy:dev": "NODE_ENV=development next build && firebase deploy -P staging --only hosting,functions:nextServer",
     "deploy:prod": "NODE_ENV=production next build && firebase deploy -P prod --only hosting,functions:nextServer"
   },

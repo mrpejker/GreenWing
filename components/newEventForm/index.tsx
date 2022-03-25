@@ -7,7 +7,7 @@ import { setAppLoadingState } from '../../store/reducers/appStateReducer/actions
 import { setEventStatus, stopCreateEvent } from '../../store/reducers/eventReducer/actions';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../utils/firebase';
-import { getNearAccountAndContract } from '../../utils';
+import { getNearAccountAndContract, hash } from '../../utils';
 // Models and types
 import { Quest, EventData } from '../../models/Event';
 import QuestComponent, { QuestChangeCallback } from './quests';
@@ -19,7 +19,8 @@ import Accordion from '../accordion';
 import { mockEvent } from '../../mockData/mockEvents';
 
 const initialQuest: Quest = {
-  qr_prefix: '',
+  qr_prefix_enc: '',
+  qr_prefix_len: 0,
   reward_description: '',
   reward_title: '',
   reward_uri: '',
@@ -171,8 +172,12 @@ const NewEventForm: React.FC = () => {
       const questsWithUrls = quests.map((quest: Quest, index: number) => {
         if (urls[index] === undefined) return;
         // Setting URLS of Uploaded Images To Quests
+        const hashedPrefix = hash(quest.qr_prefix_enc);
+        const prefixLength = hashedPrefix.length;
         return {
           ...quest,
+          qr_prefix_enc: hashedPrefix,
+          qr_prefix_len: prefixLength,
           reward_uri: urls[index],
         };
       });
