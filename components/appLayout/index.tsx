@@ -32,12 +32,13 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
           dispatch(signInApp());
           dispatch(setEventStatus(eventStatus));
           dispatch(getUserAccountData({ account_id: accountId }));
-          setTimeout(() => {
-            dispatch(setAppLoadingState(false));
-          }, 1000);
         }
       } catch (err) {
         console.log('Cannot connect to contract: ', err);
+      } finally {
+        setTimeout(() => {
+          dispatch(setAppLoadingState(false));
+        }, 1000);
       }
     };
     initVselfWebApp();

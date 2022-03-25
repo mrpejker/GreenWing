@@ -5,7 +5,11 @@ import React from 'react';
 import { useRouter } from 'next/router';
 // import Link from 'next/link';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { setAppLoadingState, signOutApp } from '../../store/reducers/appStateReducer/actions';
+import {
+  setAppLoadingState,
+  // setAppStateDevMode,
+  signOutApp,
+} from '../../store/reducers/appStateReducer/actions';
 import { getNearWallet } from '../../utils';
 
 const Header: React.FC = () => {
@@ -45,6 +49,9 @@ const Header: React.FC = () => {
     >
       <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">
         <img src="/robot.jpg" width={50} height={50} className="rounded-md float-left" alt="logo" />
+        {/* <button type="button" onClick={setDevMode}>
+          Dev
+        </button> */}
         <div className="flex items-center relative">
           <a
             className="dropdown-toggle flex items-center hidden-arrow"

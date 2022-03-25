@@ -5,6 +5,7 @@ export const mockEvent: EventData = {
     'vSelf lauches a series of quests which will keep you motivated while you learn about our project and its place inside NEAR ecosystem',
   event_name: 'vSelf Onboarding Metabuild Quest',
   finish_time: new Date().getTime() * 1000000 + 30 * 24 * 60 * 60 * 1000000,
+  start_time: new Date().getTime() * 1000000,
   quests: [
     {
       qr_prefix: 'https://vself-dev.web.app/vself.apk',
@@ -31,5 +32,4 @@ export const mockEvent: EventData = {
       reward_uri: '/nft4.png',
     },
   ],
-  start_time: new Date().getTime() * 1000000,
 };

@@ -16,14 +16,7 @@ import Spinner from '../spinner';
 import EventCard from '../eventsTable/eventCard';
 import Modal from '../modal';
 import Accordion from '../accordion';
-
-interface EventFormState {
-  eventTitle: string;
-  eventDescription: string;
-  quests: Quest[];
-  startTime: Date;
-  finishTime: Date;
-}
+import { mockEvent } from '../../mockData/mockEvents';
 
 const initialQuest: Quest = {
   qr_prefix: '',
@@ -32,42 +25,49 @@ const initialQuest: Quest = {
   reward_uri: '',
 };
 
-const initialEventFormState: EventFormState = {
-  eventTitle: '',
-  eventDescription: '',
+const initialEventFormState: EventData = {
+  event_name: '',
+  event_description: '',
   quests: [initialQuest],
-  startTime: new Date(),
-  finishTime: new Date(),
+  start_time: new Date().getTime() * 1000000,
+  finish_time: new Date().getTime() * 1000000,
 };
 
 const NewEventForm: React.FC = () => {
-  const [eventFormState, setEventFormState] = useState<EventFormState>(initialEventFormState);
-  const { eventTitle, eventDescription, quests, startTime, finishTime } = eventFormState;
+  const [eventFormState, setEventFormState] = useState<EventData>(initialEventFormState);
+  const { event_name, event_description, quests, start_time, finish_time } = eventFormState;
   const [files, setFiles] = useState<File[]>([]);
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [submitedEvent, setSubmitedEvent] = useState<EventData | undefined>();
   const { is_starting } = useAppSelector((state) => state.eventReducer);
   const { account_id } = useAppSelector((state) => state.userAccountReducer);
+  const { is_dev } = useAppSelector((state) => state.appStateReducer);
+
+  useEffect(() => {
+    if (is_dev) {
+      setEventFormState(mockEvent);
+    }
+  }, [is_dev]);
 
   const dispatch = useAppDispatch();
 
   // New Event Form Handlers
   const onEventTitleChange = (event: React.FormEvent<HTMLInputElement>): void => {
-    const newEventTitle = event.currentTarget.value;
-    setEventFormState((prevState) => ({ ...prevState, eventTitle: newEventTitle }));
+    const eventName = event.currentTarget.value;
+    setEventFormState((prevState) => ({ ...prevState, event_name: eventName }));
   };
 
   const onEventDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
-    const newEventDescription = event.currentTarget.value;
-    setEventFormState((prevState) => ({ ...prevState, eventDescription: newEventDescription }));
+    const eventDescription = event.currentTarget.value;
+    setEventFormState((prevState) => ({ ...prevState, event_description: eventDescription }));
   };
 
   const onStartTimeChange = (date: Date): void => {
-    setEventFormState((prevState) => ({ ...prevState, startTime: date }));
+    setEventFormState((prevState) => ({ ...prevState, start_time: date.getTime() * 1000000 }));
   };
 
   const onFinishTimeChange = (date: Date): void => {
-    setEventFormState((prevState) => ({ ...prevState, finishTime: date }));
+    setEventFormState((prevState) => ({ ...prevState, finish_time: date.getTime() * 1000000 }));
   };
 
   // Quest/Actions Form Handlers
@@ -106,10 +106,10 @@ const NewEventForm: React.FC = () => {
     event.preventDefault();
     // Setting New Event
     setSubmitedEvent({
-      event_name: eventTitle,
-      event_description: eventDescription,
-      finish_time: finishTime.getTime() * 1000000,
-      start_time: startTime.getTime() * 1000000,
+      event_name,
+      event_description,
+      finish_time,
+      start_time,
       quests,
     });
   };
@@ -181,10 +181,10 @@ const NewEventForm: React.FC = () => {
         const { contract } = await getNearAccountAndContract(account_id);
         await contract.start_event({
           event: {
-            event_description: eventDescription,
-            event_name: eventTitle,
-            finish_time: finishTime.getTime() * 1000000,
-            start_time: startTime.getTime() * 1000000,
+            event_description,
+            event_name,
+            finish_time,
+            start_time,
             quests: questsWithUrls,
           },
         });
@@ -198,7 +198,7 @@ const NewEventForm: React.FC = () => {
     if (is_starting) {
       resizeImages();
     }
-  }, [account_id, dispatch, eventDescription, eventTitle, files, finishTime, is_starting, quests, startTime]);
+  }, [account_id, dispatch, event_description, event_name, files, finish_time, is_starting, quests, start_time]);
 
   return (
     <>
@@ -220,7 +220,7 @@ const NewEventForm: React.FC = () => {
             type="text"
             name="title"
             onChange={onEventTitleChange}
-            value={eventTitle}
+            value={event_name}
             className="form-control block
             w-full
             px-3
@@ -240,7 +240,7 @@ const NewEventForm: React.FC = () => {
           />
           <textarea
             name="description"
-            value={eventDescription}
+            value={event_description}
             onChange={onEventDescriptionChange}
             className="form-control
             block
@@ -264,7 +264,7 @@ const NewEventForm: React.FC = () => {
           <span className="flex-row flex justify-between mb-2 cursor-pointer">
             <DatePicker
               onChange={onStartTimeChange}
-              selected={startTime}
+              selected={new Date(start_time / 1000000)}
               dateFormat="dd/MM/yyyy"
               className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             />
@@ -274,7 +274,7 @@ const NewEventForm: React.FC = () => {
           <span className="flex-row flex justify-between mb-2 cursor-pointer align-middle">
             <DatePicker
               onChange={onFinishTimeChange}
-              selected={finishTime}
+              selected={new Date(finish_time / 1000000)}
               dateFormat="dd/MM/yyyy"
               className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             />
