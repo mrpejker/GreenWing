@@ -14,7 +14,8 @@ export const hash = (msg: string) => {
 
 const provider = new providers.JsonRpcProvider(Endpoints.TESTNET_RPC_ENDPOINT_URI);
 
-const contractEndPoint =  process.env.NODE_ENV !== 'production' ? Endpoints.TESTNET_CONTRACT_URI : Endpoints.MAINNET_CONTRACT_URI;
+const contractEndPoint =
+  process.env.NODE_ENV !== 'production' ? Endpoints.TESTNET_CONTRACT_URI : Endpoints.MAINNET_CONTRACT_URI;
 
 export const getContractState = async (methodName: string): Promise<boolean> => {
   try {
@@ -85,7 +86,7 @@ export const getNearAccountAndContract = async (account_id: string): Promise<any
 
   const contract = new Contract(
     account, // the account object that is connecting
-   contractEndPoint,
+    contractEndPoint,
     {
       // name of contract you're connecting to
       viewMethods: ['is_active', 'get_actions', 'get_event_data', 'get_event_stats'], // view methods do not change state but usually return a value
