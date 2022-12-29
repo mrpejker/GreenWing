@@ -1,7 +1,7 @@
 export interface Event {
   is_active: boolean;
   is_starting: boolean;
-  event_data: EventData;
+  event_data: EventData | null;
   event_stats: EventStats | Record<string, unknown>;
   event_actions: EventAction[];
 }
@@ -20,12 +20,13 @@ export interface EventData {
   finish_time: number;
   quests: Quest[];
   start_time: number;
+  files: File[];
 }
 
 export interface EventStats {
-  finish_time: number | null;
+  stopped_at: number | null;
   participants: [];
-  start_time: number;
+  created_at: number;
   total_actions: number;
   total_rewards: number;
   total_users: number;

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 interface AccordionProps {
-  accordionTitle: string;
-  activeIndex: number;
+  accordionTitle: React.ReactElement | string;
+  activeIndex?: number;
   currentIndex: number;
-  activeIndexCallback: (index: number) => void;
-  children: React.ReactElement;
+  activeIndexCallback?: (index: number) => void;
+  children: React.ReactElement | string;
 }
 
 const Accordion: React.FC<AccordionProps> = ({
@@ -21,7 +21,7 @@ const Accordion: React.FC<AccordionProps> = ({
     const element = document.getElementById(id);
     element && element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     setIsCollapsed(!isCollapsed);
-    activeIndexCallback(currentIndex);
+    // activeIndexCallback(currentIndex);
   };
   useEffect(() => {
     if (activeIndex === currentIndex) {
@@ -32,22 +32,30 @@ const Accordion: React.FC<AccordionProps> = ({
   }, [activeIndex, currentIndex]);
 
   return (
-    <div className="flex w-full rounded-t-lg accordion-item flex-col py-2 border-b border-gray-200">
+    <div
+      className={
+        'flex flex-col w-full rounded-[25px] p-[25px] mt-[20px] border-gray-200 shadow-sm ' +
+        (!isCollapsed && 'bg-[#F5F5F5]')
+      }
+    >
       <button
         type="button"
         onClick={toggleCollapsed}
-        className={`${!isCollapsed && 'font-bold'} flex`}
+        className={`${
+          !isCollapsed && 'font-bold text-[#B1B1B1]'
+        } flex text-[#3D3D3D] transition-color ease-in-out font-interBold text-[20px] justify-between`}
         id={`accordion_${currentIndex}`}
       >
-        {accordionTitle}
+        <b>{accordionTitle}</b>
+        <b>{isCollapsed ? '+' : '-'}</b>
       </button>
       <div
-        className="justify-center origin-top accordion-collapse content-center items-center flex transition-height duration-500 ease-in-out overflow-y-hidden"
-        style={{
-          height: isCollapsed ? 0 : 500,
-        }}
+        className={
+          'origin-top accordion-collapse content-center items-center flex overflow-y-hidden my-[30px] ' +
+          (isCollapsed ? 'collapse' : 'show')
+        }
       >
-        {children}
+        <div className="accordion-body text-[#3D3D3D]">{children}</div>
       </div>
     </div>
   );

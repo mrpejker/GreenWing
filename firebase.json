@@ -1,20 +1,19 @@
 {
   "hosting": {
     "public": "public",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "**",
-        "function": "nextServer"
-      }
+        "run": {
+          "serviceId": "nextjseurope", 
+          "region": "europe-west1"
+        }
+      }      
     ]
   },
   "functions": {
     "source": ".",
-    "runtime": "nodejs12"
+    "runtime": "nodejs16"
   }
 }
