@@ -42,7 +42,7 @@ const EventDetailedPage: NextPage<EventDetailedPageProps> = ({ event_id, actions
         <div className="flex flex-col w-full max-w-[1240px] overflow-x-auto px-[20px]">
           <div className="flex w-full justify-center my-4 bg-white rounded-[40px]">
             <Loader is_load={!data}>
-              {data && <EventCard eventData={data} isOwnEvent={isOwnEvent} event_id={event_id} isActive={isActive}/>}
+              {data && <EventCard eventData={data} isOwnEvent={isOwnEvent} event_id={event_id} isActive={isActive.}/>}
             </Loader>
           </div>
 
@@ -86,7 +86,7 @@ export const getServerSideProps = async ({ query }: GetServerSidePropsContext) =
     contract.get_event_actions({ event_id: Number(event_id), from_index: 0, limit: 100 }),
     contract.get_event_stats({ event_id: Number(event_id) }),
     contract.get_event_data({ event_id: Number(event_id) }),
-    contract.get_ongoing_events({ from_index: 0, limit: 150 })
+    contract.get_ongoing_events({ from_index: 0, limit: 150 }),
   ]);
   const isActive = activeEvents.find((element: any) => String(event_id) === String(element[0])) !== undefined;
   return {
@@ -95,7 +95,7 @@ export const getServerSideProps = async ({ query }: GetServerSidePropsContext) =
       actions,
       stats,
       data,
-      isActive
+      isActive,
     },
   };
 };
