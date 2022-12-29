@@ -42,7 +42,7 @@ const EventDetailedPage: NextPage<EventDetailedPageProps> = ({ event_id, actions
         <div className="flex flex-col w-full max-w-[1240px] overflow-x-auto px-[20px]">
           <div className="flex w-full justify-center my-4 bg-white rounded-[40px]">
             <Loader is_load={!data}>
-              {data && <EventCard eventData={data} isOwnEvent={isOwnEvent} event_id={event_id} isActive={isActive.}/>}
+              {data && <EventCard eventData={data} isOwnEvent={isOwnEvent} event_id={event_id} isActive={isActive}>}
             </Loader>
           </div>
 
