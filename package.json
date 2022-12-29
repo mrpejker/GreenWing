@@ -11,7 +11,12 @@
     "test:watch": "jest --watch",
     "test": "jest -u",
     "deploy:dev": "NODE_ENV=development next build && firebase deploy -P staging --only hosting,functions:nextServer",
-    "deploy:prod": "NODE_ENV=production next build && firebase deploy -P prod --only hosting,functions:nextServer"
+    "deploy:prod": "NODE_ENV=production next build && firebase deploy -P prod --only hosting,functions:nextServer",
+    "events:build": "node contracts/events/compile.js",
+    "events:dev:deploy": "yarn events:build && rm -rf neardev && near dev-deploy contracts/target/wasm32-unknown-unknown/release/events.wasm && env-cmd -f ./neardev/dev-account.env node contracts/events/init.js",
+    "events:test": "env-cmd -f ./config/deployment.env node contracts/events/tests/test.js",
+    "events:create": "env-cmd -f ./config/deployment.env node contracts/events/tests/start_events.js",
+    "events:deploy": "env-cmd -f ./config/deployment.env node contracts/events/deploy.js"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.0",

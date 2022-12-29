@@ -1,0 +1,30 @@
+[package]
+name = "vself-dao-contracts"
+version = "1.0.0"
+authors = ["vSelf team <ie@vself.app>"]
+edition = "2021"
+
+[dev-dependencies]
+#near-sdk = "4.1.0-pre.1"
+#near-sdk = "4.0.0"
+#near-contract-standards = "4.0.0"
+#near-sdk-sim = "4.0.0"
+pow-contract = { path = "./pow"}
+
+[profile.release]
+codegen-units = 1
+# Tell `rustc` to optimize for small code size.
+opt-level = "z"
+lto = true
+debug = false
+panic = "abort"
+# Opt into extra safety checks on arithmetic operations https://stackoverflow.com/a/64136471/249801
+overflow-checks = true
+
+[workspace]
+members = [
+    "linkdrop",
+    "events",
+    "near-contract-standards",
+    "deposits"
+]
