@@ -36,7 +36,7 @@ const actions = [
   {
     timestamp: 1662468104846470400,
     username: 'identity_genius.near',
-    qr_string: 'qr_vself_team',
+    qr_string: 'SAF_QR',
     reward_index: 0,
   },
   {
@@ -45,17 +45,17 @@ const actions = [
     qr_string: 'https://vself.app/app',
     reward_index: 2,
   },
-  { timestamp: 1662633445391556400, username: 'caesai.near', qr_string: 'qr_vself_team', reward_index: 0 },
+  { timestamp: 1662633445391556400, username: 'caesai.near', qr_string: 'qr_SAF', reward_index: 0 },
   {
     timestamp: 1662634954669111800,
     username: 'bratandronik235711.near',
-    qr_string: 'qr_vself_team',
+    qr_string: 'qr_SAF',
     reward_index: 0,
   },
   {
     timestamp: 1662636565416776000,
     username: 'bratandronik235711.near',
-    qr_string: 'qr_vself_partners',
+    qr_string: 'qr_SAF',
     reward_index: 3,
   },
   {
