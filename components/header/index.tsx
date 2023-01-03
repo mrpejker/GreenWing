@@ -176,7 +176,6 @@ const Header: React.FC = () => {
           className="sm:flex flex-row hidden grow justify-evenly max-w-[600px]"
         />
         <div className="flex flex-row md:grow max-w-[250px] items-center">
-          <SocialLinks isColored={isAbout} />
           <HeaderSettingsButton
             avatar={avatar}
             accountId={accountId}
