@@ -57,7 +57,7 @@ const Footer: React.FC = () => {
         <div className="flex flex-col w-full md:flex-row md:w-2/3">
           <div className="w-full md:w-1/3">
             <ActiveLink href="/">
-              <h2 className={` ${isAbout ? 'text-[#343434]' : 'text-[#41F092]'} font-grotesk text-[25px]`}>vSelf</h2>
+              <h2 className={` ${isAbout ? 'text-[#343434]' : 'text-[#41F092]'} font-grotesk text-[25px]`}>GreenWing</h2>
             </ActiveLink>
           </div>
           <div className="flex w-full flex-col md:flex-row md:w-1/2 mt-[20px] md:mt-0">

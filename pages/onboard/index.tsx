@@ -41,13 +41,6 @@ const OnboardPage: NextPage = () => {
         <h2 className="font-drukMedium uppercase text-[#f24242] text-xl my-2 text-center">
           Sorry, it seems desired name has already been taken or we ran out of free accounts.{' '}
         </h2>
-        <p className="text-[#3D3D3D]">
-          Please contact us on social media or email{' '}
-          <a className="underline text-[#f24242]" href="mailto:info@vself.app">
-            info@vself.app
-          </a>{' '}
-          and we will guide you through onboarding.
-        </p>
       </>
     );
   };
@@ -153,8 +146,7 @@ const OnboardPage: NextPage = () => {
               <h2 className="font-drukBold text-black uppercase mb-4 text-[32px]">Onboard</h2>
               {!seed && (
                 <p>
-                  Welcome to the page which will guide you through the onboarding process. To receive your NFT rewards
-                  in the vSelf app, you should first create a NEAR account. If you do not have one, we’ve got your back!
+                  Welcome to the page which will guide you through the onboarding process. To receive your SAF certificates, you should first create a NEAR account. If you do not have one, we’ve got your back!
                   Just choose a nickname with the format &quot;newaccount{network}&quot; and type in below.
                 </p>
               )}

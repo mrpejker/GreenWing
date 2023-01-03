@@ -38,40 +38,7 @@ const Home: NextPage = () => {
             <h2 className="font-grotesk mt-[10px] mb-[25px] text-white uppercase text-[25px]">Main Events</h2>
           </div> */}
 
-      <div className="flex mb-[20px] w-full items-center flex-col mx-auto py-[40px] ">
-        <div className="flex flex-col w-full max-w-[1240px] p-[80px] bg-[#1E1E1E] rounded-[50px]" data-aos="fade-up">
-          <h2 className="font-grotesk mb-[40px] text-white uppercase text-[25px]">our vision</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-[95px] auto-cols-max max-w-[1080px]">
-            <div className="flex flex-col items-center w-full">
-              <img src="/account.png" alt="" className="w-full" />
-              <div className="mt-[40px]">
-                <h3 className="font-drukHeavy text-[#41F092] uppercase text-[16px] mb-[14px]">Problem</h3>
-                <p className="text-[#D9D9D9]">
-                  Digital identity management is flawed: lack of data portability, risks of deplatforming, low privacy
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-col items-center mt-[50px] md:mt-0">
-              <img src="/sol.png" alt="" className="w-full" />
-              <div className="mt-[40px]">
-                <h3 className="font-drukHeavy text-[#41F092] uppercase text-[16px] mb-[14px]">Solution</h3>
-                <p className="text-[#D9D9D9]">
-                  Identity-as-Service platform to connect organisations and their users in thrustful and engaging way
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-col items-center mt-[50px] md:mt-0">
-              <img src="/who.png" alt="" className="w-full" />
-              <div className="mt-[40px]">
-                <h3 className="font-drukHeavy text-[#41F092] uppercase text-[16px] mb-[14px]">who? what?</h3>
-                <p className="text-[#D9D9D9]">
-                  vSelf team has years your experience in web3 development and computer science research
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
       {/* <div className="flex flex-col w-full max-w-[1080px] mx-auto mt-[20px] mb-[60px] px-[20px] items-start">
         <div>
