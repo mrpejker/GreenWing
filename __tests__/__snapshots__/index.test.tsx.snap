@@ -39,7 +39,7 @@ exports[`Home Page Renders Correctly 1`] = `
         <h1
           className="uppercase font-grotesk text-2xl text-white px-[20px]"
         >
-          vself — Web3 identity wallet with rewards for data sharing
+          GreenWing - a revolutionary digital solution that provides traceability for sustainable aviation fuels (SAF) certificates.
         </h1>
         <p
           className="font-inter mt-[16px] mb-4 text-white px-[20px]"

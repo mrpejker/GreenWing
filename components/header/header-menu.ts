@@ -3,11 +3,7 @@ import { WebappURLS } from '../../constants/webapp-urls';
 export const navMenuItems = [
   {
     url: WebappURLS.ABOUT_URL,
-    title: 'About vSelf',
-  },
-  {
-    title: 'Resources',
-    submenu: true,
+    title: 'About GreenWing',
   },
   {
     title: 'Products',
@@ -33,30 +29,8 @@ export const subMenuItems: any = {
       url: WebappURLS.PRODUCTS_URL,
       title: 'COLLECTION DASHBOARD',
     },
-    {
-      url: WebappURLS.PROFILE_URL,
-      title: 'VRANDA',
-    },
   ],
-  Resources: [
-    {
-      url: WebappURLS.FAQ_URL,
-      title: 'FAQ',
-    },
-    {
-      url: WebappURLS.ACADEMY_URL,
-      title: 'VSELF ACADEMY',
-    },
-    {
-      // url: WebappURLS.DOCUMENTS_URL,
-      url: 'https://vself-project.gitbook.io/vself-project-documentation/',
-      title: 'DOCUMENTS',
-    },
-    {
-      url: WebappURLS.BLOG_URL,
-      title: 'BLOG',
-    },
-  ],
+  
   Burger: [],
 };
 

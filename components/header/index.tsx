@@ -167,7 +167,7 @@ const Header: React.FC = () => {
     <nav className={navClassName} ref={headerRef}>
       <div className="flex justify-between flex-row w-full max-w-[1240px] px-[20px] mx-auto items-center">
         <ActiveLink href="/">
-          <h2 className={logoClassName}>vSelf</h2>
+          <h2 className={logoClassName}>GreenWing</h2>
         </ActiveLink>
         <NavButtons
           activeMenu={activeMenu.title}
