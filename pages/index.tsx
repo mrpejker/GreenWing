@@ -8,10 +8,6 @@ import 'aos/dist/aos.css';
 import ActiveLink from '../components/active-link';
 import TopComponent from '../features/landing/top-component';
 import ProductsComponent from '../features/landing/products';
-import AppleStoreIcon from '../components/icons/AppleStoreIcon';
-import GoogleStoreIcon from '../components/icons/GoogleStoreIcon';
-import Ninja2Component from '../components/ninja2';
-
 const Home: NextPage = () => {
   useEffect(() => {
     AOS.init({ duration: 2000 });
@@ -29,47 +25,6 @@ const Home: NextPage = () => {
             className="w-full max-w-[1240px] bg-[url(/lnd_bl2.png)] p-[20px] bg-no-repeat bg-center bg-cover rounded-lg"
             data-aos="fade-up"
           >
-            <div className="flex flex-col z-20 w-full max-w-[1040px] md:justify-between md:items-center mx-auto md:flex-row">
-              <div className="flex md:mb-0 md:w-2/3 mb-[70px]">
-                <h2 className="text-[25px] font-grotesk text-white uppercase ">
-                  check out our training <br /> programme on how to use <br /> the app
-                </h2>
-              </div>
-              <div className="flex justify-center md:w-1/2">
-                <ActiveLink
-                  href="/faq"
-                  className="self-center p-[20px] rounded-full w-auto py-2 bg-[#41F092] border-[#41F092] border-[1px] hover:bg-transparent transition-colors"
-                >
-                  <span className="text-black hover:text-[#41F092]">Explore vSelf</span>
-                </ActiveLink>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <ProductsComponent />
-      <div
-        className="flex w-full justify-center py-[40px] px-[20px]"
-        style={{ backgroundImage: 'linear-gradient(180deg, #1E1E1E 50%, transparent 50%)' }}
-      >
-        <div className="flex flex-col md:flex-row bg-[#FDA7FF] w-full rounded-[20px] max-w-[1030px] md:py-[60px] pb-[60px] px-[20px]">
-          <div className="flex flex-col md:flex-row w-full md:w-2/3 md:justify-between items-center text-center">
-            <div className="flex relative w-full md:w-1/3 items-center justify-center">
-              <img src="/products.png" alt="" className="max-w-[280px] md:absolute md:top-[-150px] md:left-0" />
-            </div>
-            <div className="flex flex-col w-full md:w-2/3">
-              <h2 className="font-grotesk text-[#343434] uppercase text-[32px]">Try our Web3 profiles</h2>
-              <p className="text-[#343434]">Build your Web3 CV and share your unique journey</p>
-            </div>
-          </div>
-          <div className="flex w-full md:w-1/3 items-center justify-center mt-[20px]">
-            <ActiveLink
-              href="/vranda"
-              className="text-white bg-[#FB40FF] rounded-full px-[40px] py-[8px] border-[1px] border-[#FB40FF] hover:bg-transparent hover:text-[#FB40FF] transition-colors"
-            >
-              <span>Create now</span>
-            </ActiveLink>
           </div>
         </div>
       </div>
@@ -196,36 +151,6 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div> */}
-
-      <div id="ourapp" className="flex flex-col items-center mt-[20px] mb-[60px] w-full  max-w-[1240px]">
-        <div className="flex flex-col md:flex-row overflow-hidden w-full rounded-[30px] p-[40px] bg-gradient-to-r from-cyan-500 to-blue-500">
-          <div className="flex md:w-1/2 items-center justify-center">
-            <Ninja2Component />
-          </div>
-          <div className="flex flex-col md:w-1/2 items-center">
-            <h3 className="uppercase mb-[10px] text-center text-[31px]  font-interBold">try our app</h3>
-            <p className="text-center text-white mb-[20px]">
-              Download it now and start writing <br />
-              your own web3 history!
-            </p>
-            <div className="flex flex-col md:flex-row items-center md:mt-[20px]">
-              <ActiveLink
-                className="w-1/2 mb-[18px] md:mb-0 md:mr-1"
-                href="https://play.google.com/store/apps/details?id=com.VSelf.vselfapp"
-              >
-                <GoogleStoreIcon className="hover:fill-[#41F092] hover:stroke-black transition-colors" fill={'white'} />
-              </ActiveLink>
-              <ActiveLink className="w-1/2 !mr-0" href="https://apps.apple.com/app/vself/id1631569446">
-                <AppleStoreIcon
-                  className="hover:fill-[#41F092] hover:stroke-black transition-colors"
-                  fill={'white'}
-                  stroke={'white'}
-                />
-              </ActiveLink>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

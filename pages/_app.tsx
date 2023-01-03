@@ -42,9 +42,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>VSELF</title>
-        <meta name="description" content="vSelf: web3 identity wallet" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>GREENWING</title>
+        <meta name="description" content="Revolutionazing SAF management" />
       </Head>
       <ThemeProvider attribute="class">
         <WalletSelectorContextProvider>

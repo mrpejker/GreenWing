@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Modal from '../../components/modal';
-import NinjaComponent from '../../components/ninja';
 import { AnalyticsEvents } from '../../constants/analytics-events';
 import { isStringEmpty } from '../../utils';
 import { addDocToFirestore, logFirebaseEvent } from '../../utils/firebase';
@@ -33,8 +32,7 @@ const TopComponent: React.FC = () => {
       </Modal>
       <div className="md:w-2/3">
         <h1 className="uppercase font-grotesk text-[32px] text-white">
-          vself — Web3 identity platform for growth hacking and community engagement
-        </h1>
+        Greenwing is  revolutionary digital solution  for sustainable aviation fuels (SAF) supply chain management.        </h1>
         <p className="font-inter mt-[16px] mb-4 text-white">
           Сonnect to be added in our whitelist: be the first to get access to our private beta
         </p>
@@ -55,9 +53,6 @@ const TopComponent: React.FC = () => {
             </button>
           </div>
         </form>
-      </div>
-      <div className="flex flex-col w-full md:w-1/3 pt-[40px]" data-aos="slide-up">
-        <NinjaComponent />
       </div>
     </div>
   );
