@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { navMenuItems } from './header-menu';
 import ActiveLink from '../active-link';
-import SocialLinks from './social-links';
 import HeaderSettingsButton from './settings-button';
 import NavButtons from './nav-buttons';
 import BurgerMenuIcon from '../icons/BurgerMenuIcon';

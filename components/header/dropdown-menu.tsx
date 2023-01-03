@@ -67,9 +67,9 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
               </div>
               <div className="w-2/3">
                 {isProducts ? (
-                  <p>try our products that help building web3 identity</p>
+                  <p>try our products that help developing SAF ecosystem</p>
                 ) : (
-                  <p>Learn more about vSelf projects and digital identity</p>
+                  <p>Learn more about SAF certificates</p>
                 )}
               </div>
             </div>

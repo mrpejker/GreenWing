@@ -201,7 +201,7 @@ exports[`Home Page Renders Correctly 1`] = `
             }
           >
             <span>
-              Explore vSelf
+              Explore GreenWing
             </span>
           </a>
         </div>
@@ -634,7 +634,7 @@ exports[`Home Page Renders Correctly 1`] = `
     className="w-full max-w-[1080px] mx-auto px-[20px] font-grotesk mt-[60px] text-white uppercase text-[25px]"
     data-aos="fade-up"
   >
-    vSelf Features
+     Features
   </h2>
   <div
     className="flex flex-col w-full max-w-[1080px] mx-auto mt-[20px] mb-[60px] px-[20px] items-start"
@@ -737,7 +737,7 @@ exports[`Home Page Renders Correctly 1`] = `
         className="flex flex-col md:w-1/2 items-center"
       >
         <img
-          alt="vSelf"
+          alt="GreenWing"
           className="mt-[-20px] md:w-1/2 md:mt-0"
           data-aos="slide-up"
           src="/lnd_img5.png"
