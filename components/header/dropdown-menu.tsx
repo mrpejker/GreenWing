@@ -55,25 +55,6 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
             menuItems={subMenuItems[String(activemenu.title)]}
             className="flex flex-col gap-4 w-full md:w-1/2"
           />
-          <div className="hidden md:flex md:w-1/2">
-            <div
-              className={
-                (!isProducts ? 'bg-[#0F58C6]' : 'bg-[#FDA7FF]') +
-                ' flex flex-row items-center font-grotesk rounded-3xl uppercase p-[10px] text-white text-[18px]'
-              }
-            >
-              <div className="w-1/4 relative">
-                <img src={imgsrc} alt="" height={326} width={365} className=" top-[-150px] left-[-150px]" />
-              </div>
-              <div className="w-2/3">
-                {isProducts ? (
-                  <p>try our products that help developing SAF ecosystem</p>
-                ) : (
-                  <p>Learn more about SAF certificates</p>
-                )}
-              </div>
-            </div>
-          </div>
         </div>
       );
     case MenuType.Settings:
