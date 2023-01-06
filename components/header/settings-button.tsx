@@ -37,7 +37,7 @@ const HeaderSettingsButton: React.FC<SettingsButtonProps> = ({ isColored, toggle
             src={String(avatar)}
             onError={({ currentTarget }) => {
               currentTarget.onerror = null; // prevents looping
-              currentTarget.src = '/ninja2.png';
+              currentTarget.src = '/greenwing.png';
             }}
             alt=""
             className="w-[30px] h-[30px] rounded-full object-cover"

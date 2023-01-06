@@ -9,10 +9,6 @@ export const navMenuItems = [
     title: 'Products',
     submenu: true,
   },
-  {
-    url: WebappURLS.CONTACT_URL,
-    title: 'Contacts',
-  },
 ];
 
 export const subMenuItems: any = {
