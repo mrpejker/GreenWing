@@ -127,7 +127,7 @@ export const mockUserEvents = [
         {
           qr_prefix_enc: 'fbbc17ca091ca1b8d393ca74da1a935fd0c488756f0a14f77fc8cf2b38e7c171',
           qr_prefix_len: 7,
-          reward_title: 'NFT Reward #1',
+          reward_title: 'Certificate #1',
           reward_description: 'Hooray',
           reward_uri:
             'https://firebasestorage.googleapis.com/v0/b/vself-dev.appspot.com/o/images%2F6347e5ca932d135be5ab9cccac5b2950cfe0a4a6d235fc58176cb19dd1f64b52.PNG?alt=media&token=a5a406bc-61db-4f2f-9e8e-72cace8bf2db',

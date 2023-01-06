@@ -36,7 +36,7 @@ const TopComponent: React.FC = () => {
         <p className="font-inter mt-[16px] mb-4 text-white">
           Сonnect to be added in our whitelist: be the first to get access to our private beta
         </p>
-        <form onSubmit={submitForm} className="mt-[80px]">
+        <form onSubmit={submitForm} className="my-[50px]">
           <div className="flex flex-col items-start md:flex-row md:items-center">
             <input
               value={email}

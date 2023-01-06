@@ -175,7 +175,7 @@ const Header: React.FC = () => {
           menuItems={navMenuItems}
           className="sm:flex flex-row hidden grow justify-evenly max-w-[600px]"
         />
-        <div className="flex flex-row md:grow max-w-[250px] items-center">
+        <div className="flex flex-row md:grow max-w-[50px] items-end">
           <HeaderSettingsButton
             avatar={avatar}
             accountId={accountId}

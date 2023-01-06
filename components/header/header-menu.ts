@@ -19,7 +19,7 @@ export const subMenuItems: any = {
     },
     {
       url: WebappURLS.ADD_URL,
-      title: 'CREATE COLLECTION OF CERIFICATES',
+      title: 'CREATE COLLECTION OF CERTIFICATES',
     },
     {
       url: WebappURLS.PRODUCTS_URL,

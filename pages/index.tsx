@@ -14,7 +14,7 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex mt-[200px] flex-col items-center">
       <div
         className="flex flex-col w-full min-h-screen items-center justify-center px-[20px]"
         style={{ backgroundImage: 'linear-gradient(180deg, transparent 80%, #1E1E1E 20%)' }}
