@@ -16,7 +16,7 @@ const initialQuest: Quest = {
   qr_prefix_enc: '',
   qr_prefix_len: 0,
   reward_description: '',
-  reward_title: 'NFT Reward #1',
+  reward_title: 'Certificate #1',
   reward_uri: '',
 };
 
@@ -121,7 +121,7 @@ const EventForm: React.FC<EventFormProps> = ({ submitForm, event_data, toggle })
       className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-stretch my-[40px] mt-[150px] md:mt-[40px] w-full max-w-[1240px]"
     >
       <div className="p-5 rounded-xl bg-white relative">
-        <h5 className="font-drukMedium uppercase text-black text-xl mb-2">New Event</h5>
+        <h5 className="font-drukMedium uppercase text-black text-xl mb-2">New certificates</h5>
         <div className="justify-center w-full flex mt-2">
           <img className="rounded-t-lg mb-3" src="/pink_circle.png" alt="" style={{ height: 180 }} />
         </div>
@@ -132,14 +132,14 @@ const EventForm: React.FC<EventFormProps> = ({ submitForm, event_data, toggle })
           onChange={onEventTitleChange}
           value={event_name}
           className="form-control block w-full px-3 py-1.5 text-base font-normal text-black bg-transparent bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 mb-2  focus:border-[#41f092] focus:outline-none"
-          placeholder="Event title"
+          placeholder="Collection title"
         />
         <textarea
           name="description"
           value={event_description}
           onChange={onEventDescriptionChange}
           className="form-control block w-full mb-2 px-3 py-1.5 text-base font-normal text-black bg-transparent bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0  focus:border-[#41f092] focus:outline-none"
-          placeholder="Event description"
+          placeholder="Collection description"
         />
         <span className="mb-2 text-black">Start Date:</span>
         <span className="flex-row flex justify-between my-2 cursor-pointer">
@@ -181,7 +181,7 @@ const EventForm: React.FC<EventFormProps> = ({ submitForm, event_data, toggle })
 
       {quests.map((quest, index) => (
         <div key={index} className="flex-col flex mb-4 p-5 rounded-xl bg-white md:mb-0  relative">
-          <h5 className="font-drukMedium uppercase text-black text-xl mb-2">NFT Reward</h5>
+          <h5 className="font-drukMedium uppercase text-black text-xl mb-2">NFT Certificate</h5>
           <div className="flex flex-col relative">
             <UploadImageButton
               file={files[index]}
@@ -206,13 +206,13 @@ const EventForm: React.FC<EventFormProps> = ({ submitForm, event_data, toggle })
           onClick={addNewQuest}
           className="flex my-4 self-center px-6 py-2.5 bg-transparent border-[1px] border-[#019FFF] text-[#019FFF] hover:text-white font-medium text-xs leading-tight uppercase rounded-full hover:bg-[#019FFF] outline-none transition duration-150 ease-in-out"
         >
-          Add NFT
+          Add NFT Cerificate
         </button>
         <button
           type="submit"
           className="flex my-4 self-center px-6 py-2.5 bg-transparent border-[1px] border-[#019FFF] text-[#019FFF] hover:text-white font-medium text-xs leading-tight uppercase rounded-full hover:bg-[#019FFF] outline-none transition duration-150 ease-in-out"
         >
-          Create New Event
+          Create New Collection of Certificates
         </button>
       </div>
     </form>
