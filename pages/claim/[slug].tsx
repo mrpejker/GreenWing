@@ -34,7 +34,8 @@ ClaimPage.getInitialProps = async ({ query }) => {
   const event_id = query.slug;
   const strings = query.strings;
   const res: any = await getDocFromFirebase('claims', String(event_id));
-
+  console.log(res);
+  
   return {
     event_id: Number(event_id),
     isPrivate: Boolean(res.isPrivate),

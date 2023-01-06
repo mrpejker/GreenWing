@@ -8,7 +8,7 @@ import { Endpoints } from '../../../constants/endpoints';
 import getConfig from 'next/config';
 
 const contractName = Endpoints.TESTNET_CONTRACT_URI;
-const accountName = 'pow_v1.sergantche.testnet';
+const accountName = 'greenwingadmin.testnet';
 const contractMethods = {
   viewMethods: ['get_evidences', 'version', 'get_evidences_amount'],
   changeMethods: ['upload_evidence'],
