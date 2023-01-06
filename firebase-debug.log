@@ -1,0 +1,270 @@
+[debug] [2023-01-06T12:32:56.497Z] ----------------------------------------------------------------------
+[debug] [2023-01-06T12:32:56.499Z] Command:       /opt/homebrew/lib/node_modules/node/bin/node /opt/homebrew/bin/firebase deploy -P staging --only functions:nextjseurope --force
+[debug] [2023-01-06T12:32:56.499Z] CLI Version:   11.20.0
+[debug] [2023-01-06T12:32:56.499Z] Platform:      darwin
+[debug] [2023-01-06T12:32:56.499Z] Node Version:  v19.3.0
+[debug] [2023-01-06T12:32:56.499Z] Time:          Fri Jan 06 2023 16:32:56 GMT+0400 (Georgia Standard Time)
+[debug] [2023-01-06T12:32:56.499Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-01-06T12:32:56.500Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2023-01-06T12:32:56.556Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-06T12:32:57.038Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2023-01-06T12:32:57.039Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2023-01-06T12:32:57.090Z] [iam] checking project vself-dev for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2023-01-06T12:32:57.091Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/vself-dev:testIamPermissions [none]
+[debug] [2023-01-06T12:32:57.091Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/vself-dev:testIamPermissions x-goog-quota-user=projects/vself-dev
+[debug] [2023-01-06T12:32:57.091Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/vself-dev:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2023-01-06T12:32:58.166Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/vself-dev:testIamPermissions 200
+[debug] [2023-01-06T12:32:58.166Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/vself-dev:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2023-01-06T12:32:58.167Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/vself-dev/serviceAccounts/vself-dev@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2023-01-06T12:32:58.167Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/vself-dev/serviceAccounts/vself-dev@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2023-01-06T12:32:59.196Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/vself-dev/serviceAccounts/vself-dev@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2023-01-06T12:32:59.196Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/vself-dev/serviceAccounts/vself-dev@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'vself-dev'...
+[info] 
+[info] i  deploying functions 
+[debug] [2023-01-06T12:32:59.200Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/vself-dev [none]
+[debug] [2023-01-06T12:32:59.472Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/vself-dev 403
+[debug] [2023-01-06T12:32:59.472Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/vself-dev {"error":{"code":403,"message":"Your application has authenticated using end user credentials from the Google Cloud SDK or Google Cloud Shell which are not supported by the firebase.googleapis.com. We recommend configuring the billing/quota_project setting in gcloud or using a service account through the auth/impersonate_service_account setting. For more information about service accounts and how to use them in your application, see https://cloud.google.com/docs/authentication/. If you are getting this error with curl or similar tools, you may need to specify 'X-Goog-User-Project' HTTP header for quota and billing purposes. For more information regarding 'X-Goog-User-Project' header, please check https://cloud.google.com/apis/docs/system-parameters.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"service":"firebase.googleapis.com","consumer":"projects/32555940559"}}]}}
+[debug] [2023-01-06T12:32:59.474Z] HTTP Error: 403, Your application has authenticated using end user credentials from the Google Cloud SDK or Google Cloud Shell which are not supported by the firebase.googleapis.com. We recommend configuring the billing/quota_project setting in gcloud or using a service account through the auth/impersonate_service_account setting. For more information about service accounts and how to use them in your application, see https://cloud.google.com/docs/authentication/. If you are getting this error with curl or similar tools, you may need to specify 'X-Goog-User-Project' HTTP header for quota and billing purposes. For more information regarding 'X-Goog-User-Project' header, please check https://cloud.google.com/apis/docs/system-parameters.
+[debug] [2023-01-06T12:32:59.475Z] FirebaseError: HTTP Error: 403, Your application has authenticated using end user credentials from the Google Cloud SDK or Google Cloud Shell which are not supported by the firebase.googleapis.com. We recommend configuring the billing/quota_project setting in gcloud or using a service account through the auth/impersonate_service_account setting. For more information about service accounts and how to use them in your application, see https://cloud.google.com/docs/authentication/. If you are getting this error with curl or similar tools, you may need to specify 'X-Goog-User-Project' HTTP header for quota and billing purposes. For more information regarding 'X-Goog-User-Project' header, please check https://cloud.google.com/apis/docs/system-parameters.
+    at responseToError (/opt/homebrew/lib/node_modules/firebase-tools/lib/responseToError.js:49:12)
+    at RetryOperation._fn (/opt/homebrew/lib/node_modules/firebase-tools/lib/apiv2.js:288:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project vself-dev. Please make sure the project exists and your account has permission to access it.
+[debug] [2023-01-06T12:34:19.340Z] ----------------------------------------------------------------------
+[debug] [2023-01-06T12:34:19.341Z] Command:       /opt/homebrew/lib/node_modules/node/bin/node /opt/homebrew/bin/firebase deploy -P staging --only functions:nextjseurope --force
+[debug] [2023-01-06T12:34:19.341Z] CLI Version:   11.20.0
+[debug] [2023-01-06T12:34:19.341Z] Platform:      darwin
+[debug] [2023-01-06T12:34:19.341Z] Node Version:  v19.3.0
+[debug] [2023-01-06T12:34:19.341Z] Time:          Fri Jan 06 2023 16:34:19 GMT+0400 (Georgia Standard Time)
+[debug] [2023-01-06T12:34:19.341Z] ----------------------------------------------------------------------
+[debug] 
+[warn] ⚠  JSON error trying to load /Users/yakushkina/GreenWing/.firebaserc 
+[debug] [2023-01-06T12:34:19.380Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-06T12:34:19.910Z] [iam] checking project staging for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2023-01-06T12:34:19.912Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/staging:testIamPermissions [none]
+[debug] [2023-01-06T12:34:19.913Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/staging:testIamPermissions x-goog-quota-user=projects/staging
+[debug] [2023-01-06T12:34:19.913Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/staging:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2023-01-06T12:34:21.035Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/staging:testIamPermissions 200
+[debug] [2023-01-06T12:34:21.035Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/staging:testIamPermissions {}
+[debug] [2023-01-06T12:34:21.036Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project staging:
+
+  cloudfunctions.functions.create
+  cloudfunctions.functions.delete
+  cloudfunctions.functions.get
+  cloudfunctions.functions.list
+  cloudfunctions.functions.update
+  cloudfunctions.operations.get
+  firebase.projects.get
+[debug] [2023-01-06T12:34:21.037Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/staging/serviceAccounts/staging@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2023-01-06T12:34:21.037Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/staging/serviceAccounts/staging@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2023-01-06T12:34:21.981Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/staging/serviceAccounts/staging@appspot.gserviceaccount.com:testIamPermissions 404
+[debug] [2023-01-06T12:34:21.982Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/staging/serviceAccounts/staging@appspot.gserviceaccount.com:testIamPermissions {"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}}
+[debug] [2023-01-06T12:34:21.984Z] [functions] service account IAM check errored, deploy may fail:HTTP Error: 404, Unknown service account {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}},"response":{"statusCode":404}},"exit":1,"message":"HTTP Error: 404, Unknown service account","status":404}
+[info] 
+[info] === Deploying to 'staging'...
+[info] 
+[info] i  deploying functions 
+[debug] [2023-01-06T12:34:21.989Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/staging [none]
+[debug] [2023-01-06T12:34:22.276Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/staging 403
+[debug] [2023-01-06T12:34:22.276Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/staging {"error":{"code":403,"message":"Your application has authenticated using end user credentials from the Google Cloud SDK or Google Cloud Shell which are not supported by the firebase.googleapis.com. We recommend configuring the billing/quota_project setting in gcloud or using a service account through the auth/impersonate_service_account setting. For more information about service accounts and how to use them in your application, see https://cloud.google.com/docs/authentication/. If you are getting this error with curl or similar tools, you may need to specify 'X-Goog-User-Project' HTTP header for quota and billing purposes. For more information regarding 'X-Goog-User-Project' header, please check https://cloud.google.com/apis/docs/system-parameters.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"service":"firebase.googleapis.com","consumer":"projects/32555940559"}}]}}
+[debug] [2023-01-06T12:34:22.277Z] HTTP Error: 403, Your application has authenticated using end user credentials from the Google Cloud SDK or Google Cloud Shell which are not supported by the firebase.googleapis.com. We recommend configuring the billing/quota_project setting in gcloud or using a service account through the auth/impersonate_service_account setting. For more information about service accounts and how to use them in your application, see https://cloud.google.com/docs/authentication/. If you are getting this error with curl or similar tools, you may need to specify 'X-Goog-User-Project' HTTP header for quota and billing purposes. For more information regarding 'X-Goog-User-Project' header, please check https://cloud.google.com/apis/docs/system-parameters.
+[debug] [2023-01-06T12:34:22.278Z] FirebaseError: HTTP Error: 403, Your application has authenticated using end user credentials from the Google Cloud SDK or Google Cloud Shell which are not supported by the firebase.googleapis.com. We recommend configuring the billing/quota_project setting in gcloud or using a service account through the auth/impersonate_service_account setting. For more information about service accounts and how to use them in your application, see https://cloud.google.com/docs/authentication/. If you are getting this error with curl or similar tools, you may need to specify 'X-Goog-User-Project' HTTP header for quota and billing purposes. For more information regarding 'X-Goog-User-Project' header, please check https://cloud.google.com/apis/docs/system-parameters.
+    at responseToError (/opt/homebrew/lib/node_modules/firebase-tools/lib/responseToError.js:49:12)
+    at RetryOperation._fn (/opt/homebrew/lib/node_modules/firebase-tools/lib/apiv2.js:288:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project staging. Please make sure the project exists and your account has permission to access it.
+[debug] [2023-01-06T13:28:52.516Z] ----------------------------------------------------------------------
+[debug] [2023-01-06T13:28:52.517Z] Command:       /opt/homebrew/lib/node_modules/node/bin/node /opt/homebrew/bin/firebase deploy -P staging --only functions:nextjseurope --force
+[debug] [2023-01-06T13:28:52.518Z] CLI Version:   11.20.0
+[debug] [2023-01-06T13:28:52.518Z] Platform:      darwin
+[debug] [2023-01-06T13:28:52.518Z] Node Version:  v19.3.0
+[debug] [2023-01-06T13:28:52.518Z] Time:          Fri Jan 06 2023 17:28:52 GMT+0400 (Georgia Standard Time)
+[debug] [2023-01-06T13:28:52.518Z] ----------------------------------------------------------------------
+[debug] 
+[warn] ⚠  JSON error trying to load /Users/yakushkina/GreenWing/.firebaserc 
+[debug] [2023-01-06T13:28:52.550Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-06T13:28:52.847Z] [iam] checking project staging for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2023-01-06T13:28:52.850Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/staging:testIamPermissions [none]
+[debug] [2023-01-06T13:28:52.850Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/staging:testIamPermissions x-goog-quota-user=projects/staging
+[debug] [2023-01-06T13:28:52.850Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/staging:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2023-01-06T13:28:54.206Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/staging:testIamPermissions 200
+[debug] [2023-01-06T13:28:54.206Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/staging:testIamPermissions {}
+[debug] [2023-01-06T13:28:54.207Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project staging:
+
+  cloudfunctions.functions.create
+  cloudfunctions.functions.delete
+  cloudfunctions.functions.get
+  cloudfunctions.functions.list
+  cloudfunctions.functions.update
+  cloudfunctions.operations.get
+  firebase.projects.get
+[debug] [2023-01-06T13:28:54.207Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/staging/serviceAccounts/staging@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2023-01-06T13:28:54.208Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/staging/serviceAccounts/staging@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2023-01-06T13:28:55.264Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/staging/serviceAccounts/staging@appspot.gserviceaccount.com:testIamPermissions 404
+[debug] [2023-01-06T13:28:55.264Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/staging/serviceAccounts/staging@appspot.gserviceaccount.com:testIamPermissions {"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}}
+[debug] [2023-01-06T13:28:55.266Z] [functions] service account IAM check errored, deploy may fail:HTTP Error: 404, Unknown service account {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}},"response":{"statusCode":404}},"exit":1,"message":"HTTP Error: 404, Unknown service account","status":404}
+[info] 
+[info] === Deploying to 'staging'...
+[info] 
+[info] i  deploying functions 
+[debug] [2023-01-06T13:28:55.272Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/staging [none]
+[debug] [2023-01-06T13:28:55.613Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/staging 403
+[debug] [2023-01-06T13:28:55.613Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/staging {"error":{"code":403,"message":"Your application has authenticated using end user credentials from the Google Cloud SDK or Google Cloud Shell which are not supported by the firebase.googleapis.com. We recommend configuring the billing/quota_project setting in gcloud or using a service account through the auth/impersonate_service_account setting. For more information about service accounts and how to use them in your application, see https://cloud.google.com/docs/authentication/. If you are getting this error with curl or similar tools, you may need to specify 'X-Goog-User-Project' HTTP header for quota and billing purposes. For more information regarding 'X-Goog-User-Project' header, please check https://cloud.google.com/apis/docs/system-parameters.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"service":"firebase.googleapis.com","consumer":"projects/32555940559"}}]}}
+[debug] [2023-01-06T13:28:55.614Z] HTTP Error: 403, Your application has authenticated using end user credentials from the Google Cloud SDK or Google Cloud Shell which are not supported by the firebase.googleapis.com. We recommend configuring the billing/quota_project setting in gcloud or using a service account through the auth/impersonate_service_account setting. For more information about service accounts and how to use them in your application, see https://cloud.google.com/docs/authentication/. If you are getting this error with curl or similar tools, you may need to specify 'X-Goog-User-Project' HTTP header for quota and billing purposes. For more information regarding 'X-Goog-User-Project' header, please check https://cloud.google.com/apis/docs/system-parameters.
+[debug] [2023-01-06T13:28:55.615Z] FirebaseError: HTTP Error: 403, Your application has authenticated using end user credentials from the Google Cloud SDK or Google Cloud Shell which are not supported by the firebase.googleapis.com. We recommend configuring the billing/quota_project setting in gcloud or using a service account through the auth/impersonate_service_account setting. For more information about service accounts and how to use them in your application, see https://cloud.google.com/docs/authentication/. If you are getting this error with curl or similar tools, you may need to specify 'X-Goog-User-Project' HTTP header for quota and billing purposes. For more information regarding 'X-Goog-User-Project' header, please check https://cloud.google.com/apis/docs/system-parameters.
+    at responseToError (/opt/homebrew/lib/node_modules/firebase-tools/lib/responseToError.js:49:12)
+    at RetryOperation._fn (/opt/homebrew/lib/node_modules/firebase-tools/lib/apiv2.js:288:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project staging. Please make sure the project exists and your account has permission to access it.
+[debug] [2023-01-06T13:32:09.270Z] ----------------------------------------------------------------------
+[debug] [2023-01-06T13:32:09.272Z] Command:       /opt/homebrew/lib/node_modules/node/bin/node /opt/homebrew/bin/firebase deploy -P staging --only functions:nextjseurope --force
+[debug] [2023-01-06T13:32:09.272Z] CLI Version:   11.20.0
+[debug] [2023-01-06T13:32:09.272Z] Platform:      darwin
+[debug] [2023-01-06T13:32:09.273Z] Node Version:  v19.3.0
+[debug] [2023-01-06T13:32:09.273Z] Time:          Fri Jan 06 2023 17:32:09 GMT+0400 (Georgia Standard Time)
+[debug] [2023-01-06T13:32:09.273Z] ----------------------------------------------------------------------
+[debug] 
+[warn] ⚠  JSON error trying to load /Users/yakushkina/GreenWing/.firebaserc 
+[debug] [2023-01-06T13:32:09.317Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-06T13:32:09.609Z] [iam] checking project staging for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2023-01-06T13:32:09.610Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/staging:testIamPermissions [none]
+[debug] [2023-01-06T13:32:09.610Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/staging:testIamPermissions x-goog-quota-user=projects/staging
+[debug] [2023-01-06T13:32:09.610Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/staging:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2023-01-06T13:32:10.690Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/staging:testIamPermissions 200
+[debug] [2023-01-06T13:32:10.690Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/staging:testIamPermissions {}
+[debug] [2023-01-06T13:32:10.690Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project staging:
+
+  cloudfunctions.functions.create
+  cloudfunctions.functions.delete
+  cloudfunctions.functions.get
+  cloudfunctions.functions.list
+  cloudfunctions.functions.update
+  cloudfunctions.operations.get
+  firebase.projects.get
+[debug] [2023-01-06T13:32:10.690Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/staging/serviceAccounts/staging@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2023-01-06T13:32:10.691Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/staging/serviceAccounts/staging@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2023-01-06T13:32:11.614Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/staging/serviceAccounts/staging@appspot.gserviceaccount.com:testIamPermissions 404
+[debug] [2023-01-06T13:32:11.615Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/staging/serviceAccounts/staging@appspot.gserviceaccount.com:testIamPermissions {"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}}
+[debug] [2023-01-06T13:32:11.615Z] [functions] service account IAM check errored, deploy may fail:HTTP Error: 404, Unknown service account {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}},"response":{"statusCode":404}},"exit":1,"message":"HTTP Error: 404, Unknown service account","status":404}
+[info] 
+[info] === Deploying to 'staging'...
+[info] 
+[info] i  deploying functions 
+[debug] [2023-01-06T13:32:11.617Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/staging [none]
+[debug] [2023-01-06T13:32:11.883Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/staging 403
+[debug] [2023-01-06T13:32:11.883Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/staging {"error":{"code":403,"message":"Your application has authenticated using end user credentials from the Google Cloud SDK or Google Cloud Shell which are not supported by the firebase.googleapis.com. We recommend configuring the billing/quota_project setting in gcloud or using a service account through the auth/impersonate_service_account setting. For more information about service accounts and how to use them in your application, see https://cloud.google.com/docs/authentication/. If you are getting this error with curl or similar tools, you may need to specify 'X-Goog-User-Project' HTTP header for quota and billing purposes. For more information regarding 'X-Goog-User-Project' header, please check https://cloud.google.com/apis/docs/system-parameters.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"SERVICE_DISABLED","domain":"googleapis.com","metadata":{"service":"firebase.googleapis.com","consumer":"projects/32555940559"}}]}}
+[debug] [2023-01-06T13:32:11.883Z] HTTP Error: 403, Your application has authenticated using end user credentials from the Google Cloud SDK or Google Cloud Shell which are not supported by the firebase.googleapis.com. We recommend configuring the billing/quota_project setting in gcloud or using a service account through the auth/impersonate_service_account setting. For more information about service accounts and how to use them in your application, see https://cloud.google.com/docs/authentication/. If you are getting this error with curl or similar tools, you may need to specify 'X-Goog-User-Project' HTTP header for quota and billing purposes. For more information regarding 'X-Goog-User-Project' header, please check https://cloud.google.com/apis/docs/system-parameters.
+[debug] [2023-01-06T13:32:11.883Z] FirebaseError: HTTP Error: 403, Your application has authenticated using end user credentials from the Google Cloud SDK or Google Cloud Shell which are not supported by the firebase.googleapis.com. We recommend configuring the billing/quota_project setting in gcloud or using a service account through the auth/impersonate_service_account setting. For more information about service accounts and how to use them in your application, see https://cloud.google.com/docs/authentication/. If you are getting this error with curl or similar tools, you may need to specify 'X-Goog-User-Project' HTTP header for quota and billing purposes. For more information regarding 'X-Goog-User-Project' header, please check https://cloud.google.com/apis/docs/system-parameters.
+    at responseToError (/opt/homebrew/lib/node_modules/firebase-tools/lib/responseToError.js:49:12)
+    at RetryOperation._fn (/opt/homebrew/lib/node_modules/firebase-tools/lib/apiv2.js:288:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project staging. Please make sure the project exists and your account has permission to access it.
+[debug] [2023-01-06T13:36:06.162Z] ----------------------------------------------------------------------
+[debug] [2023-01-06T13:36:06.163Z] Command:       /opt/homebrew/lib/node_modules/node/bin/node /opt/homebrew/bin/firebase deploy
+[debug] [2023-01-06T13:36:06.163Z] CLI Version:   11.20.0
+[debug] [2023-01-06T13:36:06.164Z] Platform:      darwin
+[debug] [2023-01-06T13:36:06.164Z] Node Version:  v19.3.0
+[debug] [2023-01-06T13:36:06.164Z] Time:          Fri Jan 06 2023 17:36:06 GMT+0400 (Georgia Standard Time)
+[debug] [2023-01-06T13:36:06.164Z] ----------------------------------------------------------------------
+[debug] 
+[warn] ⚠  JSON error trying to load /Users/yakushkina/GreenWing/.firebaserc 
+[debug] [2023-01-06T13:36:06.196Z] > refreshing access token with scopes: []
+[debug] [2023-01-06T13:36:06.197Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-01-06T13:36:06.197Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-06T13:36:06.540Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2023-01-06T13:36:06.541Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-06T13:36:06.541Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/undefined/serviceAccounts/undefined@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2023-01-06T13:36:06.541Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/undefined/serviceAccounts/undefined@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2023-01-06T13:36:07.967Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/undefined/serviceAccounts/undefined@appspot.gserviceaccount.com:testIamPermissions 404
+[debug] [2023-01-06T13:36:07.967Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/undefined/serviceAccounts/undefined@appspot.gserviceaccount.com:testIamPermissions {"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}}
+[debug] [2023-01-06T13:36:07.968Z] [functions] service account IAM check errored, deploy may fail:HTTP Error: 404, Unknown service account {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}},"response":{"statusCode":404}},"exit":1,"message":"HTTP Error: 404, Unknown service account","status":404}
+[debug] [2023-01-06T13:36:07.969Z] > refreshing access token with scopes: []
+[debug] [2023-01-06T13:36:07.969Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-01-06T13:36:07.970Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-06T13:36:08.087Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2023-01-06T13:36:08.087Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-06T13:36:08.088Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/undefined [none]
+[debug] [2023-01-06T13:36:08.429Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/undefined 401
+[debug] [2023-01-06T13:36:08.429Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/undefined {"error":{"code":401,"message":"Request is missing required authentication credential. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"CREDENTIALS_MISSING","domain":"googleapis.com","metadata":{"service":"firebase.googleapis.com","method":"google.firebase.service.v1beta1.FirebaseProjectService.GetFirebaseProject"}}]}}
+[debug] [2023-01-06T13:36:08.429Z] HTTP Error: 401, Request is missing required authentication credential. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2023-01-06T13:36:08.430Z] FirebaseError: HTTP Error: 401, Request is missing required authentication credential. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at responseToError (/opt/homebrew/lib/node_modules/firebase-tools/lib/responseToError.js:49:12)
+    at RetryOperation._fn (/opt/homebrew/lib/node_modules/firebase-tools/lib/apiv2.js:288:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project undefined. Please make sure the project exists and your account has permission to access it.
+[debug] [2023-01-06T13:37:11.154Z] ----------------------------------------------------------------------
+[debug] [2023-01-06T13:37:11.155Z] Command:       /opt/homebrew/lib/node_modules/node/bin/node /opt/homebrew/bin/firebase deploy
+[debug] [2023-01-06T13:37:11.155Z] CLI Version:   11.20.0
+[debug] [2023-01-06T13:37:11.155Z] Platform:      darwin
+[debug] [2023-01-06T13:37:11.155Z] Node Version:  v19.3.0
+[debug] [2023-01-06T13:37:11.156Z] Time:          Fri Jan 06 2023 17:37:11 GMT+0400 (Georgia Standard Time)
+[debug] [2023-01-06T13:37:11.156Z] ----------------------------------------------------------------------
+[debug] 
+[warn] ⚠  JSON error trying to load /Users/yakushkina/GreenWing/.firebaserc 
+[debug] [2023-01-06T13:37:11.188Z] > refreshing access token with scopes: []
+[debug] [2023-01-06T13:37:11.189Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-01-06T13:37:11.189Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-06T13:37:11.539Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2023-01-06T13:37:11.540Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-06T13:37:11.540Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/undefined/serviceAccounts/undefined@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2023-01-06T13:37:11.540Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/undefined/serviceAccounts/undefined@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2023-01-06T13:37:12.848Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/undefined/serviceAccounts/undefined@appspot.gserviceaccount.com:testIamPermissions 404
+[debug] [2023-01-06T13:37:12.848Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/undefined/serviceAccounts/undefined@appspot.gserviceaccount.com:testIamPermissions {"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}}
+[debug] [2023-01-06T13:37:12.849Z] [functions] service account IAM check errored, deploy may fail:HTTP Error: 404, Unknown service account {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}},"response":{"statusCode":404}},"exit":1,"message":"HTTP Error: 404, Unknown service account","status":404}
+[debug] [2023-01-06T13:37:12.850Z] > refreshing access token with scopes: []
+[debug] [2023-01-06T13:37:12.851Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-01-06T13:37:12.851Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-06T13:37:12.982Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2023-01-06T13:37:12.983Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-06T13:37:12.984Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/undefined [none]
+[debug] [2023-01-06T13:37:13.297Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/undefined 401
+[debug] [2023-01-06T13:37:13.297Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/undefined {"error":{"code":401,"message":"Request is missing required authentication credential. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"CREDENTIALS_MISSING","domain":"googleapis.com","metadata":{"service":"firebase.googleapis.com","method":"google.firebase.service.v1beta1.FirebaseProjectService.GetFirebaseProject"}}]}}
+[debug] [2023-01-06T13:37:13.298Z] HTTP Error: 401, Request is missing required authentication credential. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2023-01-06T13:37:13.299Z] FirebaseError: HTTP Error: 401, Request is missing required authentication credential. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at responseToError (/opt/homebrew/lib/node_modules/firebase-tools/lib/responseToError.js:49:12)
+    at RetryOperation._fn (/opt/homebrew/lib/node_modules/firebase-tools/lib/apiv2.js:288:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project undefined. Please make sure the project exists and your account has permission to access it.
+[debug] [2023-01-06T13:38:11.296Z] ----------------------------------------------------------------------
+[debug] [2023-01-06T13:38:11.297Z] Command:       /opt/homebrew/lib/node_modules/node/bin/node /opt/homebrew/bin/firebase deploy
+[debug] [2023-01-06T13:38:11.298Z] CLI Version:   11.20.0
+[debug] [2023-01-06T13:38:11.298Z] Platform:      darwin
+[debug] [2023-01-06T13:38:11.298Z] Node Version:  v19.3.0
+[debug] [2023-01-06T13:38:11.298Z] Time:          Fri Jan 06 2023 17:38:11 GMT+0400 (Georgia Standard Time)
+[debug] [2023-01-06T13:38:11.298Z] ----------------------------------------------------------------------
+[debug] 
+[warn] ⚠  JSON error trying to load /Users/yakushkina/GreenWing/.firebaserc 
+[debug] [2023-01-06T13:38:11.331Z] > refreshing access token with scopes: []
+[debug] [2023-01-06T13:38:11.331Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-01-06T13:38:11.332Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-06T13:38:11.802Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2023-01-06T13:38:11.804Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-06T13:38:11.804Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/undefined/serviceAccounts/undefined@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2023-01-06T13:38:11.805Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/undefined/serviceAccounts/undefined@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2023-01-06T13:38:13.055Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/undefined/serviceAccounts/undefined@appspot.gserviceaccount.com:testIamPermissions 404
+[debug] [2023-01-06T13:38:13.055Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/undefined/serviceAccounts/undefined@appspot.gserviceaccount.com:testIamPermissions {"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}}
+[debug] [2023-01-06T13:38:13.057Z] [functions] service account IAM check errored, deploy may fail:HTTP Error: 404, Unknown service account {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}},"response":{"statusCode":404}},"exit":1,"message":"HTTP Error: 404, Unknown service account","status":404}
+[debug] [2023-01-06T13:38:13.058Z] > refreshing access token with scopes: []
+[debug] [2023-01-06T13:38:13.060Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-01-06T13:38:13.060Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-06T13:38:13.168Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2023-01-06T13:38:13.168Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-06T13:38:13.169Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/undefined [none]
+[debug] [2023-01-06T13:38:13.468Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/undefined 401
+[debug] [2023-01-06T13:38:13.469Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/undefined {"error":{"code":401,"message":"Request is missing required authentication credential. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"CREDENTIALS_MISSING","domain":"googleapis.com","metadata":{"service":"firebase.googleapis.com","method":"google.firebase.service.v1beta1.FirebaseProjectService.GetFirebaseProject"}}]}}
+[debug] [2023-01-06T13:38:13.470Z] HTTP Error: 401, Request is missing required authentication credential. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2023-01-06T13:38:13.471Z] FirebaseError: HTTP Error: 401, Request is missing required authentication credential. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at responseToError (/opt/homebrew/lib/node_modules/firebase-tools/lib/responseToError.js:49:12)
+    at RetryOperation._fn (/opt/homebrew/lib/node_modules/firebase-tools/lib/apiv2.js:288:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project undefined. Please make sure the project exists and your account has permission to access it.

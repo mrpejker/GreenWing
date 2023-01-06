@@ -1,7 +1,7 @@
 {
   "projects": {
-    "staging": "vself-dev",
-    "prod": "vself-prod",
-    "default": "vself-prod"
+    "staging": "greenwing-v1,
+    "prod": "greenwing-v1",
+    "default": "greenwing-v1"
   }
 }

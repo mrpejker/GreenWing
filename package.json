@@ -1,5 +1,5 @@
 {
-  "name": "vself-beta-frontend",
+  "name": "greenwing-beta-frontend",
   "version": "0.2.0",
   "private": true,
   "scripts": {
@@ -14,9 +14,6 @@
     "lint": "next lint",
     "test:watch": "jest --watch",
     "test": "jest -u",
-    "deploy": "env-cmd -f .env.development firebase deploy",
-    "deploy:dev": "NODE_ENV=development env-cmd -f .env.development next build && firebase deploy -P staging --only functions:nextjseurope --force && firebase deploy -P staging --only hosting",
-    "deploy:prod": "NODE_ENV=production next build && firebase deploy -P prod --only functions:nextjseurope, --force && firebase deploy -P prod --only hosting",
     "events:build": "node contracts/events/compile.js",
     "events:dev:deploy": "yarn events:build && rm -rf neardev && near dev-deploy contracts/target/wasm32-unknown-unknown/release/events.wasm && env-cmd -f ./neardev/dev-account.env node contracts/events/init.js",
     "events:test": "env-cmd -f ./config/deployment.env node contracts/events/tests/test.js",
