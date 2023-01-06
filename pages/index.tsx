@@ -22,7 +22,7 @@ const Home: NextPage = () => {
         <TopComponent />
         <div className="flex items-center justify-center w-full ">
           <div
-            className="w-full max-w-[1240px] bg-[url(/lnd_bl2.png)] p-[20px] bg-no-repeat bg-center bg-cover rounded-lg"
+            className="w-full max-w-[1240px] bg-[url(/lnd_bl2.png)] p-[80px] bg-no-repeat bg-center bg-cover rounded-lg"
             data-aos="fade-up"
           >
           </div>

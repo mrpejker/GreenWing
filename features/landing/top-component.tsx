@@ -31,7 +31,7 @@ const TopComponent: React.FC = () => {
         <p className="text-[#3D3D3D]">We&apos;ve got yor email!</p>
       </Modal>
       <div className="md:w-2/3">
-        <h1 className="uppercase font-grotesk text-[28px] text-white">
+        <h1 className="uppercase font-grotesk text-[25px] text-white">
         Greenwing is a revolutionary digital solution  for sustainable aviation fuels (SAF) supply chain management.        </h1>
         <p className="font-inter mt-[16px] mb-4 text-white">
           Сonnect to be added in our whitelist: be the first to get access to our private beta
