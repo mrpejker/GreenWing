@@ -11,8 +11,8 @@ const EventTable: React.FC<EventTableProps> = ({ rowCallback, events }) => {
     <table>
       <thead className="bg-[#d9d9d9b0] text-black">
         <tr>
-          <th className=" text-sm font-interBold px-4 py-2">Event Title</th>
-          <th className=" text-sm font-interBold px-4 py-2 hidden sm:table-cell">Quests</th>
+          <th className=" text-sm font-interBold px-4 py-2">Collection Title</th>
+          <th className=" text-sm font-interBold px-4 py-2 hidden sm:table-cell">Certificates</th>
           <th className=" text-sm font-interBold px-4 py-2 hidden sm:table-cell">Users</th>
           <th className=" text-sm font-interBold px-4 py-2 hidden sm:table-cell">Start Time</th>
           <th className=" text-sm font-interBold px-4 py-2 ">End Time</th>

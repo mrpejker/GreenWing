@@ -118,12 +118,12 @@ const EventForm: React.FC<EventFormProps> = ({ submitForm, event_data, toggle })
   return (
     <form
       onSubmit={onNewEventSubmit}
-      className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-stretch my-[40px] mt-[150px] md:mt-[40px] w-full max-w-[1240px]"
+      className="grid grid-cols-1 sm:grid-cols-3 gap-2 items-stretch my-[50px] mt-[150px] md:mt-[60px] w-full max-w-[1240px]"
     >
       <div className="p-5 rounded-xl bg-white relative">
         <h5 className="font-drukMedium uppercase text-black text-xl mb-2">New certificates</h5>
         <div className="justify-center w-full flex mt-2">
-          <img className="rounded-t-lg mb-3" src="/pink_circle.png" alt="" style={{ height: 180 }} />
+          <img className="rounded-t-lg mb-3" src="/saf.png" alt="" style={{ height: 180 }} />
         </div>
         <input
           autoComplete="off"
@@ -172,7 +172,7 @@ const EventForm: React.FC<EventFormProps> = ({ submitForm, event_data, toggle })
                 onChange={toggle}
               />
               <label className="form-check-label inline-block text-gray-800" htmlFor="flexSwitchCheckDefault">
-                Authorization is needed for this event
+                Authorization is needed to claim these certificates
               </label>
             </div>
           </div>
