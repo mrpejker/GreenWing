@@ -98,7 +98,7 @@ const EventCard: React.FC<EventCardProps> = ({ eventData, isOwnEvent, event_id, 
       </Modal>
       <div className="flex flex-col w-full max-w-[1080px] sm:flex-row sm:max-w-1/2 p-[20px] text-black relative overflow-auto ">
         <div className="flex w-full sm:w-1/3 justify-center items-center mt-2 p-[10px]">
-          <img src="/ninja2.png" alt="" className="" />
+          <img src="/saf.png" alt="" className="" />
         </div>
         <div className="flex w-full sm:w-2/3 sm:p-6 mb-10 items-center justify-start">
           <div className="flex flex-col">

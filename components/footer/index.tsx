@@ -67,7 +67,7 @@ const Footer: React.FC = () => {
               </h2>
               <ActiveLink href="/onboard" className="mt-2">
                 <p className={isAbout ? 'hover:text-[#FB40FF] text-black' : 'hover:text-[#41F092] text-white'}>
-                  Onboarding to Near
+                  Onboarding to NEAR
                 </p>
               </ActiveLink>
               <ActiveLink href="/dashboard" className="mt-2">
