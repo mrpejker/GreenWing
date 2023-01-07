@@ -48,7 +48,6 @@
     "firebase-admin": "^10.0.2",
     "firebase-functions": "^3.19.0",
     "graphql": "^16.6.0",
-    "gun": "^0.2020.1237",
     "js-base64": "^3.7.2",
     "js-sha3": "^0.8.0",
     "lodash": "^4.17.21",

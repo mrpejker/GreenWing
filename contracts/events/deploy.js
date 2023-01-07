@@ -5,12 +5,12 @@ const DELETE_BEFORE_DEPLOY = process.env.DELETE_BEFORE_DEPLOY === "true";
 const CREATE_CONTRACT_ACCOUNT_BEFORE_DEPLOY = process.env.CREATE_CONTRACT_ACCOUNT_BEFORE_DEPLOY === "true";
 
 // Initial contract account balance
-let initialBalance = 21;
+let initialBalance = 31;
 
 // Recreate account
 if (DELETE_BEFORE_DEPLOY) {
   console.log('Recreate contract account: ', EVENTS_CONTRACT);
-  sh.exec(`near delete ${LINKDREVENTS_CONTRACTOP_CONTRACT} ${MASTER_ACCOUNT}`);
+  sh.exec(`near delete ${EVENTS_CONTRACT} ${MASTER_ACCOUNT}`);
   sh.exec(
     `near create-account ${EVENTS_CONTRACT} --masterAccount=${MASTER_ACCOUNT} --initialBalance ${initialBalance}`
   );

@@ -9,7 +9,6 @@ edition = "2021"
 #near-sdk = "4.0.0"
 #near-contract-standards = "4.0.0"
 #near-sdk-sim = "4.0.0"
-pow-contract = { path = "./pow"}
 
 [profile.release]
 codegen-units = 1
@@ -23,8 +22,6 @@ overflow-checks = true
 
 [workspace]
 members = [
-    "linkdrop",
     "events",
     "near-contract-standards",
-    "deposits"
 ]
