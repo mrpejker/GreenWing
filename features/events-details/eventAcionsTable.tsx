@@ -17,7 +17,7 @@ const EventActionsTable: React.FC<EventActionsTableProps> = ({ eventActions, eve
           <th className="text-sm px-4 py-[5px]">User</th>
           {isOwn && <th className="text-sm px-4 py-[5px] hidden sm:table-cell">QR</th>}
           <th className="text-sm px-4 py-[5px]">Date</th>
-          <th className="text-sm px-4 py-[5px] hidden sm:table-cell">Reward</th>
+          <th className="text-sm px-4 py-[5px] hidden sm:table-cell">Certificate</th>
         </tr>
       </thead>
       <tbody>

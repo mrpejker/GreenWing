@@ -14,7 +14,7 @@ const EventStatsTable: React.FC<EventStatsTableProps> = ({ eventStats }) => {
           <th className="px-4 py-2 text-left hidden sm:table-cell">Created At</th>
           <th className="px-4 py-2 text-center hidden sm:table-cell">Stopped At</th>
           <th className="px-4 py-2 text-center">Total Actions</th>
-          <th className="px-4 py-2 text-center">Total Rewards</th>
+          <th className="px-4 py-2 text-center">Total Certificates</th>
           <th className="px-4 py-2 text-center">Total Users</th>
         </tr>
       </thead>
