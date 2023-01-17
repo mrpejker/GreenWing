@@ -35,7 +35,7 @@ const AboutPage: NextPage = () => {
           <div className="flex flex-col w-full md:w-4/5">
             <h2 className="font-drukMedium text-[#fff] text-[25px] uppercase">Mission</h2>
             <p className="font-interBold text-[#fff] text-[20px] my-[35px]">What is GreenWing?</p>
-            <p className="text-[#fff] text-[40px]">
+            <p className="text-[#fff] text-[20px]">
             The creation of a national or global SAF platform could expand the typical bilateral relationship 
             between producers and buyers, providing better information and competitive prices to end customers. 
             Standardization of credentials and automation of the supply chain management allows for more independent 

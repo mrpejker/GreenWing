@@ -8,7 +8,7 @@ interface LoaderProps {
 
 export const SpinnerLoader: React.FC = () => {
   return (
-    <div className="mx-auto animate-arrow bg-transparent h-[170px] w-[170px] bg-[url(/g6.png)] bg-center bg-[length:170px_170px] my-[40px] rounded-full" />
+    <div className="mx-auto animate-arrow bg-transparent h-[170px] w-[170px] bg-[url(/plane.png)] bg-center bg-[length:170px_170px] my-[40px] rounded-full" />
   );
 };
 

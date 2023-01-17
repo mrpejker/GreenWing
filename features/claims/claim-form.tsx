@@ -65,8 +65,8 @@ const ClaimForm: React.FC<ClaimFormProps> = ({ event_id, claimString, account_id
     <Loader is_load={isLoading}>
       <>
         <div className="text-left">
-          <h2 className="font-drukMedium uppercase text-black text-xl mb-2">Claim Reward</h2>
-          <p className="text-[#3D3D3D]">Provide an Near ID to get reward</p>
+          <h2 className="font-drukMedium uppercase text-black text-xl mb-2">Claim Certificate</h2>
+          <p className="text-[#3D3D3D]">Provide an Near ID to get certificate</p>
           {/* <p className="text-black">{claimString}</p> */}
         </div>
         {isSuccess && (

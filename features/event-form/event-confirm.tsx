@@ -14,7 +14,7 @@ const EventConfirm: React.FC<EventConfirmProps> = ({ buttonCallback, eventData }
     <div className="flex flex-col relative overflow-auto">
       <div className="flex justify-center flex-col rounded-lg shadow-lg text-black bg-white">
         <div className="flex-col md:flex-row flex my-2 p-4 self-center">
-          <img src="/vvs.png" alt="" />
+          <img src="/plane.png" alt="" />
           <div className="md:w-2/5 md:ml-4">
             <h5 className="text-gray-900 text-xl font-medium mb-2">{event_name}</h5>
             <p className="text-gray-700 text-base mb-4">{event_description}</p>
