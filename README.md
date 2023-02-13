@@ -1,6 +1,6 @@
 [![Tests](https://github.com/vself-project/vself-beta/actions/workflows/pre-deploy-test.yml/badge.svg)](https://github.com/vself-project/vself-beta/actions)[![Deployment](https://github.com/vself-project/vself-beta/actions/workflows/firebase-hosting-deploy.yml/badge.svg)](https://github.com/vself-project/vself-beta/actions)
 
-### vSelf Metabuild Event Management Frontend
+### GreenWing
 
 Current repository contains frontend source code and tooling which was developed during NEAR Metabuild Hackathon.
 
