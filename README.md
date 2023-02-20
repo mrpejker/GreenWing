@@ -29,9 +29,7 @@ The creation of a national or global SAF platform could expand the typical bilat
 
 ### Tech Stack
 
-Next.js + Tailwind CSS + Redux + NEAR.js.SDK hosted on Firebase
-
-- GCloud based services: Firebase Hosting as CDN, Cloud Run for dockerized API backend.
+- GCloud based services: Firebase Hosting as CDN.
 - T3 (Typescript/Tailwind CSS/tRPC) Next.js web application.
 - Business logic and contracts are written in Rust and deployed on NEAR.
-- Wallet Selector for authorization and integration with NEAR contacts.
+- Wallet Selector & NEAR JS API for authorization and integration with NEAR contacts.
