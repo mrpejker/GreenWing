@@ -2,7 +2,8 @@
 
 # GreenWing
 ![](https://github.com/mrpejker/GreenWing/blob/main/public/greenwing.png)
-GREENWING IS A REVOLUTIONARY DIGITAL SOLUTION FOR SUSTAINABLE AVIATION FUELS (SAF) SUPPLY CHAIN MANAGEMENT
+
+GreenWing is a revolutionary digital solution for sustainable aviation fuels (SAF) supply chain management
 
 ## Deployment status
 - [GreenWing web application](https://green-wing.vercel.app/)
