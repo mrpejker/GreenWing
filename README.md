@@ -11,34 +11,27 @@ GreenWing is a revolutionary digital solution for sustainable aviation fuels (SA
 
 ### Functionality 
 
+GreenWing allows user to create SAF collection with non-transferable NEAR NFTs and mint SAF NFTs directly or using claim link. The SAF dashboard provides all the information about mined SAF NFTs.
+
 - [NEAR onboarding](https://green-wing.vercel.app/onboard) 
-- [Create & mint SAF NFT](https://green-wing.vercel.app/add) 
+- [Create collection](https://green-wing.vercel.app/add) 
 - [SAF dashboard](https://green-wing.vercel.app/dashboard) 
 
 Current repository contains frontend source code & smart contacts source code
 
-### Synopsys
+### Vision
 
-### Web App
+GreenWing is a revolutionary digital solution for sustainable aviation fuels (SAF) supply chain management
+
+The SAF market will need to develop rapidly in the coming years to meet ambitious climate targets. There is a risk that if countries develop these markets in isolation, a patchwork of systems and certification standards will evolve, creating additional complexities, costs, and delays for industry participants in production, distribution, compliance, and monitoring.
+
+The creation of a national or global SAF platform could expand the typical bilateral relationship between producers and buyers, providing better information and competitive prices to end customers. Standardization of credentials and automation of the supply chain management allows for more independent actors to use the same IT environment.  Improved supply-chain transparency could allow off-takers to source volumes and their virtual attributes from their more economically advantageous points, in turn stimulating SAF production from the most efficient technological pathways, most sustainable feedstocks, and most socioeconomically responsible processes.
+
+### Tech Stack
 
 Next.js + Tailwind CSS + Redux + NEAR.js.SDK hosted on Firebase
 
-### Git Flow
-
-The basic Git Flow consists of main, dev and staging branches.
-
-For developing new feature for the web application one should create a feature branch out of dev and after completing development one should merge it back into dev.
-
-After all the sprint requirements are done and all the features are into dev, one creates a pull-request to the staging branch.
-
-This action will start running tests, after they are passed dev branch can be merged into staging. After merge deployment will start.
-
-Deployment stage will build web app and distribute it to the Firebase hosting located [here](https://vself-dev.firebaseapp.com/).
-
-After product testing on staging environment is over staging branch can be merged into main.
-
-Next step is to test and deploy Main branch to production environment.
-
-### Mobile app
-
-Built with Unity availible for download [here](https://vself-dev.web.app/vself.apk), please use it to go through the quest at [vSelf website](https://vself.app/quest) and obtain some rewards for your NEAR testnet account.
+- GCloud based services: Firebase Hosting as CDN, Cloud Run for dockerized API backend.
+- T3 (Typescript/Tailwind CSS/tRPC) Next.js web application.
+- Business logic and contracts are written in Rust and deployed on NEAR.
+- Wallet Selector for authorization and integration with NEAR contacts.
