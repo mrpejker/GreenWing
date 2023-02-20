@@ -5,14 +5,19 @@
 
 GreenWing is a revolutionary digital solution for sustainable aviation fuels (SAF) supply chain management
 
-## Deployment status
+### Deployment status
 - [GreenWing web application](https://green-wing.vercel.app/)
 - [GreenWing smart-contract](https://explorer.testnet.near.org/accounts/events.greenwingadmin.testnet) deployed to events.greenwingadmin.testnet
 
-vSelf web application and API endpoints (in Beta) [vself-beta](https://github.com/vself-project/vself-beta)
-1. vSelf SDK and npm packkage (with ZKP tools) (proof-of-concept) [vstudio-metabuild](https://github.com/vself-project/vstudio-metabuild)
+### Functionality 
 
-Current repository contains frontend source code and tooling which was developed during NEAR Metabuild Hackathon.
+- [NEAR onboarding](https://green-wing.vercel.app/onboard) 
+- [Create & mint SAF NFT](https://green-wing.vercel.app/add) 
+- [SAF dashboard](https://green-wing.vercel.app/dashboard) 
+
+Current repository contains frontend source code & smart contacts source code
+
+### Synopsys
 
 ### Web App
 
