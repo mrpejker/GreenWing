@@ -1,8 +1,8 @@
 [![Tests](https://github.com/vself-project/vself-beta/actions/workflows/pre-deploy-test.yml/badge.svg)](https://github.com/vself-project/vself-beta/actions)[![Deployment](https://github.com/vself-project/vself-beta/actions/workflows/firebase-hosting-deploy.yml/badge.svg)](https://github.com/vself-project/vself-beta/actions)
 
 ### GreenWing
-![](https://testnet.vself.app/vself.jpg)
-- [vSelf web application](https://testnet.vself.app)
+![](https://github.com/mrpejker/GreenWing/blob/main/public/greenwing.png)
+- [vSelf web application](https://green-wing.vercel.app/)
 - [vSelf smart-contract](https://explorer.testnet.near.org/accounts/events_v22.sergantche.testnet) deployed to events_v22.sergantche.testnet
 
 vSelf web application and API endpoints (in Beta) [vself-beta](https://github.com/vself-project/vself-beta)
